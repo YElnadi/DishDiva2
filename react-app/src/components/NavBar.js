@@ -7,6 +7,7 @@ import Dropdown from "./Dropdown";
 import { useState } from "react";
 import AddRecipe from "./AddRecipe";
 import LoginFormModal from "./LoginFormModal/index.js";
+import SignupFormModal from "./SignupFormModal";
 
 const NavBar = ({}) => {
   const sessionUser = useSelector(state => state.session.user);
@@ -27,11 +28,12 @@ const NavBar = ({}) => {
           </NavLink>
         </div> */}
          <LoginFormModal />
-        <div>
+         <SignupFormModal/>
+        {/* <div>
           <NavLink to="/sign-up" exact={true} activeClassName="active">
             Sign Up
           </NavLink>
-        </div>
+        </div> */}
       </div>
       )}
 

@@ -17,6 +17,7 @@ import './index.css'
 import AddRecipe from './components/AddRecipe';
 import EditRecipe from './components/EditRecipe';
 import Addingredients from './components/Addingredients';
+import SignupFormModal from './components/SignupFormModal';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,7 +49,7 @@ function App() {
           <LoginFormModal />
         </Route>
         <Route path='/sign-up' exact={true}>
-          <SignUpForm />
+          <SignupFormModal />
         </Route>
         <Route path='/users' exact={true} >
           <UsersList/>
