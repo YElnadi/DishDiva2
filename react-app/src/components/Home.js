@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { loadRecipesThunk } from "../store/recipes";
 import HomeRecipeCards from "./HomeRecipeCards";
 import CoverPhoto from "./CoverPhoto";
+import './Home.css'
 
 
 
