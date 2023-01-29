@@ -15,7 +15,6 @@ class RecipeForm(FlaskForm):
   servings = IntegerField('Servings',  validators=[DataRequired()])
   cook_time = IntegerField('Time', validators=[DataRequired()])
   ingredients = TextField('Ingredients', validators=[DataRequired()])
-  preparations = TextField('Preparations',validators=[DataRequired()] )
   user_id = IntegerField('User Id')
   submit = SubmitField('Save')
 

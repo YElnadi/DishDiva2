@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 import { loadSingleRecipeThunk } from "../store/recipes";
 import { useEffect, useState, useRef } from "react";
 import DeleteRecipe from "./DeleteRecipe";
+import EditRecipe from "./EditRecipe";
 import Addingredients from "./Addingredients";
 import "./SingleRecipeDetails.css";
-import EditRecipeModal from "./EditRecipeModal";
 
 const SingleRecipeDetails = () => {
   const { recipeId } = useParams();
@@ -108,7 +108,7 @@ const SingleRecipeDetails = () => {
         //   modalComponent={<EditRecipe key={recipeId}/>}
         // />
         <>
-          <EditRecipeModal singleRecipe={singleRecipe}/>
+          <EditRecipe buttonClicked={false} singleRecipe={singleRecipe} />
         </>
       )}
 
