@@ -20,3 +20,13 @@
     /* align-items: left; */
     justify-content: center;
 }
+
+.wrapper{
+    border: 1px solid #ddd;
+    display:flex;
+    overflow-x: auto;
+}
+
+.wrapper ::-webkit-scrollbar{
+width:0;
+}

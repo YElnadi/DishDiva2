@@ -82,6 +82,7 @@ const Home = () => {
     </div>
 
       <div className="cards-container">
+        
         {Object.values(allRecipes).length > 0 && (
           <>
             {Object.values(allRecipes).map((recipe) => (
@@ -89,6 +90,7 @@ const Home = () => {
             ))}
           </>
         )}
+      
       </div>
       <div style={{ paddingBottom: "200px" }}></div>
       </>

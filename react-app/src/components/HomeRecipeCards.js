@@ -10,8 +10,10 @@ const HomeRecipeCards = ({ recipe }) => {
     history.push(`/recipes/${recipe.id}`);
   };
   return (
-    <>
-      <div className='spot-card'>
+    <> 
+    <div >
+
+      <div className='spot-card ' >
         <img
           src={recipe.image_url}
           onClick={openRecipe}
@@ -22,6 +24,7 @@ const HomeRecipeCards = ({ recipe }) => {
           <h4>{recipe.title}</h4>
           <p>{recipe.user}</p>
         </div>
+      </div>
       </div>
     </>
   );
