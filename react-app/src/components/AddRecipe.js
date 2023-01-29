@@ -29,6 +29,7 @@ const AddRecipe = () => {
     formData.append("title", title);
     formData.append("image", image);
     formData.append("description", description);
+    formData.append("preparations", preparations);
     formData.append("cook_time", cook_time);
     formData.append("servings", servings);
 
@@ -77,10 +78,10 @@ const AddRecipe = () => {
     setImage(file);
   };
 
-  const cancel = (e) =>{
-    e.preventDefault()
-    history.push(`/`)
-  }
+  // const cancel = (e) =>{
+  //   e.preventDefault()
+  //   history.push(`/`)
+  // }
 
   return (
     <div>
@@ -164,7 +165,7 @@ const AddRecipe = () => {
         
         <div>
         <button type="submit">Save</button>
-        <button onClick={cancel}>Cancel</button>
+        {/* <button onClick={cancel}>Cancel</button> */}
         </div>
 
         {imageLoading && <p>Loading...</p>}
