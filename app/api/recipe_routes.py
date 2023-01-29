@@ -23,6 +23,19 @@ def get_single_recipe(recipe_id):
         return {"error":"recipe not found"}, 404
     return recipe.to_dict()
 
+##get All recipes by user id
+@recipe_routes.route('/users/<int:id>')
+def get_my_recipes(id):
+    recipes = Recipe.query.filter_by(user_id=id).all()
+    if len(recipes):
+        return{
+            'recipes':[recipe.to_dict() for recipe in recipes]
+        }
+    else:
+        return {'recipe':{}}
+
+
+
 
 ##Create a Recipe
 # @recipe_routes.route('/new-recipe', methods=["POST"])

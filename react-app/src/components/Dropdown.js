@@ -20,9 +20,9 @@ const Dropdown = ({sessionUser}) => {
         <li>
           <LogoutButton />
         </li>
-        <li>
+        {/* <li>
           <CreateRecipeModal />
-        </li>
+        </li> */}
         <li>
           <NavLink to = {`/users/${sessionUser.id}`}>Profile</NavLink>
         </li>

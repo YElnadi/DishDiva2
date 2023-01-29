@@ -19,7 +19,7 @@ const Home = () => {
 
 
     return (
-        <>
+        <div style={{paddingTop:'20px'}}>
         <CoverPhoto/>
         <h1 style={{fontWeight:500}}>What to cook this week</h1>
         <div className='recipe-cards-container'>
@@ -33,7 +33,7 @@ const Home = () => {
             
         </div>
         
-        </>
+        </div>
     );
 }
 

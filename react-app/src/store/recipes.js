@@ -4,6 +4,7 @@ const CREATE_RECIPE = "recipe/CREATE_RECIPE";
 const DELETE_RECIPE = "recipe/DELETE_RECIPE";
 const EDIT_RECIPE = "recipe/EDIT_RECIPE"
 const ADD_INGREDIENTS_TO_RECIPE = "recipe/ADD_INGREDIENTS"
+const LOAD_MY_RECPES = "recipe/LOAD_MY_RECIPES"
 
 
 
@@ -33,11 +34,17 @@ const editRecipe = (data) =>({
     data
 })
 
+const loadMyRecipes = (data) =>({
+    type:LOAD_MY_RECPES,
+    data
+})
 
 const addIngredientToRecipe = (recipe) =>({
     type:ADD_INGREDIENTS_TO_RECIPE,
     recipe
 })
+
+
 
 
 
@@ -139,15 +146,23 @@ export const addIngredientToRecipeThunk = (newIngredient, recipeId) =>async(disp
     }
 }
 
+export const loadMyRecipesThunk = (id) => async (dispatch) =>{
+    const response = await fetch(`/api/recipes/users/${id}`);
+    if (response.ok){
+        const data = await response.json()
+        dispatch(loadMyRecipes(data))
+    }
+}
 
 /////////REDUCER/////////////
-const initialState = {allRecipes:{}, singleRecipe:{}}
+const initialState = {allRecipes:{}, singleRecipe:{}, myRecipes:{}}
 export default function reducer(state = initialState, action){
     switch (action.type) {
         case LOAD_RECIPES:{
             const newState = {
                 allRecipes:{},
-                singleRecipe:{...state.singleRecipe}
+                singleRecipe:{...state.singleRecipe},
+                myRecipes:{...state.myRecipes}
             };
             action.recipes.forEach(recipe => {
                 newState.allRecipes[recipe.id]=recipe
@@ -157,7 +172,8 @@ export default function reducer(state = initialState, action){
         case LOAD_SINGLE_RECIPE:{
             const newState ={
                 allRecipes:{...state.allRecipes},
-                singleRecipe:action.recipe
+                singleRecipe:action.recipe,
+                myRecipes: {...state.myRecipes}
             };
             return newState;
         }
@@ -166,36 +182,63 @@ export default function reducer(state = initialState, action){
                 ...state,
                 allRecipes:{...state.allRecipes},
                 singleRecipe:action.recipe,
+                myRecipes:{...state.myRecipes}
             }
             newState.allRecipes[action.recipe.id]=action.recipe;
             newState.singleRecipe=action.recipe;
+            newState.myRecipes[action.recipe.id] = action.recipe
             return newState
         }
         case DELETE_RECIPE:{
             const newState={
                 allRecipes:{...state.allRecipes},
                 singleRecipe:{},
+                myRecipes:{...state.myRecipes}
             };
             delete newState.allRecipes[action.recipeId];
+            delete newState.myRecipes[action.recipeId]
             return newState
         }
         case EDIT_RECIPE:{
             const newState = {
                 allRecipes:{...state.allRecipes},
-                singleRecipe:{...state.singleRecipe}
+                singleRecipe:{...state.singleRecipe},
+                myRecipes:{...state.myRecipes}
             };
             newState.allRecipes[action.data.id] = action.data;
             newState.singleRecipe=action.data;
+            newState.myRecipes[action.data.id] = action.data;
             return newState;
         }
         case ADD_INGREDIENTS_TO_RECIPE:{
             const newState = {
                 allRecipes:{...state.allRecipes},
                 singleRecipe:action.recipe,
+                myRecipes:{...state.myRecipes}
             }
-            newState.allRecipes[action.recipe.id]=action.recipe
+            newState.allRecipes[action.recipe.id]=action.recipe;
+            newState.myRecipes[action.recipe.id] = action.recipe;
+            if (Object.values(newState.singleRecipe).length) {
+                if (newState.singleRecipe.id === action.recipe.id) {
+                  newState.singleRecipe = action.recipe;
+                }
+              }
             return newState
             
+        }
+        case LOAD_MY_RECPES:{
+            const newState = {
+                ...state,
+                allRecipes: { ...state.allRecipes },
+                singleRecipe: { ...state.singleRecipe },
+                myRecipes: {},
+              };
+              
+              Object.values(action.data.recipes).forEach((recipe) => {
+                newState.myRecipes[recipe.id] = recipe;
+              });
+              return newState;
+
         }
             
         default:
