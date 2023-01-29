@@ -21,6 +21,8 @@ function User() {
   }
 
   return (
+    <>
+    <h1>You are in user Profile</h1>
     <ul>
       <li>
         <strong>User Id</strong> {userId}
@@ -32,6 +34,7 @@ function User() {
         <strong>Email</strong> {user.email}
       </li>
     </ul>
+    </>
   );
 }
 export default User;

@@ -19,21 +19,13 @@ const NavBar = ({}) => {
       <i className="fa-solid fa-gear login-signup-btn" style={{fontSize:20}} 
       onMouseEnter={()=>setDropdown(true)} 
       onMouseLeave={()=>setDropdown(false)}> 
-      {dropdown && <Dropdown/>}</i> )
+      {dropdown && <Dropdown sessionUser={sessionUser}/>}</i> )
       :(
       <div className="login-signup-btn">
-        {/* <div>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
-        </div> */}
+      
          <LoginFormModal />
          <SignupFormModal/>
-        {/* <div>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
-          </NavLink>
-        </div> */}
+  
       </div>
       )}
 
