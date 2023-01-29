@@ -1,0 +1,38 @@
+.card-main-container {
+  padding-left: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 40%;
+}
+
+.card-main-container:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+.spot-card {
+  display: flex;
+  margin: 20px;
+  justify-content: space-between;
+  overflow: hidden;
+  flex-wrap: wrap;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+.spot-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.spot-card-image {
+  height: 300px;
+  width: 300px;
+  /* border-radius: 15px;  */
+  background-color: white;
+  object-fit: cover;
+  color: white;
+}

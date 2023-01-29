@@ -14,14 +14,14 @@ const NavBar = ({}) => {
   const [dropdown, setDropdown]=useState(false)
 
   return (
-    <nav>
+    <nav style={{display:'inline'}}>
       {sessionUser ?( 
-      <i className="fa-solid fa-gear login-signup-btn" style={{fontSize:20}} 
+      <i className="fa-solid fa-gear login-signup-btn"  
       onMouseEnter={()=>setDropdown(true)} 
-      onMouseLeave={()=>setDropdown(false)}> 
+      onClick={()=>setDropdown(false)} style={{marginRight:'10px', marginTop:'10px'}}> 
       {dropdown && <Dropdown sessionUser={sessionUser}/>}</i> )
       :(
-      <div className="login-signup-btn">
+      <div className="login-signup-btn" style={{marginRight:'10px', marginTop:'10px'}}>
       
          <LoginFormModal />
          <SignupFormModal/>
@@ -29,7 +29,7 @@ const NavBar = ({}) => {
       </div>
       )}
 
-      <div>
+      <div style={{marginLeft:'10px', marginTop:'10px'}}>
         <NavLink to="/" exact={true} activeClassName="active">
           Home
         </NavLink>
@@ -40,6 +40,7 @@ const NavBar = ({}) => {
           Users
         </NavLink>
       </div> */}
+      <div style={{marginTop:'20px'}}></div>
       
     </nav>
   );

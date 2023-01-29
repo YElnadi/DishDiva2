@@ -15,7 +15,7 @@ const Dropdown = ({sessionUser}) => {
  
   
   return (
-    <>
+    <div style={{zIndex:1000, position:'absolute'}}>
       <ul onClick={() => setDropdown(!dropdown)} className="menu">
         <li>
           <LogoutButton />
@@ -27,7 +27,7 @@ const Dropdown = ({sessionUser}) => {
           <NavLink to = {`/users/${sessionUser.id}`}>Profile</NavLink>
         </li>
       </ul>
-    </>
+    </div>
   );
 };
 
