@@ -8,6 +8,7 @@ import EditRecipe from "./EditRecipe";
 import Addingredients from "./Addingredients";
 import "./SingleRecipeDetails.css";
 import AddIngredientsModal from "./AddIngredientsModal";
+import EditRecipeModal from "./EditRecipeModal";
 
 const SingleRecipeDetails = () => {
   const { recipeId } = useParams();
@@ -109,7 +110,7 @@ const SingleRecipeDetails = () => {
         //   modalComponent={<EditRecipe key={recipeId}/>}
         // />
         <>
-          <EditRecipe buttonClicked={false} singleRecipe={singleRecipe} />
+          <EditRecipeModal singleRecipe={singleRecipe} />
         </>
       )}
 

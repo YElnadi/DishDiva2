@@ -4,19 +4,18 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../context/Modal";
 import { editRecipeThunk, loadSingleRecipeThunk } from "../store/recipes";
 
-const EditRecipe = ({ singleRecipe, buttonClicked }) => {
-  const [buttonOn, setButtonOn] = useState(buttonClicked);
+const EditRecipe = ({ singleRecipe, onModalClose }) => {
+  const [errors, setErrors] = useState([]);
   const [title, setTitle] = useState(singleRecipe.title);
   const [description, setDescription] = useState(singleRecipe.description);
   const [servings, setServings] = useState(singleRecipe.servings);
   const [cook_time, setCookTime] = useState(singleRecipe.cook_time);
-//   const [image_url, setImageUrl] = useState(recipe.image_url);
+  //   const [image_url, setImageUrl] = useState(recipe.image_url);
   const history = useHistory();
   const dispatch = useDispatch();
-//   const { closeModal } = useModal();
+  //   const { closeModal } = useModal();
 
-
-  const handelSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const editedRecipe = { ...singleRecipe };
     editedRecipe.title = title;
@@ -24,33 +23,18 @@ const EditRecipe = ({ singleRecipe, buttonClicked }) => {
     editedRecipe.servings = servings;
     editedRecipe.cook_time = cook_time;
     // editedRecipe.image_url = image_url;
-    return dispatch(editRecipeThunk(editedRecipe))
-      .then(dispatch(loadSingleRecipeThunk(singleRecipe.id)))
-      .then(history.push(`/recipes/${singleRecipe.id}`))
-      .then(setButtonOn(false))
-    //   .then(closeModal())
-  };
-  const renderForm = (e) => {
-    e.preventDefault();
-    setButtonOn(true);
+    const response = await dispatch(editRecipeThunk(editedRecipe))
+    .then(dispatch(loadSingleRecipeThunk(singleRecipe.id))
+    ).then(onModalClose());
   };
   const cancel = async (e) => {
     e.preventDefault();
-    setButtonOn(false);
+    onModalClose();
   };
-
-  if (!buttonOn) {
-    return (
-      <button
-        onClick={renderForm}
-        className="demo-btn">
-        Edit Recipe
-      </button>
-    );
-  } else {
-    return (<div>
-        <form onSubmit={handelSubmit}>
-        <label>Title
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Title
         <input
           className="create-recipe-form-inputs"
           type="Text"
@@ -58,11 +42,11 @@ const EditRecipe = ({ singleRecipe, buttonClicked }) => {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Title"
           required
-
         />
-        </label>
-        {/* <input type="file" accept="image/*" onChange={updateImage} required />  */}
-        <label>Description
+      </label>
+      {/* <input type="file" accept="image/*" onChange={updateImage} required />  */}
+      <label>
+        Description
         <textarea
           className="create-recipe-form-inputs"
           type="text"
@@ -71,9 +55,10 @@ const EditRecipe = ({ singleRecipe, buttonClicked }) => {
           placeholder="Description"
           required
         />
-        </label>
-      
-        <label>Servings
+      </label>
+
+      <label>
+        Servings
         <input
           className="create-recipe-form-inputs"
           type="number"
@@ -82,8 +67,9 @@ const EditRecipe = ({ singleRecipe, buttonClicked }) => {
           placeholder="Servings"
           required
         />
-        </label>
-        <label>Time
+      </label>
+      <label>
+        Time
         <input
           className="create-recipe-form-inputs"
           type="number"
@@ -92,14 +78,12 @@ const EditRecipe = ({ singleRecipe, buttonClicked }) => {
           placeholder="Time"
           required
         />
-        </label>
-        <button type="submit">Save</button>
-        <button onClick={cancel}>Cancel</button>
-        {/* {imageLoading && <p>Loading...</p>} */}
-
-        </form>
-    </div>);
-  }
+      </label>
+      <button type="submit">Save</button>
+      <button onClick={cancel}>Cancel</button>
+      {/* {imageLoading && <p>Loading...</p>} */}
+    </form>
+  );
 };
 
 export default EditRecipe;
