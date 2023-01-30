@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 import { addIngredientToRecipeThunk, loadSingleRecipeThunk } from "../store/recipes";
 
 
-const Addingredients = ({singleRecipe,buttonClicked}) => {
+const Addingredients = ({singleRecipe,onModalClose}) => {
   const [errors, setErrors] = useState([]);
   const [quantity, setQuantity] = useState("");
   const [item_name, setItemName] = useState("");
   const [unit, setUnit] = useState("");
-  const [buttonOn, setButtonOn] = useState(buttonClicked);
+  // const [buttonOn, setButtonOn] = useState(buttonClicked);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -29,35 +29,37 @@ const handelSubmit = async (e) =>{
     const response = await dispatch(addIngredientToRecipeThunk(newIngredient,singleRecipe.id))
     if (response){
         setErrors(response)
-    }else{
-        setQuantity("");
-        setUnit("")
-        setItemName("")
     }
+    onModalClose();
+
+    // else{
+    //     setQuantity("");
+    //     setUnit("")
+    //     setItemName("")
+    // }
 };
 
-const renderForm = (e) => {
-    e.preventDefault();
-    setButtonOn(true);
-  };
+// const renderForm = (e) => {
+//     e.preventDefault();
+//     // setButtonOn(true);
+//   };
 
   const cancel = async (e) => {
     e.preventDefault();
-    setButtonOn(false);
+    onModalClose();
   };
 
-if (!buttonOn) {
-    return (
-      <button
-        onClick={renderForm}>
-        Add Ingredients
-      </button>
-    );
-  } else {
+// if (!buttonOn) {
+//     return (
+//       <button
+//         onClick={renderForm}>
+//         Add Ingredients
+//       </button>
+//     );
+//   } else {
 
 
   return (
-    <div>
       <form onSubmit={handelSubmit}>
       <div>
         {errors.map((error, ind) => (
@@ -105,9 +107,8 @@ if (!buttonOn) {
         <button type="submit">Save</button>
         <button onClick={cancel}>Cancel</button>
       </form>
-    </div>
   );
 };
-}
+
 
 export default Addingredients;

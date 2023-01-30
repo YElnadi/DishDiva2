@@ -7,6 +7,7 @@ import DeleteRecipe from "./DeleteRecipe";
 import EditRecipe from "./EditRecipe";
 import Addingredients from "./Addingredients";
 import "./SingleRecipeDetails.css";
+import AddIngredientsModal from "./AddIngredientsModal";
 
 const SingleRecipeDetails = () => {
   const { recipeId } = useParams();
@@ -113,7 +114,7 @@ const SingleRecipeDetails = () => {
       )}
 
       {sessionUser && sessionUser.id === singleRecipe.user_id && (
-        <Addingredients buttonClicked={false} singleRecipe={singleRecipe} />
+        <AddIngredientsModal singleRecipe={singleRecipe} />
       )}
     </>
   );
