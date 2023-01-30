@@ -8,36 +8,38 @@ from app.s3_helpers import (
 
 recipe_routes = Blueprint('recipes', __name__)
 
-## get all recipes
+# get all recipes
+
+
 @recipe_routes.route('/')
 def recipes():
     recipes = Recipe.query.all()
-    return {"recipes":[recipe.to_dict()for recipe in recipes]}
+    return {"recipes": [recipe.to_dict()for recipe in recipes]}
 
 
-##get single recipe
+# get single recipe
 @recipe_routes.route('/<int:recipe_id>', methods=["GET"])
 def get_single_recipe(recipe_id):
     recipe = Recipe.query.get(recipe_id)
     if not recipe:
-        return {"error":"recipe not found"}, 404
+        return {"error": "recipe not found"}, 404
     return recipe.to_dict()
 
-##get All recipes by user id
+# get All recipes by user id
+
+
 @recipe_routes.route('/users/<int:id>')
 def get_my_recipes(id):
     recipes = Recipe.query.filter_by(user_id=id).all()
     if len(recipes):
-        return{
-            'recipes':[recipe.to_dict() for recipe in recipes]
+        return {
+            'recipes': [recipe.to_dict() for recipe in recipes]
         }
     else:
-        return {'recipe':{}}
+        return {'recipe': {}}
 
 
-
-
-##Create a Recipe
+# Create a Recipe
 # @recipe_routes.route('/new-recipe', methods=["POST"])
 # @login_required
 # def create_recipe():
@@ -58,8 +60,8 @@ def get_my_recipes(id):
 #         return new_recipe.to_dict()
 #     return {"errors":validation_errors_to_error_messages(form.errors)}, 401
 
-##create a recipe 
-@recipe_routes.route("/new",methods=["POST"])
+# create a recipe
+@recipe_routes.route("/new", methods=["POST"])
 @login_required
 def upload_image():
     if "image" not in request.files:
@@ -87,23 +89,23 @@ def upload_image():
     new_recipe = Recipe(
         image_url=url,
         title=data['title'],
-        description = data['description'],
-        servings = data['servings'],
-        cook_time = data["cook_time"],
+        description=data['description'],
+        servings=data['servings'],
+        cook_time=data["cook_time"],
         # ingredients = data["ingredients"],
         # Ingredients = Ingredient(
         #     unit = data["unit"],
         #     quantity = data["quantity"],
         #     item_name = data["item_name"]
         # ),
-        user_id = current_user.id,
+        user_id=current_user.id,
     )
     db.session.add(new_recipe)
     db.session.commit()
     return new_recipe.to_dict()
 
 
-##Delete a recipe
+# Delete a recipe
 @recipe_routes.route("/<int:id>", methods=['DELETE'])
 @login_required
 def delete_recipe(id):
@@ -111,12 +113,12 @@ def delete_recipe(id):
     if recipe:
         db.session.delete(recipe)
         db.session.commit()
-        return {"message":"Recipe has been deleted successfully"}
+        return {"message": "Recipe has been deleted successfully"}
     else:
-        return{"message":f"No recipe found with id f {id}"}
+        return {"message": f"No recipe found with id f {id}"}
 
 
-##Edit Recipe
+# Edit Recipe
 @recipe_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def edit_recipe(id):
@@ -133,21 +135,21 @@ def edit_recipe(id):
         recipe.cook_time = new_cook_time
         recipe.image_url = new_image_url
         db.session.commit()
-        return recipe.to_dict()   
+        return recipe.to_dict()
 
-##add ingredients to recipe
-@recipe_routes.route("/<int:id>/add-ingredients", methods=["POST"]) 
-#@login_required
+# add ingredients to recipe
+@recipe_routes.route("/<int:id>/add-ingredients", methods=["POST"])
+# @login_required
 def add_ingredients_to_recipe(id):
     # recipe = Recipe.query.get(id)
     form = IngredientForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_ingredient = Ingredient(
-            quantity = form.data["quantity"],
-            unit = form.data["unit"],
-            item_name = form.data["item_name"],
-            recipe_id = form.data["recipe_id"],
+            quantity=form.data["quantity"],
+            unit=form.data["unit"],
+            item_name=form.data["item_name"],
+            recipe_id=form.data["recipe_id"],
         )
         # recipe.append(new_ingredient)
         db.session.add(new_ingredient)
@@ -157,6 +159,18 @@ def add_ingredients_to_recipe(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-        
-            
-
+# Edit ingredients by recipe id
+@recipe_routes.route("/<int:id>/update-ingredients/<int:ingredient_id>", methods=["PUT"])
+# @login_required
+def edit_ingredeints(ingredient_id):
+    form = IngredientForm()
+    new_quantity = request.json['quantity'],
+    new_unit = request.json['unit'],
+    new_item_name = request.json['item_name']
+    edited_ingredients = Ingredient(
+        quantity=new_quantity,
+        unit=new_unit,
+        item_name=new_item_name
+    )
+    db.session.commit(edited_ingredients)
+    return edited_ingredients.to_dict()

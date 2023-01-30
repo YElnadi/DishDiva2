@@ -29,7 +29,7 @@ const deleteRecipe = (recipeId) =>({
     recipeId
 })
 
-const editRecipe = (data) =>({
+const EditRecipe = (data) =>({
     type:EDIT_RECIPE,
     data
 })
@@ -108,7 +108,7 @@ export const deleteRecipeThunk = (recipeId) => async (dispatch) =>{
     }
 };
 
-export const editRecipeThunk = (recipe) => async(dispatch) =>{
+export const EditRecipeThunk = (recipe) => async(dispatch) =>{
     const response = await fetch(`/api/recipes/${recipe.id}`, {
         method:"PUT",
         headers:{
@@ -118,7 +118,7 @@ export const editRecipeThunk = (recipe) => async(dispatch) =>{
     })
     if (response.ok) {
         const updatedRecipe = await response.json()
-        dispatch(editRecipe( updatedRecipe ));
+        dispatch(EditRecipe( updatedRecipe ));
         return updatedRecipe;
       }
 }

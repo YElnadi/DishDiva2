@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../context/Modal";
-import { editRecipeThunk, loadSingleRecipeThunk } from "../store/recipes";
+import { EditRecipeThunk, loadSingleRecipeThunk } from "../store/recipes";
 
 const EditRecipe = ({ singleRecipe, onModalClose }) => {
   const [errors, setErrors] = useState([]);
@@ -23,7 +23,7 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
     editedRecipe.servings = servings;
     editedRecipe.cook_time = cook_time;
     // editedRecipe.image_url = image_url;
-    const response = await dispatch(editRecipeThunk(editedRecipe))
+    const response = await dispatch(EditRecipeThunk(editedRecipe))
     .then(dispatch(loadSingleRecipeThunk(singleRecipe.id))
     ).then(onModalClose());
   };
