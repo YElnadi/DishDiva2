@@ -5,16 +5,16 @@ body{
     
 }
 
-.banner-image{
+/* .banner-image{
     position:relative;
     background: url(background.jpeg) no-repeat center;
     background-size: cover;
     height: 500px;
-    /* overflow: hidden; */
+    overflow: hidden; */
 
-}
 
-footer{
+
+/* footer{
     background-color: black;
 }
 
@@ -30,4 +30,3 @@ footer div{
     /* display:flex;
     flex-direction: column;  */
     
- }

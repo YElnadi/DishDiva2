@@ -5,6 +5,7 @@ import HomeRecipeCards from "./HomeRecipeCards";
 import CoverPhoto from "./CoverPhoto";
 import "./Home.css";
 import "./SingleRecipeDetails.css";
+import image from '../static/images/background.jpeg'
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const Home = () => {
       <>
     <div>
       {/* <CoverPhoto/> */}
-      <div className="banner-image"></div>
+      <img src={image} className='banner-image'/>
       <div style={{ marginTop: "100px" }}></div>
       <h1
         style={{

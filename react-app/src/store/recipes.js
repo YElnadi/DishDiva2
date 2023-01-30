@@ -172,7 +172,7 @@ export const updateIngredientThunk = (ingredient) =>async(dispatch) =>{
     });
     if(response.ok){
         const data = await response.json()
-        await dispatch(updateIngredient(ingredient))
+        await dispatch(updateIngredient(data))
         return null;
     }else if(response.status<500){
         const data = await response.json();
@@ -274,7 +274,7 @@ export default function reducer(state = initialState, action){
         case UPDATE_INGREDIENT:{
            const newState = {
                allRecipes:{...state.allRecipes},
-               singleRecipe:{...state.singleRecipe},
+               singleRecipe:action.recipe,
                myRecipes:{...state.myRecipes}
            };
            return newState
