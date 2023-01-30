@@ -9,6 +9,8 @@ import Addingredients from "./Addingredients";
 import "./SingleRecipeDetails.css";
 import AddIngredientsModal from "./AddIngredientsModal";
 import EditRecipeModal from "./EditRecipeModal";
+import UpdateIngredientsFormModal from './UpdateIngredientsFormModal'
+import SingleIngredientCard from "./SingleIngredientCard";
 
 const SingleRecipeDetails = () => {
   const { recipeId } = useParams();
@@ -20,10 +22,10 @@ const SingleRecipeDetails = () => {
   console.log("single recipe", singleRecipe);
   //console.log("session user", sessionUser);
 
-  const getIngredents = (singleRecipe) => {
-    const ingredents =
+  const getIngredients = (singleRecipe) => {
+    const ingredients =
       singleRecipe.ingredients !== undefined ? singleRecipe.ingredients : [];
-    return Object.values(ingredents);
+    return Object.values(ingredients);
   };
 
   const getPreparations = (singleRecipe) => {
@@ -75,9 +77,16 @@ const SingleRecipeDetails = () => {
           style={{ border: "1px solid black", inlineSize: 500 }}
           className="instructions"
         >
-          {getIngredents(singleRecipe).map((ingredient) => (
+          
+          {getIngredients(singleRecipe).map((ingredient) => (
             <p style={{fontFamily:'nyt-cheltenham,Georgia,Times New Roman,serif'}}>
-              {ingredient.quantity} {ingredient.unit} {ingredient.item_name}
+              {ingredient.quantity} {ingredient.unit} {ingredient.item_name} 
+              {sessionUser && sessionUser.id === singleRecipe.user_id &&
+              <SingleIngredientCard ingredient={ingredient} singleRecipe={singleRecipe}/>
+              
+              }
+              {console.log("#######",singleRecipe.ingredient)}
+              
             </p>
           ))}
         </div>
@@ -117,6 +126,10 @@ const SingleRecipeDetails = () => {
       {sessionUser && sessionUser.id === singleRecipe.user_id && (
         <AddIngredientsModal singleRecipe={singleRecipe} />
       )}
+
+      {/* {sessionUser && sessionUser.id === singleRecipe.user_id && (
+        <UpdateIngredientsFormModal singleRecipe={singleRecipe} />
+      )} */}
     </>
   );
 };

@@ -159,18 +159,18 @@ def add_ingredients_to_recipe(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-# Edit ingredients by recipe id
-@recipe_routes.route("/<int:id>/update-ingredients/<int:ingredient_id>", methods=["PUT"])
-# @login_required
-def edit_ingredeints(ingredient_id):
-    form = IngredientForm()
-    new_quantity = request.json['quantity'],
-    new_unit = request.json['unit'],
-    new_item_name = request.json['item_name']
-    edited_ingredients = Ingredient(
-        quantity=new_quantity,
-        unit=new_unit,
-        item_name=new_item_name
-    )
-    db.session.commit(edited_ingredients)
-    return edited_ingredients.to_dict()
+# # Edit ingredients by recipe id
+# @recipe_routes.route("/<int:id>/update-ingredients/<int:ingredient_id>", methods=["PUT"])
+# # @login_required
+# def edit_ingredeints(ingredient_id):
+#     form = IngredientForm()
+#     new_quantity = request.json['quantity'],
+#     new_unit = request.json['unit'],
+#     new_item_name = request.json['item_name']
+#     edited_ingredients = Ingredient(
+#         quantity=new_quantity,
+#         unit=new_unit,
+#         item_name=new_item_name
+#     )
+#     db.session.commit(edited_ingredients)
+#     return edited_ingredients.to_dict()
