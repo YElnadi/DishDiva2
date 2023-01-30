@@ -14,10 +14,6 @@ const Addingredients = ({singleRecipe,onModalClose}) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-
-   //const singleRecipe = useSelector((state) => state.recipes.singleRecipe);
-//   console.log("recipe", recipe);
-//   const handelSubmit = (e) => {};
 const handelSubmit = async (e) =>{
     e.preventDefault();
     const newIngredient = {
@@ -31,33 +27,11 @@ const handelSubmit = async (e) =>{
         setErrors(response)
     }
     onModalClose();
-
-    // else{
-    //     setQuantity("");
-    //     setUnit("")
-    //     setItemName("")
-    // }
 };
-
-// const renderForm = (e) => {
-//     e.preventDefault();
-//     // setButtonOn(true);
-//   };
-
   const cancel = async (e) => {
     e.preventDefault();
     onModalClose();
   };
-
-// if (!buttonOn) {
-//     return (
-//       <button
-//         onClick={renderForm}>
-//         Add Ingredients
-//       </button>
-//     );
-//   } else {
-
 
   return (
       <form onSubmit={handelSubmit}>
