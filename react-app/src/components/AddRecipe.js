@@ -70,6 +70,8 @@ const AddRecipe = () => {
       console.log("error");
       return
     }
+
+    if (description < 500) errors.push('please add descriptions')
     
   };
   const updateImage = (e) => {
