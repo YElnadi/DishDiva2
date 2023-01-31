@@ -2,7 +2,7 @@
     box-sizing: border-box;  
 }
 
-.bg-img {
+.bg-img-login-form {
     /* The image used */
     background-image: url("../../static/images/login3.jpeg");
   
@@ -19,12 +19,12 @@
     
   }
 
-  .bg-img img{
+  .bg-img-login-form img{
     width: 100%;
     height: auto; 
   }
 
-  .container {
+  .container-login-form {
     position: absolute;
     right: 0;
     margin-top: 10px;
@@ -35,8 +35,8 @@ width: 300px;
     
   }
 
-  input[type=text], input[type=password] {
-    width: 100%;
+  .login-form-input {
+    width: 90%;
     padding: 15px;
     margin: 5px 0 22px 0;
     border: none;
@@ -47,18 +47,18 @@ width: 300px;
     background-color: #ddd;
     outline: none;
   }
-  .btn {
+  .btn-login-form {
     background-color: #04AA6D;
     color: white;
     padding: 16px 20px;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 90%;
     opacity: 0.9;
     margin-bottom: 196px;
   }
 
-  .btn:hover {
+  .btn-login-form:hover {
     opacity: 1;
   }
 

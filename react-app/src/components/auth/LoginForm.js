@@ -35,11 +35,11 @@ const LoginForm = () => {
   return (
     <>
      
-      <div className='bg-img'>
+      <div className='bg-img-login-form'>
         <div className='left'>Unlock DishDiva recipes and your personal recipe box with a free account.</div>
         
         
-        <form onSubmit={onLogin} className='container'> 
+        <form onSubmit={onLogin} className='container-login-form'> 
         <h2 style={{textAlign:'center'}}>Enter your email address and password to login </h2>
           <div>
             {errors.map((error, ind) => (
@@ -48,7 +48,7 @@ const LoginForm = () => {
           </div>
           <div>
             <label htmlFor="email">Email</label>
-            <input
+            <input className='login-form-input'
               name="email"
               type="text"
               placeholder="Email"
@@ -58,14 +58,14 @@ const LoginForm = () => {
           </div>
           <div>
             <label htmlFor="password">Password</label>
-            <input
+            <input className='login-form-input'
               name="password"
               type="password"
               placeholder="Password"
               value={password}
               onChange={updatePassword}
             />
-            <button type="submit" className="btn">Login</button>
+            <button type="submit" className="btn-login-form">Login</button>
             
           </div>
         </form>
