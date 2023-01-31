@@ -1,0 +1,30 @@
+.login-btn{
+    /* background-color: #4CAF50; /* Green */
+    /* border: none; */
+    /* color: white;
+    padding: 15px 32px; */
+    /* text-align: center;
+    text-decoration: none; */
+    /* font-size: 16px;  */ 
+    font: 12px nyt-franklin,Arial,Helvetica,sans-serif;
+cursor: pointer;
+line-height: 43px;
+text-align: center;
+box-sizing: border-box;
+outline: 0;
+color: #4f514f;
+font-weight: 700;
+overflow: hidden;
+text-overflow: ellipsis;
+text-transform: uppercase;
+white-space: nowrap;
+border:none
+}
+
+.login-btn:hover{
+    background-color: #b2b4b2;
+}
+
+
+
+
