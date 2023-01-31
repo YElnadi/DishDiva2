@@ -36,7 +36,8 @@ const SingleRecipeDetails = () => {
   };
 
   useEffect(async () => {
-    await dispatch(loadSingleRecipeThunk(recipeId));
+    const data = await dispatch(loadSingleRecipeThunk(recipeId));
+    console.log('#####data', data)
   }, [dispatch, recipeId]);
 
   return (

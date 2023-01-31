@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, Recipe, Ingredient
 from ..forms.create_recipe_form import RecipeForm, IngredientForm
+from ..forms.edit_recipe_form import EditRecipeForm
 from .auth_routes import validation_errors_to_error_messages
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -9,8 +10,6 @@ from app.s3_helpers import (
 recipe_routes = Blueprint('recipes', __name__)
 
 # get all recipes
-
-
 @recipe_routes.route('/')
 def recipes():
     recipes = Recipe.query.all()
@@ -26,8 +25,6 @@ def get_single_recipe(recipe_id):
     return recipe.to_dict()
 
 # get All recipes by user id
-
-
 @recipe_routes.route('/users/<int:id>')
 def get_my_recipes(id):
     recipes = Recipe.query.filter_by(user_id=id).all()
@@ -122,20 +119,17 @@ def delete_recipe(id):
 @recipe_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def edit_recipe(id):
-    recipe = Recipe.query.get(id)
-    new_title = request.json["title"]
-    new_description = request.json["description"]
-    new_servings = request.json["servings"]
-    new_cook_time = request.json["cook_time"]
-    new_image_url = request.json['image_url']
-    if recipe:
-        recipe.title = new_title
-        recipe.description = new_description
-        recipe.servings = new_servings
-        recipe.cook_time = new_cook_time
-        recipe.image_url = new_image_url
+    form = EditRecipeForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        recipe = Recipe.query.get(id)
+        recipe.title = form.data['title']
+        recipe.description = form.data['description']
+        recipe.servings = form.data['servings']
+        recipe.cook_time = form.data['cook_time']
         db.session.commit()
         return recipe.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # add ingredients to recipe
 @recipe_routes.route("/<int:id>/add-ingredients", methods=["POST"])

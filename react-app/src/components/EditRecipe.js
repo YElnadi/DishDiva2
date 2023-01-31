@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useModal } from "../context/Modal";
 import { EditRecipeThunk, loadSingleRecipeThunk } from "../store/recipes";
 
 const EditRecipe = ({ singleRecipe, onModalClose }) => {
