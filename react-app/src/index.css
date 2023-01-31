@@ -3,3 +3,14 @@ body{
     font-family: nyt-cheltenham,Georgia,Times New Roman,serif ;
     background-color: rgb(242, 243, 239);
 }
+
+--fa-style-family-brands: "Font Awesome 6 Brands";
+--fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+--fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+--fa-style-family-classic: "Font Awesome 6 Free";
+--fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+color: #222;
+font: 12px nyt-franklin,Arial,Helvetica,sans-serif;
+font-weight: 500;
+box-sizing: border-box;
+margin-top: 20px;

@@ -10,6 +10,7 @@ import LoginFormModal from "./LoginFormModal/index.js";
 import SignupFormModal from "./SignupFormModal";
 import { login } from "../store/session";
 import { useDispatch } from "react-redux";
+import logo from '../static/images/logoo.png'
 
 const NavBar = ({}) => {
   const sessionUser = useSelector(state => state.session.user);
@@ -39,7 +40,7 @@ const NavBar = ({}) => {
 
       <div style={{marginLeft:'10px', marginTop:'0px'}}>
         <NavLink to="/" exact={true} activeClassName="active">
-          Home
+          <img src={logo} style={{width:'200px'}}/>
         </NavLink>
       </div>
 
