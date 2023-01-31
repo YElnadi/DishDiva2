@@ -5,7 +5,8 @@ import HomeRecipeCards from "./HomeRecipeCards";
 import CoverPhoto from "./CoverPhoto";
 import "./Home.css";
 import "./SingleRecipeDetails.css";
-import image from '../static/images/background.jpeg'
+import image from "../static/images/background.jpeg";
+import Footer from "./Footer";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -19,10 +20,9 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-      <>
-    <div>
+    <>
       {/* <CoverPhoto/> */}
-      <img src={image} className='banner-image'/>
+      <img src={image} className="banner-image" />
       <div style={{ marginTop: "100px" }}></div>
       <h1
         style={{
@@ -68,33 +68,36 @@ const Home = () => {
         The Cooking Newsletter
       </div>
 
-      <p
-        style={{ marginLeft: "100px", marginBottom: "20px", fontSize: "40px" }}
+      <h2
+        style={{
+          marginLeft: "100px",
+          marginBottom: "20px",
+          fontSize: "40px",
+        }}
       >
         What to Cook this Weekend
-      </p>
+      </h2>
 
-      <p className="description" style={{ inlineSize: 700 }}>
-        Good morning. This week, Eric Kim brought us a recipe for sautéed
-        chicken breasts with a gin and sage pan sauce (above), adapted from the
-        one he found in Amy Thielen’s forthcoming cookbook, “Company.”
-      </p>
+      <div style={{display:'flex', flexDirection:'column'}}>
+        <h2 style={{ inlineSize: 700, textAlign:'left', margin:'0 auto', width:'50%', marginBottom:'20px'}}>
+          Good morning. This week, Eric Kim brought us a recipe for sautéed
+          chicken breasts with a gin and sage pan sauce (above), adapted from
+          the one he found in Amy Thielen’s forthcoming cookbook, “Company.”
+        </h2>
 
-    </div>
-
-      <div className="cards-container">
-        
-        {Object.values(allRecipes).length > 0 && (
-          <>
-            {Object.values(allRecipes).map((recipe) => (
-              <HomeRecipeCards key={recipe.id} recipe={recipe} />
-            ))}
-          </>
-        )}
-      
+        <div className="cards-container">
+          {Object.values(allRecipes).length > 0 && (
+            <>
+              {Object.values(allRecipes).map((recipe) => (
+                <HomeRecipeCards key={recipe.id} recipe={recipe} />
+              ))}
+            </>
+          )}
+        </div>
       </div>
       <div style={{ paddingBottom: "200px" }}></div>
-      </>
+     <div style={{backgroundColor:'black'}}><Footer/></div> 
+    </>
   );
 };
 
