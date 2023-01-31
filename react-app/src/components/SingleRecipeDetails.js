@@ -9,8 +9,9 @@ import Addingredients from "./Addingredients";
 import "./SingleRecipeDetails.css";
 import AddIngredientsModal from "./AddIngredientsModal";
 import EditRecipeModal from "./EditRecipeModal";
-import UpdateIngredientsFormModal from './UpdateIngredientsFormModal'
+import UpdateIngredientsFormModal from "./UpdateIngredientsFormModal";
 import SingleIngredientCard from "./SingleIngredientCard";
+import DeleteIngredientBtn from "./DeleteIngredientBtn";
 
 const SingleRecipeDetails = () => {
   const { recipeId } = useParams();
@@ -40,96 +41,123 @@ const SingleRecipeDetails = () => {
 
   return (
     <>
-      <div className="page-container">
-        <div>
-          <div>
-            <img src={singleRecipe.image_url} className="img-div" />
-          </div>
-          <div className="recipe-title-username">
+      {Object.values(singleRecipe).length > 0 && (
+        <>
+          <div className="page-container">
             <div>
-              <h1
-                style={{
-                  fontSize: "50px",
-                  fontFamily: "nyt-cheltenham,Georgia,Times New Roman,serif",
-                  fontWeight: 180,
-                  inlineSize: 500,
-                  overflowWrap: "break-word",
-                  textAlign: "center",
-                }}
-              >
-                {singleRecipe.title}
-              </h1>
-              <h2 className="user-name">By {singleRecipe.user}</h2>
+              <div>
+                <img src={singleRecipe.image_url} className="img-div" />
+              </div>
+              <div className="recipe-title-username">
+                <div>
+                  <h1
+                    style={{
+                      fontSize: "50px",
+                      fontFamily:
+                        "nyt-cheltenham,Georgia,Times New Roman,serif",
+                      fontWeight: 180,
+                      inlineSize: 500,
+                      overflowWrap: "break-word",
+                      textAlign: "center",
+                    }}
+                  >
+                    {singleRecipe.title}
+                  </h1>
+                  <h2 className="user-name">By {singleRecipe.user}</h2>
+                </div>
+              </div>
+            </div>
+            <div style={{ inlineSize: 700 }} className="description">
+              <h3 style={{ borderBottom: "5px solid black", padding: "10px" }}>
+                {singleRecipe.description}
+              </h3>
             </div>
           </div>
-        </div>
-        <div style={{ inlineSize: 700 }} className="description">
-          <p style={{ borderBottom: "5px solid black", padding: "10px" }}>
-            {singleRecipe.description}
-          </p>
-        </div>
-      </div>
-      <h3 style={{paddingLeft:'610px', fontSize:'25px'}}>Preparation</h3>
+          <h3 style={{ paddingLeft: "610px", fontSize: "25px" }}>
+            Preparation
+          </h3>
 
-
-      <div style={{ border: "1px solid black", display: "flex" }}>
-        <div
-          style={{ border: "1px solid black", inlineSize: 500 }}
-          className="instructions"
-        >
-          
-          {getIngredients(singleRecipe).map((ingredient) => (
-            <p style={{fontFamily:'nyt-cheltenham,Georgia,Times New Roman,serif'}}>
-              {ingredient.quantity} {ingredient.unit} {ingredient.item_name} 
-              {sessionUser && sessionUser.id === singleRecipe.user_id &&
-              <SingleIngredientCard ingredient={ingredient} singleRecipe={singleRecipe}/>
-              
-              }
-              {console.log("#######",singleRecipe.ingredient)}
-              
-            </p>
-          ))}
-        </div>
-        <div style={{ border: "1px solid black", inlineSize: 700  }}>
-          {getPreparations(singleRecipe).map((preparation) => (
+          <div style={{ border: "1px solid black", display: "flex" }}>
+            <div
+              style={{ border: "1px solid black", inlineSize: 500 }}
+              className="instructions"
+            >
+              {getIngredients(singleRecipe).map((ingredient) => (
+                <h3
+                  style={{
+                    fontFamily: "nyt-cheltenham,Georgia,Times New Roman,serif",
+                  }}
+                >
+                  {ingredient.quantity} {ingredient.unit} {ingredient.item_name}
+                  {sessionUser && sessionUser.id === singleRecipe.user_id && (
+                    <>
+                      <SingleIngredientCard
+                        ingredient={ingredient}
+                        singleRecipe={singleRecipe}
+                        key={singleRecipe.id}
+                      />
+                      <DeleteIngredientBtn ingredient={ingredient} />
+                    </>
+                  )}
+                  {console.log("#######", singleRecipe.ingredient)}
+                </h3>
+              ))}
+            </div>
+            <div style={{ border: "1px solid black", inlineSize: 700 }}>
+              {getPreparations(singleRecipe).map((preparation) => (
+                <>
+                  <p
+                    style={{
+                      fontFamily:
+                        "nyt-cheltenham,Georgia,Times New Roman,serif",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {" "}
+                    Step {preparation.step}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily:
+                        "nyt-cheltenham,Georgia,Times New Roman,serif",
+                    }}
+                  >
+                    {preparation.instructions}
+                  </p>
+                </>
+              ))}
+            </div>
+          </div>
+          {sessionUser && sessionUser.id === singleRecipe.user_id && (
             <>
-              <p style={{fontFamily:'nyt-cheltenham,Georgia,Times New Roman,serif', fontSize:'20px', fontWeight:'bold'}}> Step {preparation.step}</p>
-              <p style={{fontFamily:'nyt-cheltenham,Georgia,Times New Roman,serif'}}>{preparation.instructions}</p>
+              <DeleteRecipe recipeId={recipeId} />
+              {/* <div>
+          <button >
+          <NavLink to={`/recipes/${recipeId}/Add`} style={{textDecoration:'none', color:'black', }}>
+          <Addingredients/>Add Ingredients
+          </NavLink>
+          </button>
+      </div> */}
             </>
-          ))}
-        </div>
-      </div>
-      {sessionUser && sessionUser.id === singleRecipe.user_id && (
-        <>
-          <DeleteRecipe recipeId={recipeId} />
-          {/* <div>
-            <button >
-            <NavLink to={`/recipes/${recipeId}/Add`} style={{textDecoration:'none', color:'black', }}>
-            <Addingredients/>Add Ingredients
-            </NavLink>
-            </button>
-        </div> */}
+          )}
+
+          {sessionUser && sessionUser.id === singleRecipe.user_id && (
+            // <OpenModalMenuItem
+            //   itemText={<button>Edit your recipe</button>}
+            //   onItemClick={closeMenu}
+            //   modalComponent={<EditRecipe key={recipeId}/>}
+            // />
+            <>
+              <EditRecipeModal singleRecipe={singleRecipe} />
+            </>
+          )}
+
+          {sessionUser && sessionUser.id === singleRecipe.user_id && (
+            <AddIngredientsModal singleRecipe={singleRecipe} />
+          )}
         </>
       )}
-
-      {sessionUser && sessionUser.id === singleRecipe.user_id && (
-        // <OpenModalMenuItem
-        //   itemText={<button>Edit your recipe</button>}
-        //   onItemClick={closeMenu}
-        //   modalComponent={<EditRecipe key={recipeId}/>}
-        // />
-        <>
-          <EditRecipeModal singleRecipe={singleRecipe} />
-        </>
-      )}
-
-      {sessionUser && sessionUser.id === singleRecipe.user_id && (
-        <AddIngredientsModal singleRecipe={singleRecipe} />
-      )}
-
-      {/* {sessionUser && sessionUser.id === singleRecipe.user_id && (
-        <UpdateIngredientsFormModal singleRecipe={singleRecipe} />
-      )} */}
     </>
   );
 };

@@ -43,9 +43,11 @@ def update_ingredient(id):
 ##@login_required
 def delete_ingredient(id):
      ingredient = Ingredient.query.get(id)
+     recipe_id = ingredient.recipe_id
      if ingredient:
           db.session.delete(ingredient)
           db.session.commit()
-          return {"message":"Ingredient Successfully deleted"}
+          updated_recipe = Recipe.query.get(recipe_id)
+          return updated_recipe.to_dict()
      else:
           return{"message":f"No ingredient found with this id ${id}"}

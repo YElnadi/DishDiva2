@@ -6,6 +6,7 @@ const EDIT_RECIPE = "recipe/EDIT_RECIPE"
 const ADD_INGREDIENTS_TO_RECIPE = "recipe/ADD_INGREDIENTS"
 const LOAD_MY_RECPES = "recipe/LOAD_MY_RECIPES"
 const UPDATE_INGREDIENT = "ingredient/UPDATE_INGREDIENT"
+const DELETE_INGREDIENT = "ingredient/DELETE_INGREDIENT"
 
 
 
@@ -50,6 +51,12 @@ const updateIngredient = (recipe) =>({
     type:UPDATE_INGREDIENT,
     recipe
 })
+
+const deleteIngredient = (recipe)=>({
+    type:DELETE_INGREDIENT,
+    recipe
+})
+
 
 
 
@@ -185,6 +192,25 @@ export const updateIngredientThunk = (ingredient) =>async(dispatch) =>{
     }
 }
 
+export const deleteIngredientThunk = (ingredient) => async(dispatch) =>{
+    const response = await fetch(`/api/ingredients/delete/${ingredient.id}`,{
+        method:'DELETE'
+    })
+    if(response.ok){
+        const data = await response.json()
+        await dispatch(deleteIngredient(data));
+        return null;
+    }else if(response.status<500){
+        const data = await response.json();
+        if(data.errors){
+            return data.errors;
+        }
+        else{
+            return ['An error occurred. Please try again.']
+        }
+    }
+}
+
 /////////REDUCER/////////////
 const initialState = {allRecipes:{}, singleRecipe:{}, myRecipes:{}}
 export default function reducer(state = initialState, action){
@@ -278,6 +304,15 @@ export default function reducer(state = initialState, action){
                myRecipes:{...state.myRecipes}
            };
            return newState
+        }
+        case DELETE_INGREDIENT:{
+            const newState ={
+                allRecipes:{...state.allRecipes},
+                singleRecipe:action.recipe,
+                myRecipes:{...state.myRecipes}
+            };
+            return newState
+
         }
             
         default:
