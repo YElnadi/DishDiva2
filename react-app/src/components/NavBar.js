@@ -8,10 +8,17 @@ import { useState } from "react";
 import AddRecipe from "./AddRecipe";
 import LoginFormModal from "./LoginFormModal/index.js";
 import SignupFormModal from "./SignupFormModal";
+import { login } from "../store/session";
+import { useDispatch } from "react-redux";
 
 const NavBar = ({}) => {
   const sessionUser = useSelector(state => state.session.user);
+  const dispatch = useDispatch()
   const [dropdown, setDropdown]=useState(false)
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    await dispatch(login("demo@aa.io", "password"));
+  };
 
   return (
     <nav style={{display:'inline'}} className='nav-bar-styles'>
@@ -22,9 +29,10 @@ const NavBar = ({}) => {
       {dropdown && <Dropdown sessionUser={sessionUser}/>}</i> )
       :(
       <div className="login-signup-btn" style={{marginRight:'10px', marginTop:'0px'}}>
-      
+        <button className="demo-btn" onClick={demoLogin}>Demo</button>
          <LoginFormModal />
          <SignupFormModal/>
+         
   
       </div>
       )}
