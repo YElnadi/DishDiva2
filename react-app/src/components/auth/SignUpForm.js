@@ -20,8 +20,9 @@ const SignUpForm = () => {
         console.log('data####', data)
         setErrors(data)
       }
-    }
-    else return "Password does not match"
+      
+    } 
+     else setErrors(["password not match"])
   };
 
   const updateUsername = (e) => {
@@ -45,8 +46,9 @@ const SignUpForm = () => {
   }
 
   return (
-    <div>
-    <form onSubmit={onSignUp}>
+    <div className='bg-img-login-form'>
+    <form onSubmit={onSignUp} className='container-login-form'>
+    <h2 style={{textAlign:'center'}}>Create new account to join the kitchen  </h2>
       <div>
         {Object.values(errors).map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -55,6 +57,7 @@ const SignUpForm = () => {
       <div>
         <label>User Name</label>
         <input
+          className='login-form-input'
           type='text'
           name='username'
           onChange={updateUsername}
@@ -65,6 +68,7 @@ const SignUpForm = () => {
       <div>
         <label>Email</label>
         <input
+          className='login-form-input'
           type='text'
           name='email'
           onChange={updateEmail}
@@ -75,6 +79,7 @@ const SignUpForm = () => {
       <div>
         <label>Password</label>
         <input
+          className='login-form-input'
           type='password'
           name='password'
           onChange={updatePassword}
@@ -85,6 +90,7 @@ const SignUpForm = () => {
       <div>
         <label>Repeat Password</label>
         <input
+          className='login-form-input'
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
@@ -92,7 +98,7 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
+      <button className="btn-login-form" type='submit'>Sign Up</button>
     </form>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./HomeRecipeCards.css";
 import LoginFormModal from "./LoginFormModal";
@@ -14,7 +14,8 @@ const HomeRecipeCards = ({ recipe }) => {
  
 
   const openRecipe = (e) => {
-   history.push(`/recipes/${recipe.id}`);
+    if(!sessionUser) return history.push('/login')
+    history.push(`/recipes/${recipe.id}`);
     } 
 
   return (
