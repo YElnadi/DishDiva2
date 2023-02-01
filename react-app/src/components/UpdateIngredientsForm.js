@@ -60,7 +60,7 @@ const UpdateIngredientsForm = ({ ingredient, singleRecipe, onModalClose }) => {
     <div className="bg-img-update-ingredients-form">
       <form
         onSubmit={handleSubmit}
-        className="container-update-ingredients-form"
+        className="container-update2-ingredients-form"
       >
         <h1>Update Ingredients</h1>
         <label>Qunatity</label>
