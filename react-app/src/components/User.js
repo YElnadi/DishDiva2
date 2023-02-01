@@ -72,7 +72,7 @@ function User() {
               }}
             >
               {" "}
-              <i class="fa-solid fa-house"></i> Home
+              <i className="fa-solid fa-house"></i> Home
             </NavLink>
             <CreateRecipeModal />
           </div>

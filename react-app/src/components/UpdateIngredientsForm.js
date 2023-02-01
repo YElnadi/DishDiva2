@@ -14,6 +14,7 @@ const UpdateIngredientsForm = ({ ingredient, singleRecipe, onModalClose }) => {
   console.log("#####Reciope", recipe);
 
   const options = [
+    { value: "none", label: "" },
     { value: "cup", label: "cup" },
     { value: "tablespoon", label: "tablespoon" },
     { value: "teaspoon", label: "teaspoon" },

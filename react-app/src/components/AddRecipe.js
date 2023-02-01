@@ -51,13 +51,10 @@ const AddRecipe = () => {
     });
     if (res.ok) {
       const newRecipe = await res.json();
-      //console.log("data", data)
-
       // if(data){
       //   setErrors(data)
       // }
       setImageLoading(false);
-      //console.log('recipeId#####', newRecipe.id)
       history.push(`/recipes/${newRecipe.id}`);
     } else {
       const data = await res.json();
@@ -71,10 +68,7 @@ const AddRecipe = () => {
       // error handling
       console.log("error");
       return
-    }
-
-    if (description < 500) errors.push('please add descriptions')
-    
+    }    
   };
   const updateImage = (e) => {
     const file = e.target.files[0];
@@ -90,7 +84,6 @@ const AddRecipe = () => {
     <div className="bg-img-edit-recipe-form">
       <form onSubmit={handelSubmit}  className="container-update-ingredients-form">
       <h1>Add Recipe</h1>
-
       <div>
         {Object.values(errors).map((error, ind) => (
           <div key={ind}>{error}</div>

@@ -20,6 +20,7 @@ const Addingredients = ({singleRecipe,onModalClose}) => {
   const history = useHistory();
 
   const options = [
+    {value:'none', label:''},
     {value:'cup', label:'cup'},
     {value:'tablespoon', label:'tablespoon'},
     {value:'teaspoon', label:'teaspoon'},
@@ -36,7 +37,7 @@ const handelSubmit = async (e) =>{
         recipe_id: singleRecipe.id
     }
     const response = await dispatch(addIngredientToRecipeThunk(newIngredient,singleRecipe.id))
-    // onModalClose();
+     onModalClose();
     if (response){
         setErrors(response)
     }

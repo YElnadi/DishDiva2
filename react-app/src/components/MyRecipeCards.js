@@ -15,7 +15,7 @@ const MyRecipeCards = ({ myRecipe }) => {
         />
       
       <div className="container">
-        <h style={{fontSize:'20px'}}>{myRecipe.title}</h>
+        <h1 style={{fontSize:'20px'}}>{myRecipe.title}</h1>
         <p style={{fontSize:'20px'}}>{myRecipe.user}</p>
       </div>
       </div>
