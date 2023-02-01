@@ -45,3 +45,8 @@
   background-color: #ddd;
   margin-right: 2px;
 }
+
+
+.fixed-form-input{
+  resize: none;
+}

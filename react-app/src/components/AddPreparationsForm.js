@@ -64,7 +64,9 @@ function AddPreparationsForm({singleRecipe,onModalClose}) {
         <div>
           <label>Instruction</label>
           <textarea
-            //className='login-form-input'
+            className='fixed-form-input'
+            rows={8}
+            cols={64}
             type="text"
             name="instruction"
             onChange={updateInstruction}

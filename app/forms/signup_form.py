@@ -39,6 +39,6 @@ def check_username_length(form, field):
 class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(), username_exists, check_username_length])
-    email = StringField('email', validators=[DataRequired(), user_exists, check_email])
+    email = StringField('email', validators=[DataRequired(), Email(),user_exists])
     password = PasswordField('password', validators=[DataRequired(), password_length])
     # repeat_password = PasswordField('repeat_password', validators=[DataRequired(), EqualTo('password')])

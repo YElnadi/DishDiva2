@@ -50,3 +50,7 @@ width:0;
   text-align:'right';
   
 }
+
+.fixed-form-input{
+    resize: none;
+}

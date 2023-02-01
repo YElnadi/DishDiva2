@@ -53,8 +53,10 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
       <label>
         Description
         <textarea
-           className="input-update-form"
+           className="fixed-form-input"
           type="text"
+          rows={8}
+          cols={64}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Description"

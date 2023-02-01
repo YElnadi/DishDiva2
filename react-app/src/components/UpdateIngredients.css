@@ -140,3 +140,7 @@
     overflow-y:auto;
     height: 500px;
   }
+
+.fixed-form-input{
+  resize: none;
+}

@@ -7,7 +7,7 @@ function index() {
 
     return (
       <>
-        <button onClick={() => setShowModal(true)}>Add Ingredeints</button>
+        <button onClick={() => setShowModal(true)}>Add Ingredients</button>
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
             <PleaseLoginModal  onModalClose={() => setShowModal(false)}/>

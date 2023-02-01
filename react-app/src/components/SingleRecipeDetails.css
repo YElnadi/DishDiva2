@@ -50,3 +50,8 @@
    font-size:larger;
    text-align: justify;
 }
+
+
+.fixed-form-input{
+    resize: none;
+}

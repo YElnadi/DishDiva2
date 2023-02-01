@@ -30,7 +30,16 @@ class Recipe(db.Model):
 
     # ratings = db.relationship("Rating", back_populates='recipe', cascade='all, delete')
 
+
     def to_dict(self):
+        def myFunc(e):
+            return e['id']
+        unsorted_ingredients=[ingredient.to_dict() for ingredient in self.ingredients]
+        unsorted_ingredients.sort(reverse=False, key=myFunc)
+
+        unsorted_preparations=[preparation.to_dict() for preparation in self.preparations]
+        unsorted_preparations.sort(reverse=False, key=myFunc)
+
         return {
             "id": self.id,
             "user_id":self.user_id,
@@ -42,6 +51,6 @@ class Recipe(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "user":self.user.username,
-            "ingredients":[ingredient.to_dict()for ingredient in self.ingredients],
-            "preparations":[preparation.to_dict()for preparation in self.preparations]
+            "ingredients":unsorted_ingredients,
+            "preparations":unsorted_preparations
         }

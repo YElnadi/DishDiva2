@@ -13,6 +13,7 @@ import UpdateIngredientsFormModal from "./UpdateIngredientsFormModal";
 import SingleIngredientCard from "./SingleIngredientCard";
 import DeleteIngredientBtn from "./DeleteIngredientBtn";
 import AddPreparationsModal from "./AddPreparationsModal";
+import './Home.css'
 
 const SingleRecipeDetails = () => {
   const { recipeId } = useParams();
@@ -27,7 +28,7 @@ const SingleRecipeDetails = () => {
   const getIngredients = (singleRecipe) => {
     const ingredients =
       singleRecipe.ingredients !== undefined ? singleRecipe.ingredients : [];
-    return Object.values(ingredients);
+    return ingredients;
   };
 
   const getPreparations = (singleRecipe) => {
@@ -71,6 +72,7 @@ const SingleRecipeDetails = () => {
                     inlineSize: 500,
                     overflowWrap: "break-word",
                     textAlign: "center",
+                    wordWrap:'break-word'
                   }}
                 >
                   {singleRecipe.title}
@@ -124,6 +126,7 @@ const SingleRecipeDetails = () => {
                 float: "right",
                 height: "auto",
                 flex: 1,
+                wordWrap:'break-word'
               }}
             >
               <h3>{singleRecipe.description}</h3>
@@ -152,7 +155,7 @@ const SingleRecipeDetails = () => {
                     <span style={{ fontWeight: "normal" ,fontSize:'20px' }}>
                       {ingredient.unit}
                     </span>{" "}
-                    <span style={{ fontWeight: "normal",fontSize:'20px'  }}>
+                    <span style={{ fontWeight: "normal",fontSize:'20px',wordWrap:'break-word'  }}> 
                       {ingredient.item_name}
                     </span>
                     {sessionUser && sessionUser.id === singleRecipe.user_id && (
@@ -207,7 +210,7 @@ const SingleRecipeDetails = () => {
                         {" "}
                         Step {preparation.step}
                       </p>
-                      <p>
+                      <p style={{wordWrap:'break-word'}}>
                         {preparation.instructions}
                       </p>
                     </>

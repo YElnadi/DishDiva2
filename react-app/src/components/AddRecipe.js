@@ -112,7 +112,9 @@ const AddRecipe = () => {
         <label>
           Description
         <textarea
-          className="input-update-form"
+          className="fixed-form-input"
+          rows={8}
+          cols={64}
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -122,17 +124,6 @@ const AddRecipe = () => {
         </label>
         </div>
         <div>
-        {/* <label>
-          Preparations
-        <textarea
-          className="input-update-form"
-          type="text"
-          value={preparations}
-          onChange={(e) => setPreparation(e.target.value)}
-          placeholder="Preperations"
-          required
-        />
-        </label> */}
         </div>
         <div>
         <label>
