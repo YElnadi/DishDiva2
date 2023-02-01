@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "./UpdateIngredients.css";
+import './AddPreparationsForm.css'
 import { loadSingleRecipeThunk, updatePreparaionThunk } from "../store/recipes";
 
 
@@ -43,8 +43,8 @@ const UpdatePreparationsForm = ({preparation,singleRecipe, onModalClose}) => {
 
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="bg-img-preparations">
+      <form onSubmit={handleSubmit} className='preparations-container'>
       <h1>Update Preparations</h1>
       <div>
           {Object.values(errors).map((error, ind) => (
@@ -57,6 +57,7 @@ const UpdatePreparationsForm = ({preparation,singleRecipe, onModalClose}) => {
             //className='login-form-input'
             type="number"
             name="step"
+            className="preparation-input"
             onChange={updateStep}
             value={step}
             required
@@ -66,7 +67,7 @@ const UpdatePreparationsForm = ({preparation,singleRecipe, onModalClose}) => {
         <div>
           <label>Instruction</label>
           <textarea
-            className='fixed-form-input'
+            className='fixed-form-input preparation-input'
             rows={8}
             cols={64}
             type="text"
@@ -77,10 +78,10 @@ const UpdatePreparationsForm = ({preparation,singleRecipe, onModalClose}) => {
           ></textarea>
         </div>
 
-        <button className="update-ingredient-btn" type="submit">
+        <button className="update-preparation-btn" type="submit">
           Save
         </button>
-        <button className="cancel-update-ingredient-btn" onClick={cancel}>
+        <button className="cancel-preparation-btn" onClick={cancel}>
           Cancel
         </button>
 
