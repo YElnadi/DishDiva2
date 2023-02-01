@@ -6,7 +6,10 @@ const EDIT_RECIPE = "recipe/EDIT_RECIPE"
 const ADD_INGREDIENTS_TO_RECIPE = "recipe/ADD_INGREDIENTS"
 const LOAD_MY_RECPES = "recipe/LOAD_MY_RECIPES"
 const UPDATE_INGREDIENT = "ingredient/UPDATE_INGREDIENT"
+const UPDATE_PREPARATION = "preparation/UPDATE_PREPARATION"
 const DELETE_INGREDIENT = "ingredient/DELETE_INGREDIENT"
+const DELETE_PREPARATION = "preparaion/DELETE_PREPARATION"
+const ADD_PREPARATION_TO_RECIPE = "recipe/ADD_PREPARATION"
 
 
 
@@ -46,9 +49,19 @@ const addIngredientToRecipe = (recipe) =>({
     recipe
 })
 
+const addPreparationToRecipe = (recipe) =>({
+    type:ADD_PREPARATION_TO_RECIPE,
+    recipe
+})
+
 
 const updateIngredient = (recipe) =>({
     type:UPDATE_INGREDIENT,
+    recipe
+})
+
+const updatePreparaion = (recipe) =>({
+    type:UPDATE_PREPARATION,
     recipe
 })
 
@@ -57,6 +70,11 @@ const deleteIngredient = (recipe)=>({
     recipe
 })
 
+
+const deletePreparation = (recipe) =>({
+    type:DELETE_PREPARATION,
+    recipe
+})
 
 
 
@@ -159,6 +177,30 @@ export const addIngredientToRecipeThunk = (newIngredient, recipeId) =>async(disp
     }
 }
 
+
+export const addPreparationToRecipeThunk = (newPreparation, recipeId) =>async(dispatch) =>{
+    const response = await fetch(`/api/recipes/${recipeId}/add-preparations`,{
+        method:"POST",
+        headers:{
+            "Content-Type": "application/json", 
+        },
+        body: JSON.stringify(newPreparation),
+    })
+    if (response.ok){
+        const recipe = await response.json()
+        dispatch(addPreparationToRecipe(recipe))
+        return null
+    } else if(response.status<500){
+        const data = await response.json();
+        if(data.errors){
+            return data.errors;
+        }
+        else{
+            return ['An error occurred. Please try again.']
+        }
+    }
+}
+
 export const loadMyRecipesThunk = (id) => async (dispatch) =>{
     const response = await fetch(`/api/recipes/users/${id}`);
     if (response.ok){
@@ -192,6 +234,29 @@ export const updateIngredientThunk = (ingredient) =>async(dispatch) =>{
     }
 }
 
+export const updatePreparaionThunk = (preparation) => async(dispatch)=>{
+    const response = await fetch (`/api/preparations/update/${preparation.id}`, {
+        method:"PUT",
+        headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(preparation),
+    })
+    if(response.ok){
+        const data = await response.json()
+        await dispatch(updatePreparaion(data))
+        return null;
+    }else if(response.status<500){
+        const data = await response.json();
+        if(data.errors){
+            return data.errors;
+        }
+        else{
+            return ['An error occurred. Please try again.']
+        }
+    }
+}
+
 export const deleteIngredientThunk = (ingredient) => async(dispatch) =>{
     const response = await fetch(`/api/ingredients/delete/${ingredient.id}`,{
         method:'DELETE'
@@ -210,6 +275,27 @@ export const deleteIngredientThunk = (ingredient) => async(dispatch) =>{
         }
     }
 }
+
+export const deletePreparationThunk = (preparation) => async(dispatch) =>{
+    const response = await fetch(`/api/preparations/delete/${preparation.id}`,{
+        method:'DELETE'
+    })
+    if(response.ok){
+        const data = await response.json()
+        await dispatch(deletePreparation(data));
+        return null;
+    }else if(response.status<500){
+        const data = await response.json();
+        if(data.errors){
+            return data.errors;
+        }
+        else{
+            return ['An error occurred. Please try again.']
+        }
+    }
+}
+
+
 
 /////////REDUCER/////////////
 const initialState = {allRecipes:{}, singleRecipe:{}, myRecipes:{}}
@@ -283,6 +369,21 @@ export default function reducer(state = initialState, action){
             return newState
             
         }
+        case ADD_PREPARATION_TO_RECIPE:{
+            const newState ={
+                allRecipes:{...state.allRecipes},
+                singleRecipe:action.recipe,
+                myRecipes:{...state.myRecipes}
+            }
+            newState.allRecipes[action.recipe.id]=action.recipe;
+            newState.myRecipes[action.recipe.id]=action.recipe;
+            if(Object.values(newState.singleRecipe).length){
+                if(newState.singleRecipe.id===action.recipe.id){
+                    newState.singleRecipe = action.recipe;
+                }
+            }
+            return newState
+        }
         case LOAD_MY_RECPES:{
             const newState = {
                 ...state,
@@ -305,6 +406,15 @@ export default function reducer(state = initialState, action){
            };
            return newState
         }
+
+        case UPDATE_PREPARATION:{
+            const newState = {
+                allRecipes:{...state.allRecipes},
+                singleRecipe:action.recipe,
+                myRecipes:{...state.myRecipes}
+            };
+            return newState
+        }
         case DELETE_INGREDIENT:{
             const newState ={
                 allRecipes:{...state.allRecipes},
@@ -313,6 +423,14 @@ export default function reducer(state = initialState, action){
             };
             return newState
 
+        }
+        case DELETE_PREPARATION:{
+            const newState={
+                allRecipes:{...state.allRecipes},
+                singleRecipe:action.recipe,
+                myRecipes:{...state.myRecipes}
+            }
+            return newState
         }
             
         default:

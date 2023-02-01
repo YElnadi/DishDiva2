@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Recipe, Ingredient
+from app.models import db, Recipe, Ingredient,Preparation
 from ..forms.create_recipe_form import RecipeForm, IngredientForm
 from ..forms.edit_recipe_form import EditRecipeForm
+from ..forms.preparation_form import PreparationForm
 from .auth_routes import validation_errors_to_error_messages
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -161,18 +162,20 @@ def add_ingredients_to_recipe(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-# # Edit ingredients by recipe id
-# @recipe_routes.route("/<int:id>/update-ingredients/<int:ingredient_id>", methods=["PUT"])
-# # @login_required
-# def edit_ingredeints(ingredient_id):
-#     form = IngredientForm()
-#     new_quantity = request.json['quantity'],
-#     new_unit = request.json['unit'],
-#     new_item_name = request.json['item_name']
-#     edited_ingredients = Ingredient(
-#         quantity=new_quantity,
-#         unit=new_unit,
-#         item_name=new_item_name
-#     )
-#     db.session.commit(edited_ingredients)
-#     return edited_ingredients.to_dict()
+##Add preparations to recipe
+@recipe_routes.route("/<int:id>/add-preparations", methods=['POST'])
+def add_preparations_to_recipe(id):
+    form = PreparationForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_preparation = Preparation(
+            step=form.data["step"],
+            instruction = form.data["instruction"],
+            recipe_id=form.data["recipe_id"],
+        )
+        db.session.add(new_preparation)
+        db.session.commit()
+        updated_recipe = Recipe.query.get(form.data['recipe_id'])
+        return updated_recipe.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+

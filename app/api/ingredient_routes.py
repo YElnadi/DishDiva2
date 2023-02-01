@@ -22,7 +22,7 @@ def ingredients():
 
 ##update ingredient
 @ingredient_routes.route('/update/<int:id>', methods=["PUT"])
-# @login_required
+#@login_required
 def update_ingredient(id):
      form = IngredientForm()
      form['csrf_token'].data = request.cookies['csrf_token']
@@ -40,7 +40,7 @@ def update_ingredient(id):
 
 ##delete ingredient
 @ingredient_routes.route('/delete/<int:id>', methods=["DELETE"])
-##@login_required
+#@login_required
 def delete_ingredient(id):
      ingredient = Ingredient.query.get(id)
      recipe_id = ingredient.recipe_id

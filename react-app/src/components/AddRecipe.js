@@ -15,7 +15,7 @@ const AddRecipe = () => {
     "../static/images/recipe-defualt-photo.jpeg"
   );
   const [description, setDescription] = useState("");
-  const [preparations, setPreparation] = useState("");
+  // const [preparations, setPreparation] = useState("");
   const [cook_time, setCookTime] = useState("");
   const [servings, setServings] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
@@ -122,7 +122,7 @@ const AddRecipe = () => {
         </label>
         </div>
         <div>
-        <label>
+        {/* <label>
           Preparations
         <textarea
           className="input-update-form"
@@ -132,7 +132,7 @@ const AddRecipe = () => {
           placeholder="Preperations"
           required
         />
-        </label>
+        </label> */}
         </div>
         <div>
         <label>

@@ -12,6 +12,7 @@ import EditRecipeModal from "./EditRecipeModal";
 import UpdateIngredientsFormModal from "./UpdateIngredientsFormModal";
 import SingleIngredientCard from "./SingleIngredientCard";
 import DeleteIngredientBtn from "./DeleteIngredientBtn";
+import AddPreparationsModal from "./AddPreparationsModal";
 
 const SingleRecipeDetails = () => {
   const { recipeId } = useParams();
@@ -206,16 +207,16 @@ const SingleRecipeDetails = () => {
                         {" "}
                         Step {preparation.step}
                       </p>
-                      <p
-                        style={{
-                          
-                        }}
-                      >
+                      <p>
                         {preparation.instructions}
                       </p>
                     </>
                   ))}
                 </div>
+                {sessionUser && sessionUser.id === singleRecipe.user_id && (
+                  <AddPreparationsModal key={singleRecipe.id} singleRecipe={singleRecipe} /> 
+                )}
+                
               </div>
             </div>
           </div>
