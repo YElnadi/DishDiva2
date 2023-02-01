@@ -57,7 +57,7 @@ const AddRecipe = () => {
       // }
 
       setImageLoading(false);
-      await dispatch(loadSingleRecipeThunk(newRecipe))
+      await dispatch(loadSingleRecipeThunk(newRecipe.id))
       history.push(`/recipes/${newRecipe.id}`);
     } else {
       const data = await res.json();
