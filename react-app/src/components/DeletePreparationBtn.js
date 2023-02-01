@@ -1,10 +1,17 @@
-import React from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { deleteIngredientThunk, deletePreparationThunk } from "../store/recipes";
 
-const DeletePreparationBtn = () => {
+const DeletePreparationBtn = ({preparation}) => {
+
+  const dispatch = useDispatch()
+  const deletePreparation = async (e) =>{
+    e.preventDefault()
+    await dispatch(deletePreparationThunk(preparation))
+  }
   return (
     <div>
-      
-    </div>
+    <button className='login-btn'style={{fontSize:'10px', padding:'10px'}}onClick={deletePreparation}>Remove</button>
+  </div>
   );
 }
 
