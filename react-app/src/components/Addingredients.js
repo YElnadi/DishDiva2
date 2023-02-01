@@ -36,10 +36,11 @@ const handelSubmit = async (e) =>{
         recipe_id: singleRecipe.id
     }
     const response = await dispatch(addIngredientToRecipeThunk(newIngredient,singleRecipe.id))
+    // onModalClose();
     if (response){
         setErrors(response)
     }
-    onModalClose();
+    
 };
   const cancel = async (e) => {
     e.preventDefault();
@@ -54,7 +55,8 @@ const handelSubmit = async (e) =>{
 
   return (
     <div className="bg-img-update-ingredients-form">
-      <form onSubmit={handelSubmit} className="container-update-ingredients-form">
+      <form onSubmit={handelSubmit} 
+      className="container-update-ingredients-form">
       <h1>Add Ingredients</h1>
       <div>
         {errors.map((error, ind) => (
@@ -88,7 +90,7 @@ const handelSubmit = async (e) =>{
         </div>
         <div>
           <label>
-            Item Name
+            Ingredeint Name
             <input
               className="input-update-form"
               type="Text"

@@ -18,9 +18,17 @@ class RecipeForm(FlaskForm):
   user_id = IntegerField('User Id')
   submit = SubmitField('Save')
 
+
+
+
+def check_item_name(form, field):
+  item_name = field.data
+  if len(item_name)>10:
+    raise ValidationError("ingredient name must be less than 10 characters")
+
 class IngredientForm(FlaskForm):
   recipe_id = IntegerField("Recipe Id")
   quantity = IntegerField("Quantity", validators=[DataRequired()])
-  item_name = StringField("Item Name", validators=[DataRequired()])
+  item_name = StringField("Item Name", validators=[DataRequired(), check_item_name])
   unit = StringField("Unit")
   submit = SubmitField("save")
