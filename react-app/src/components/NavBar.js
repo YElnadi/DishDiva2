@@ -26,7 +26,7 @@ const NavBar = ({}) => {
       {sessionUser ?( 
       <i className="fa-solid fa-gear login-signup-btn"  
       onMouseEnter={()=>setDropdown(true)} 
-      onClick={()=>setDropdown(false)} style={{marginRight:'10px', marginTop:'10px'}}> 
+      onClick={()=>setDropdown(false)} style={{marginRight:'10px', marginTop:'10px', fontSize:'20px'}}> 
       {dropdown && <Dropdown sessionUser={sessionUser}/>}</i> )
       :(
       <div className="login-signup-btn" style={{marginRight:'10px', marginTop:'0px'}}>

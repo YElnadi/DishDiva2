@@ -47,6 +47,7 @@ const SignUpForm = () => {
 
   return (
     <div className='bg-img-login-form'>
+      <div className='left'>Unlock DishDiva recipes and your personal recipe box with a free account.</div>
     <form onSubmit={onSignUp} className='container-login-form'>
     <h2 style={{textAlign:'center'}}>Create new account to join the kitchen  </h2>
       <div>

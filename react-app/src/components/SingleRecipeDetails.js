@@ -44,12 +44,12 @@ const SingleRecipeDetails = () => {
     <>
       {Object.values(singleRecipe).length > 0 && (
         <>
-          <div className="page-container">
+          <div >
             <div>
               <div>
-                <img src={singleRecipe.image_url} className="img-div" />
+                <img src={singleRecipe.image_url}  />
               </div>
-              <div className="recipe-title-username">
+              <div >
                 <div>
                   <h1
                     style={{

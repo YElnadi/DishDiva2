@@ -1,6 +1,6 @@
 /* TODO Add site wide styles */
 body{
-    font-family: nyt-cheltenham,Georgia,Times New Roman,serif ;
+    font: nyt-franklin,Arial,Helvetica,sans-serif;
     background-color: rgb(242, 243, 239);
 }
 

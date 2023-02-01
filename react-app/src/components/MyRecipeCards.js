@@ -1,17 +1,24 @@
 import { useHistory } from "react-router-dom";
 
-const MyRecipeCards = ({ myRecipe}) => {
+const MyRecipeCards = ({ myRecipe }) => {
   const history = useHistory();
   const openRecipe = (e) => {
     history.push(`/recipes/${myRecipe.id}`);
   };
   return (
     <div>
+      <div className="spot-card " >
+        <img
+          src={myRecipe.image_url}
+          onClick={openRecipe}
+          className="spot-card-image"
+        />
       
-
-      <img src={myRecipe.image_url} onClick={openRecipe} />
-      <h4>{myRecipe.title}</h4>
-      <h5>{myRecipe.user}</h5>
+      <div className="container">
+        <h style={{fontSize:'20px'}}>{myRecipe.title}</h>
+        <p style={{fontSize:'20px'}}>{myRecipe.user}</p>
+      </div>
+      </div>
     </div>
   );
 };

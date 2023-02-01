@@ -5,6 +5,9 @@ import CreateRecipeModal from "./CreateRecipeModal";
 import { useDispatch, useSelector } from "react-redux";
 import "./User.css";
 import MyRecipeCards from "./MyRecipeCards";
+import "./Home.css";
+import logo from "../static/images/logoo.png";
+import Footer from "./Footer";
 
 function User() {
   const [user, setUser] = useState({});
@@ -12,8 +15,8 @@ function User() {
   const dispatch = useDispatch();
   const myRecipes = useSelector((state) => state.recipes.myRecipes);
   console.log("myRecipesssss", Object.values(myRecipes).length);
-  const lenght =  Object.values(myRecipes).length
-  console.log('length#####', lenght)
+  const lenght = Object.values(myRecipes).length;
+  console.log("length#####", lenght);
 
   useEffect(() => {
     if (!userId) {
@@ -35,36 +38,65 @@ function User() {
   }
 
   return (
-    <div className="main">
-      <h1>You are in user Profile</h1>
-      {lenght && lenght > 1 && <h2>{lenght} recipes</h2>}
+    <>
+      <div className="main">
+        <h1>Good Morning, {user.username}</h1>
+        {lenght && lenght > 1 && <h2>{lenght} recipes</h2>}
 
-      {lenght && lenght === 1 && <h2>{lenght} recipe</h2>}
-      {/* <ul>
-        <li>
-          <strong>User Id</strong> {userId}
-        </li>
-        <li>
-          <strong>Username</strong> {user.username}
-        </li>
-        <li>
-          <strong>Email</strong> {user.email}
-        </li>
-      </ul> */}
-      <div className="sideNav">
-        <CreateRecipeModal />
-        <NavLink to="/">Home</NavLink>
+        {lenght && lenght === 1 && <h2>{lenght} recipe</h2>}
+
+
+        <div className="sideNav">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              margin: "auto 0",
+            }}
+          >
+            <div style={{ backgroundColor: "rgb(242, 243, 239)" }}>
+              <div>
+                <NavLink to="/" exact={true} activeClassName="active">
+                  <img src={logo} style={{ width: "200px" }} />
+                </NavLink>
+              </div>
+            </div>
+            <NavLink
+              to="/"
+              style={{
+                textDecoration: "none",
+                color: "black",
+                textAlign: "center",
+                marginTop: "100px",
+                fontSize: "25px",
+              }}
+            >
+              {" "}
+              <i class="fa-solid fa-house"></i> Home
+            </NavLink>
+            <CreateRecipeModal />
+          </div>
+        </div>
+        <div className="user-recipes">
+          {Object.values(myRecipes).length > 0 && (
+            <>
+              <div className="cards-container">
+                {Object.values(myRecipes).map((myRecipe) => (
+                  <MyRecipeCards key={myRecipe.id} myRecipe={myRecipe} />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+        <div style={{marginBottom:'1000px'}}></div>
+        
+        <div style={{backgroundColor:'black', margin:0}}>
+        <div><Footer/></div>
+        </div>
+       
       </div>
-      <div className="user-recipes">
-        {Object.values(myRecipes).length > 0 && (
-          <>
-            {Object.values(myRecipes).map((myRecipe) => (
-              <MyRecipeCards key={myRecipe.id} myRecipe={myRecipe}  />
-            ))}
-          </>
-        )}
-      </div>
-    </div>
+      
+    </>
   );
 }
 export default User;

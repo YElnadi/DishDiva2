@@ -29,11 +29,16 @@ def check_email(form,field):
     if email is not Email:
         raise ValidationError('Please enter a valid email.')
 
+def check_username_length(form, field):
+    username = field.data
+    if len(username) < 3:
+        raise ValidationError('Please enter a user name not less than 5 characters.')
+
 
 
 class SignUpForm(FlaskForm):
     username = StringField(
-        'username', validators=[DataRequired(), username_exists])
+        'username', validators=[DataRequired(), username_exists, check_username_length])
     email = StringField('email', validators=[DataRequired(), user_exists, check_email])
     password = PasswordField('password', validators=[DataRequired(), password_length])
     # repeat_password = PasswordField('repeat_password', validators=[DataRequired(), EqualTo('password')])

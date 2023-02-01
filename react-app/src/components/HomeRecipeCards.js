@@ -2,6 +2,8 @@ import { Redirect, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./HomeRecipeCards.css";
 import LoginFormModal from "./LoginFormModal";
+import LoginForm from "./auth/LoginForm";
+import PleaseLoginModal from "./PleaseLoginModal";
 
 const HomeRecipeCards = ({ recipe }) => {
   console.log("recipe", recipe);
@@ -14,7 +16,7 @@ const HomeRecipeCards = ({ recipe }) => {
  
 
   const openRecipe = (e) => {
-    if(!sessionUser) return history.push('/login')
+    if(!sessionUser) return alert('Please login of sign up first')
     history.push(`/recipes/${recipe.id}`);
     } 
 
