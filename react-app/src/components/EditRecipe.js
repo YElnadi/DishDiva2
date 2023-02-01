@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../context/Modal";
 import { EditRecipeThunk, loadSingleRecipeThunk } from "../store/recipes";
+import "./UpdateIngredients.css";
+
 
 const EditRecipe = ({ singleRecipe, onModalClose }) => {
   const [errors, setErrors] = useState([]);
@@ -32,11 +34,14 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
     onModalClose();
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <div className="bg-img-edit-recipe-form">
+    <form onSubmit={handleSubmit}
+    className="container-update-ingredients-form">
+      <h1>Edit Recipe</h1>
       <label>
         Title
         <input
-          className="create-recipe-form-inputs"
+           className="input-update-form"
           type="Text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -48,7 +53,7 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
       <label>
         Description
         <textarea
-          className="create-recipe-form-inputs"
+           className="input-update-form"
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -60,7 +65,7 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
       <label>
         Servings
         <input
-          className="create-recipe-form-inputs"
+          className="input-update-form"
           type="number"
           value={servings}
           onChange={(e) => setServings(e.target.value)}
@@ -71,7 +76,7 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
       <label>
         Time
         <input
-          className="create-recipe-form-inputs"
+          className="input-update-form"
           type="number"
           value={cook_time}
           onChange={(e) => setCookTime(e.target.value)}
@@ -79,10 +84,11 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
           required
         />
       </label>
-      <button type="submit">Save</button>
-      <button onClick={cancel}>Cancel</button>
+      <button className="update-ingredient-btn" type="submit">Save</button>
+      <button className="cancel-update-ingredient-btn"onClick={cancel}>Cancel</button>
       {/* {imageLoading && <p>Loading...</p>} */}
     </form>
+    </div>
   );
 };
 

@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewRecipeThunk } from "../store/recipes";
 import Addingredients from "./Addingredients";
+import "./UpdateIngredients.css";
+
 
 const AddRecipe = () => {
   const history = useHistory();
@@ -85,8 +87,10 @@ const AddRecipe = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handelSubmit}>
+    <div className="bg-img-edit-recipe-form">
+      <form onSubmit={handelSubmit}  className="container-update-ingredients-form">
+      <h1>Add Recipe</h1>
+
       <div>
         {Object.values(errors).map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -96,7 +100,7 @@ const AddRecipe = () => {
         <label> 
           Title
         <input
-          className="create-recipe-form-inputs"
+          className="input-update-form"
           type="Text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -108,14 +112,14 @@ const AddRecipe = () => {
         </div>
         <div>
         <label> Add Image 
-        <input type="file" accept="image/*" onChange={updateImage} required />
+        <input className="input-update-form" type="file" accept="image/*" onChange={updateImage} required />
         </label>
         </div>
         <div>
         <label>
           Description
         <textarea
-          className="create-recipe-form-inputs"
+          className="input-update-form"
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -128,7 +132,7 @@ const AddRecipe = () => {
         <label>
           Preparations
         <textarea
-          className="create-recipe-form-inputs"
+          className="input-update-form"
           type="text"
           value={preparations}
           onChange={(e) => setPreparation(e.target.value)}
@@ -141,7 +145,7 @@ const AddRecipe = () => {
         <label>
           Servings
         <input
-          className="create-recipe-form-inputs"
+         className="input-update-form"
           type="number"
           value={servings}
           onChange={(e) => setServings(e.target.value)}
@@ -154,7 +158,7 @@ const AddRecipe = () => {
         <label>
           Time
         <input
-          className="create-recipe-form-inputs"
+          className="input-update-form"
           type="number"
           value={cook_time}
           onChange={(e) => setCookTime(e.target.value)}
@@ -165,8 +169,8 @@ const AddRecipe = () => {
         </div>
         
         <div>
-        <button type="submit">Save</button>
-        <button onClick={cancel}>Cancel</button>
+        <button className="update-ingredient-btn" type="submit">Save</button>
+        <button className="cancel-update-ingredient-btn" onClick={cancel}>Cancel</button>
         </div>
 
         {imageLoading && <p>Loading...</p>}

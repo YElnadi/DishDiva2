@@ -47,7 +47,7 @@ const SingleRecipeDetails = () => {
           <div
             style={{
               marginRight: "auto",
-              border: "5px solid black",
+             
               display: "flex",
               flexDirection: "row",
               overflow: "auto",
@@ -59,7 +59,7 @@ const SingleRecipeDetails = () => {
                 display: "flex",
                 flexDirection: "column",
                 verticalAlign: "center",
-                border: "5px solid red",
+               
               }}
             >
               <div style={{ marginTop: "150px" }}>
@@ -85,14 +85,14 @@ const SingleRecipeDetails = () => {
               </div>
             </div>
             <div style={{ marginLeft: "auto", float: "right", height: "auto" }}>
-              <img src={singleRecipe.image_url} />
+              <img style={{width:'780px'}}src={singleRecipe.image_url} />
             </div>
           </div>
 
           <div
             style={{
               marginRight: "auto",
-              border: "5px solid black",
+              
               display: "flex",
               flexDirection: "row",
               overflow: "auto",
@@ -104,7 +104,7 @@ const SingleRecipeDetails = () => {
                 display: "flex",
                 flexDirection: "column",
                 verticalAlign: "center",
-                border: "5px solid yellow",
+              
                 textAlign: "center",
                 flex: 0.7,
               }}
@@ -117,8 +117,8 @@ const SingleRecipeDetails = () => {
 
             <div
               style={{
-                border: "5px solid green",
-                inlineSize: 700,
+                
+                inlineSize: 400,
                 marginLeft: "auto",
                 float: "right",
                 height: "auto",
@@ -129,16 +129,15 @@ const SingleRecipeDetails = () => {
             </div>
           </div>
 
-          <div style={{ border: "5px solid black", marginTop: "50px" }}></div>
+          <div style={{ border:'5px solid black',marginTop: "50px" }}></div>
 
           <div
             style={{
               display: "flex",
               justifyContent: "space-around",
-              border: "5px solid blue",
             }}
           >
-            <div style={{ border: "5px solid green", flex: 1 }}>
+            <div style={{ flex: 0.7}}>
               <h3>Ingredients</h3>
               <h4>Yield: {singleRecipe.servings} servings</h4>
               <div style={{ inlineSize: 500 }}>
@@ -192,7 +191,7 @@ const SingleRecipeDetails = () => {
 
               </div>
             </div>
-            <div style={{ border: "5px solid red", flex: 1 }}>
+            <div style={{  flex: 1 }}>
               <h3>Preparation</h3>
               <div>
                 <div style={{ inlineSize: 500 }}>

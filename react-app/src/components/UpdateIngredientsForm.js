@@ -10,10 +10,16 @@ const UpdateIngredientsForm = ({ ingredient, singleRecipe, onModalClose }) => {
   const [quantity, setQuantity] = useState(ingredient.quantity);
   const [unit, setUint] = useState(ingredient.unit);
   const [item_name, setItemName] = useState(ingredient.item_name);
-
   const recipe = useSelector((state) => state.recipes.singleRecipe);
   console.log("#####Reciope", recipe);
 
+  const options = [
+    { value: "cup", label: "cup" },
+    { value: "tablespoon", label: "tablespoon" },
+    { value: "teaspoon", label: "teaspoon" },
+    { value: "ounce", label: "ounce" },
+    { value: "pound", label: "pound" },
+  ];
   //   console.log('fromupdate ingredeints form', singleRecipe.ingredeint.id.quantity)
 
   const handleSubmit = async (e) => {
@@ -67,14 +73,20 @@ const UpdateIngredientsForm = ({ ingredient, singleRecipe, onModalClose }) => {
           required
         />
 
-        <label>Unit</label>
-        <input
-          className="input-update-form"
-          type="text"
-          value={unit}
-          onChange={updateUnit}
-          placeholder="Unit"
-        />
+        <label>
+          Unit
+          <select
+            value={unit}
+            onChange={updateUnit}
+            className="input-update-form"
+          >
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
 
         <label>Ingredient Name</label>
         <input
@@ -85,7 +97,7 @@ const UpdateIngredientsForm = ({ ingredient, singleRecipe, onModalClose }) => {
           placeholder="Ingredient Name"
         />
 
-        <div style={{ }}>
+        <div>
           <button className="update-ingredient-btn" type="submit">
             Save
           </button>

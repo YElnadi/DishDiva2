@@ -8,7 +8,7 @@ function CreateRecipeModal() {
   return (
     <>
     <div style={{textAlign:'center', marginTop:'50px', marginLeft:'40px'}}>
-    <i class="fa-solid fa-bowl-food"></i><button style={{padding:'10px', fontSize:'25px', backgroundColor:'transparent', border:'none', fontFamily: 'nyt-cheltenham,Georgia,Times New Roman,serif'}}onClick={() => setShowModal(true)}> Share A Recipe</button></div>
+    <i class="fa-solid fa-bowl-food"></i><button style={{padding:'10px', fontSize:'23px', backgroundColor:'transparent', border:'none'}}onClick={() => setShowModal(true)}> Share A Recipe</button></div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <AddRecipe />
