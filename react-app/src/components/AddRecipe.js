@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createNewRecipeThunk } from "../store/recipes";
+import { createNewRecipeThunk, loadSingleRecipeThunk } from "../store/recipes";
 import Addingredients from "./Addingredients";
 import "./UpdateIngredients.css";
 
@@ -23,7 +23,7 @@ const AddRecipe = () => {
   const user = useSelector((state) => state.session.user);
 
   const recipe = useSelector((state) => state.recipes.singleRecipe);
-  console.log("recipe", recipe);
+  //console.log("recipe", recipe);
 
   const handelSubmit = async (e) => {
     e.preventDefault();
@@ -51,10 +51,13 @@ const AddRecipe = () => {
     });
     if (res.ok) {
       const newRecipe = await res.json();
+      console.log('new recipe', newRecipe)
       // if(data){
       //   setErrors(data)
       // }
+
       setImageLoading(false);
+      await dispatch(loadSingleRecipeThunk(newRecipe))
       history.push(`/recipes/${newRecipe.id}`);
     } else {
       const data = await res.json();

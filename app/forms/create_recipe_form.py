@@ -16,7 +16,7 @@ def check_description_length(form,field):
 class RecipeForm(FlaskForm):
   title = StringField('Title', validators=[DataRequired()])
   image_url = TextField('Recipe Image URL', validators=[DataRequired(), check_image_type])
-  description = TextField('Description', validators=[DataRequired(),check_description_length] )
+  description = TextField('Description', validators=[DataRequired()] )
   servings = IntegerField('Servings',  validators=[DataRequired()])
   cook_time = IntegerField('Time', validators=[DataRequired()])
   ingredients = TextField('Ingredients', validators=[DataRequired()])

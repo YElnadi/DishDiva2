@@ -13,7 +13,9 @@ import UpdateIngredientsFormModal from "./UpdateIngredientsFormModal";
 import SingleIngredientCard from "./SingleIngredientCard";
 import DeleteIngredientBtn from "./DeleteIngredientBtn";
 import AddPreparationsModal from "./AddPreparationsModal";
-import './Home.css'
+import SinglePreparationCard from "./SinglePreparationCard";
+import "./Home.css";
+import DeletePreparationBtn from "./DeletePreparationBtn";
 
 const SingleRecipeDetails = () => {
   const { recipeId } = useParams();
@@ -49,7 +51,7 @@ const SingleRecipeDetails = () => {
           <div
             style={{
               marginRight: "auto",
-             
+
               display: "flex",
               flexDirection: "row",
               overflow: "auto",
@@ -61,18 +63,16 @@ const SingleRecipeDetails = () => {
                 display: "flex",
                 flexDirection: "column",
                 verticalAlign: "center",
-               
               }}
             >
               <div style={{ marginTop: "150px" }}>
                 <h1
                   style={{
-                    
                     fontWeight: 180,
                     inlineSize: 500,
                     overflowWrap: "break-word",
                     textAlign: "center",
-                    wordWrap:'break-word'
+                    wordWrap: "break-word",
                   }}
                 >
                   {singleRecipe.title}
@@ -88,14 +88,14 @@ const SingleRecipeDetails = () => {
               </div>
             </div>
             <div style={{ marginLeft: "auto", float: "right", height: "auto" }}>
-              <img style={{width:'780px'}}src={singleRecipe.image_url} />
+              <img style={{ width: "780px" }} src={singleRecipe.image_url} />
             </div>
           </div>
 
           <div
             style={{
               marginRight: "auto",
-              
+
               display: "flex",
               flexDirection: "row",
               overflow: "auto",
@@ -107,7 +107,7 @@ const SingleRecipeDetails = () => {
                 display: "flex",
                 flexDirection: "column",
                 verticalAlign: "center",
-              
+
                 textAlign: "center",
                 flex: 0.7,
               }}
@@ -120,20 +120,19 @@ const SingleRecipeDetails = () => {
 
             <div
               style={{
-                
                 inlineSize: 400,
                 marginLeft: "auto",
                 float: "right",
                 height: "auto",
                 flex: 1,
-                wordWrap:'break-word'
+                wordWrap: "break-word",
               }}
             >
               <h3>{singleRecipe.description}</h3>
             </div>
           </div>
 
-          <div style={{ border:'5px solid black',marginTop: "50px" }}></div>
+          <div style={{ border: "5px solid black", marginTop: "50px" }}></div>
 
           <div
             style={{
@@ -141,21 +140,25 @@ const SingleRecipeDetails = () => {
               justifyContent: "space-around",
             }}
           >
-            <div style={{ flex: 0.7}}>
+            <div style={{ flex: 0.7 }}>
               <h3>Ingredients</h3>
               <h4>Yield: {singleRecipe.servings} servings</h4>
               <div style={{ inlineSize: 500 }}>
                 {getIngredients(singleRecipe).map((ingredient) => (
-                  <h4
-                  
-                  >
-                    <span style={{ fontWeight: "normal", fontSize:'20px' }}>
+                  <h4>
+                    <span style={{ fontWeight: "normal", fontSize: "20px" }}>
                       {ingredient.quantity}
                     </span>{" "}
-                    <span style={{ fontWeight: "normal" ,fontSize:'20px' }}>
+                    <span style={{ fontWeight: "normal", fontSize: "20px" }}>
                       {ingredient.unit}
                     </span>{" "}
-                    <span style={{ fontWeight: "normal",fontSize:'20px',wordWrap:'break-word'  }}> 
+                    <span
+                      style={{
+                        fontWeight: "normal",
+                        fontSize: "20px",
+                        wordWrap: "break-word",
+                      }}
+                    >
                       {ingredient.item_name}
                     </span>
                     {sessionUser && sessionUser.id === singleRecipe.user_id && (
@@ -174,7 +177,13 @@ const SingleRecipeDetails = () => {
                 ))}
               </div>
               <div style={{ marginTop: "90px" }}></div>
-              <div style={{ display: "flex", flexDirection: "column", gap:'10px' }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
+              >
                 {sessionUser && sessionUser.id === singleRecipe.user_id && (
                   <AddIngredientsModal singleRecipe={singleRecipe} />
                 )}
@@ -182,20 +191,13 @@ const SingleRecipeDetails = () => {
                 {sessionUser && sessionUser.id === singleRecipe.user_id && (
                   <EditRecipeModal singleRecipe={singleRecipe} />
                 )}
-                
+
                 {sessionUser && sessionUser.id === singleRecipe.user_id && (
                   <DeleteRecipe recipeId={recipeId} />
-                  
                 )}
-               
-
-               
-                
-
-
               </div>
             </div>
-            <div style={{  flex: 1 }}>
+            <div style={{ flex: 1 }}>
               <h3>Preparation</h3>
               <div>
                 <div style={{ inlineSize: 500 }}>
@@ -206,25 +208,42 @@ const SingleRecipeDetails = () => {
                           fontSize: "20px",
                           fontWeight: "bold",
                         }}
-                      >
+                       >
                         {" "}
-                        Step {preparation.step}
-                      </p>
-                      <p style={{wordWrap:'break-word'}}>
-                        {preparation.instructions}
-                      </p>
+                        Step {preparation.step}</p>
+                        <p style={{ wordWrap: "break-word" }}>
+                          {preparation.instructions}
+                        </p>
+                        {sessionUser &&
+                          sessionUser.id === singleRecipe.user_id && (
+                            <>
+                              <div style={{ display: "flex", gap: 10 }}>
+                                <SinglePreparationCard
+                                  preparation={preparation}
+                                  singleRecipe={singleRecipe}
+                                  key={singleRecipe.id}
+                                />
+                                <DeletePreparationBtn
+                                  preparation={preparation}
+                                />
+                              </div>
+                            </>
+                          )}
+                      
                     </>
                   ))}
                 </div>
+
                 {sessionUser && sessionUser.id === singleRecipe.user_id && (
-                  <AddPreparationsModal key={singleRecipe.id} singleRecipe={singleRecipe} /> 
+                  <AddPreparationsModal
+                    key={singleRecipe.id}
+                    singleRecipe={singleRecipe}
+                  />
                 )}
-                
               </div>
             </div>
           </div>
           <div style={{ marginTop: "90px" }}></div>
-
         </>
       )}
     </div>
