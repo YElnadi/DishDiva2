@@ -10,7 +10,7 @@ import { loadSingleRecipeThunk, updatePreparaionThunk } from "../store/recipes";
 const UpdatePreparationsForm = ({preparation,singleRecipe, onModalClose}) => {
   const [errors, setErrors] = useState([]);
   const [step, setStep] = useState(preparation.step);
-  const [instruction, setInstruction] = useState(preparation.instruction);
+  const [instruction, setInstruction] = useState(preparation.instructions);
   const dispatch = useDispatch();
   const history = useHistory();
 

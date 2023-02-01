@@ -8,7 +8,7 @@ import "./UpdateIngredients.css";
 const UpdateIngredientsForm = ({ ingredient, singleRecipe, onModalClose }) => {
   const [errors, setErrors] = useState([]);
   const [quantity, setQuantity] = useState(ingredient.quantity);
-  const [unit, setUint] = useState(ingredient.unit);
+  const [unit, setUnit] = useState(ingredient.unit);
   const [item_name, setItemName] = useState(ingredient.item_name);
   const recipe = useSelector((state) => state.recipes.singleRecipe);
   console.log("#####Reciope", recipe);
@@ -45,7 +45,7 @@ const UpdateIngredientsForm = ({ ingredient, singleRecipe, onModalClose }) => {
   };
 
   const updateUnit = (e) => {
-    setUint(e.target.value);
+    setUnit(e.target.value);
   };
 
   const updateItemName = (e) => {
