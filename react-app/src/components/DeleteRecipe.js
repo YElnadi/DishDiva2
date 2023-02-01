@@ -13,8 +13,8 @@ const DeleteRecipe = ({recipeId}) => {
     }
 
   return (
-    <div>
-      <button className="delete-recipe-Btn" type='button' onClick={deleteRecipe}>Delete your recipe</button>
+    <div >
+      <button className="login-btn" style={{marginBottom:'30px'}} type='button' onClick={deleteRecipe}>Delete your recipe</button>
     </div>
   );
 }

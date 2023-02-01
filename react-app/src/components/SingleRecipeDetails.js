@@ -41,7 +41,7 @@ const SingleRecipeDetails = () => {
   }, [dispatch, recipeId]);
 
   return (
-    <div style={{ marginLeft: "149px", marginRight: "149px" }}>
+    <div style={{ marginLeft: "50px", marginRight: "50px" }}>
       {Object.values(singleRecipe).length > 0 && (
         <>
           <div
@@ -65,7 +65,7 @@ const SingleRecipeDetails = () => {
               <div style={{ marginTop: "150px" }}>
                 <h1
                   style={{
-                    fontFamily: "nyt-cheltenham,Georgia,Times New Roman,serif",
+                    
                     fontWeight: 180,
                     inlineSize: 500,
                     overflowWrap: "break-word",
@@ -76,7 +76,6 @@ const SingleRecipeDetails = () => {
                 </h1>
                 <h2
                   style={{
-                    fontFamily: "nyt-cheltenham,Georgia,Times New Roman,serif",
                     overflowWrap: "break-word",
                     textAlign: "center",
                   }}
@@ -99,114 +98,130 @@ const SingleRecipeDetails = () => {
               overflow: "auto",
               height: "auto",
             }}
-            >
-              <div style={{
+          >
+            <div
+              style={{
                 display: "flex",
                 flexDirection: "column",
                 verticalAlign: "center",
                 border: "5px solid yellow",
-                textAlign:'center',
-                width:"46%"
-               
-                  }}>
-                <div style={{marginTop:'90px'}}> Time : {singleRecipe.cook_time}</div>
-                <div>Ratings</div>
+                textAlign: "center",
+                flex: 0.7,
+              }}
+            >
+              <div style={{ marginTop: "90px" }}>
+                Time : {singleRecipe.cook_time}
+              </div>
+              <div>Ratings</div>
             </div>
 
-            <div style={{ border: "5px solid green", inlineSize:590, marginLeft: "auto", float: "right", height: "auto" }}>
+            <div
+              style={{
+                border: "5px solid green",
+                inlineSize: 700,
+                marginLeft: "auto",
+                float: "right",
+                height: "auto",
+                flex: 1,
+              }}
+            >
               <h3>{singleRecipe.description}</h3>
             </div>
           </div>
 
-          <div style={{border:'5px solid black', marginTop:'50px'}}></div>
+          <div style={{ border: "5px solid black", marginTop: "50px" }}></div>
 
-          <div style={{display:'flex', justifyContent:'space-around'}}>
-            <h3>Ingredients</h3>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              border: "5px solid blue",
+            }}
+          >
+            <div style={{ border: "5px solid green", flex: 1 }}>
+              <h3>Ingredients</h3>
+              <h4>Yield: {singleRecipe.servings} servings</h4>
+              <div style={{ inlineSize: 500 }}>
+                {getIngredients(singleRecipe).map((ingredient) => (
+                  <h4
+                  
+                  >
+                    <span style={{ fontWeight: "normal", fontSize:'20px' }}>
+                      {ingredient.quantity}
+                    </span>{" "}
+                    <span style={{ fontWeight: "normal" ,fontSize:'20px' }}>
+                      {ingredient.unit}
+                    </span>{" "}
+                    <span style={{ fontWeight: "normal",fontSize:'20px'  }}>
+                      {ingredient.item_name}
+                    </span>
+                    {sessionUser && sessionUser.id === singleRecipe.user_id && (
+                      <>
+                        <div style={{ display: "flex", gap: 10 }}>
+                          <SingleIngredientCard
+                            ingredient={ingredient}
+                            singleRecipe={singleRecipe}
+                            key={singleRecipe.id}
+                          />
+                          <DeleteIngredientBtn ingredient={ingredient} />
+                        </div>
+                      </>
+                    )}
+                  </h4>
+                ))}
+              </div>
+              <div style={{ marginTop: "90px" }}></div>
+              <div style={{ display: "flex", flexDirection: "column", gap:'10px' }}>
+                {sessionUser && sessionUser.id === singleRecipe.user_id && (
+                  <AddIngredientsModal singleRecipe={singleRecipe} />
+                )}
 
-            <h3>Preparation</h3>
+                {sessionUser && sessionUser.id === singleRecipe.user_id && (
+                  <EditRecipeModal singleRecipe={singleRecipe} />
+                )}
+                
+                {sessionUser && sessionUser.id === singleRecipe.user_id && (
+                  <DeleteRecipe recipeId={recipeId} />
+                  
+                )}
+               
 
-          </div>
+               
+                
 
 
-          <div>
-            <div
-              style={{ border: "1px solid black", inlineSize: 500 }}
-              className="instructions"
-            >
-              {getIngredients(singleRecipe).map((ingredient) => (
-                <h3
-                  style={{
-                    fontFamily: "nyt-cheltenham,Georgia,Times New Roman,serif",
-                  }}
-                >
-                  {ingredient.quantity} {ingredient.unit} {ingredient.item_name}
-                  {sessionUser && sessionUser.id === singleRecipe.user_id && (
+              </div>
+            </div>
+            <div style={{ border: "5px solid red", flex: 1 }}>
+              <h3>Preparation</h3>
+              <div>
+                <div style={{ inlineSize: 500 }}>
+                  {getPreparations(singleRecipe).map((preparation) => (
                     <>
-                      <SingleIngredientCard
-                        ingredient={ingredient}
-                        singleRecipe={singleRecipe}
-                        key={singleRecipe.id}
-                      />
-                      <DeleteIngredientBtn ingredient={ingredient} />
+                      <p
+                        style={{
+                          fontSize: "20px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {" "}
+                        Step {preparation.step}
+                      </p>
+                      <p
+                        style={{
+                          
+                        }}
+                      >
+                        {preparation.instructions}
+                      </p>
                     </>
-                  )}
-                  {console.log("#######", singleRecipe.ingredient)}
-                </h3>
-              ))}
-            </div>
-            <div style={{ border: "1px solid black", inlineSize: 700 }}>
-              {getPreparations(singleRecipe).map((preparation) => (
-                <>
-                  <p
-                    style={{
-                      fontFamily:
-                        "nyt-cheltenham,Georgia,Times New Roman,serif",
-                      fontSize: "20px",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {" "}
-                    Step {preparation.step}
-                  </p>
-                  <p
-                    style={{
-                      fontFamily:
-                        "nyt-cheltenham,Georgia,Times New Roman,serif",
-                    }}
-                  >
-                    {preparation.instructions}
-                  </p>
-                </>
-              ))}
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-          {sessionUser && sessionUser.id === singleRecipe.user_id && (
-            <>
-              <DeleteRecipe recipeId={recipeId} />
-              {/* <div>
-          <button >
-          <NavLink to={`/recipes/${recipeId}/Add`} style={{textDecoration:'none', color:'black', }}>
-          <Addingredients/>Add Ingredients
-          </NavLink>
-          </button>
-      </div> */}
-            </>
-          )}
+          <div style={{ marginTop: "90px" }}></div>
 
-          {sessionUser && sessionUser.id === singleRecipe.user_id && (
-            // <OpenModalMenuItem
-            //   itemText={<button>Edit your recipe</button>}
-            //   onItemClick={closeMenu}
-            //   modalComponent={<EditRecipe key={recipeId}/>}
-            // />
-            <>
-              <EditRecipeModal singleRecipe={singleRecipe} />
-            </>
-          )}
-
-          {sessionUser && sessionUser.id === singleRecipe.user_id && (
-            <AddIngredientsModal singleRecipe={singleRecipe} />
-          )}
         </>
       )}
     </div>

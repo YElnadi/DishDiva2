@@ -9,7 +9,7 @@ const DeleteIngredientBtn = ({ingredient}) => {
     }
   return (
     <div>
-      <button onClick={deleteIngredeint}>Remove</button>
+      <button className='login-btn'style={{fontSize:'10px', padding:'10px'}}onClick={deleteIngredeint}>Remove</button>
     </div>
   );
 }

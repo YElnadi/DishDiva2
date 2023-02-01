@@ -7,7 +7,6 @@
 
 .nav-bar-styles{
 color: #222;
-font: 12px nyt-franklin,Arial,Helvetica,sans-serif;
 font-weight: 500;
 box-sizing: border-box;
 outline: 0;
@@ -23,7 +22,7 @@ height: 100%;
     /* text-align: center;
     text-decoration: none; */
     /* font-size: 16px;  */ 
-    font: 12px nyt-franklin,Arial,Helvetica,sans-serif;
+    
 cursor: pointer;
 line-height: 43px;
 text-align: center;

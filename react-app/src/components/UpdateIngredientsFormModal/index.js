@@ -8,7 +8,7 @@ function UpdateIngredientsFormModal({ingredient, singleRecipe}) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Edit Ingredient</button>
+      <button className='login-btn' style={{fontSize:'10px', padding:'10px'}}onClick={() => setShowModal(true)}>Edit Ingredient</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <UpdateIngredientsForm ingredient={ingredient} singleRecipe={singleRecipe}onModalClose={() => setShowModal(false)}/>
