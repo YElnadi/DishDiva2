@@ -1,8 +1,6 @@
 .img-div{
    float:right;
-   margin-right:100px;
-   width:700px;
-   margin-top: 25px;
+   height:auto
   
 }
 
@@ -52,3 +50,4 @@
    font-size:larger;
    text-align: justify;
 }
+

@@ -37,48 +37,98 @@ const SingleRecipeDetails = () => {
 
   useEffect(async () => {
     const data = await dispatch(loadSingleRecipeThunk(recipeId));
-    console.log('#####data', data)
+    console.log("#####data", data);
   }, [dispatch, recipeId]);
 
   return (
-    <>
+    <div style={{ marginLeft: "149px", marginRight: "149px" }}>
       {Object.values(singleRecipe).length > 0 && (
         <>
-          <div >
-            <div>
-              <div>
-                <img src={singleRecipe.image_url}  />
-              </div>
-              <div >
-                <div>
-                  <h1
-                    style={{
-                      fontSize: "50px",
-                      fontFamily:
-                        "nyt-cheltenham,Georgia,Times New Roman,serif",
-                      fontWeight: 180,
-                      inlineSize: 500,
-                      overflowWrap: "break-word",
-                      textAlign: "center",
-                    }}
-                  >
-                    {singleRecipe.title}
-                  </h1>
-                  <h2 className="user-name">By {singleRecipe.user}</h2>
-                </div>
+          <div
+            style={{
+              marginRight: "auto",
+              border: "5px solid black",
+              display: "flex",
+              flexDirection: "row",
+              overflow: "auto",
+              height: "auto",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                verticalAlign: "center",
+                border: "5px solid red",
+              }}
+            >
+              <div style={{ marginTop: "150px" }}>
+                <h1
+                  style={{
+                    fontFamily: "nyt-cheltenham,Georgia,Times New Roman,serif",
+                    fontWeight: 180,
+                    inlineSize: 500,
+                    overflowWrap: "break-word",
+                    textAlign: "center",
+                  }}
+                >
+                  {singleRecipe.title}
+                </h1>
+                <h2
+                  style={{
+                    fontFamily: "nyt-cheltenham,Georgia,Times New Roman,serif",
+                    overflowWrap: "break-word",
+                    textAlign: "center",
+                  }}
+                >
+                  By {singleRecipe.user}
+                </h2>
               </div>
             </div>
-            <div style={{ inlineSize: 700 }} className="description">
-              <h3 style={{ borderBottom: "5px solid black", padding: "10px" }}>
-                {singleRecipe.description}
-              </h3>
+            <div style={{ marginLeft: "auto", float: "right", height: "auto" }}>
+              <img src={singleRecipe.image_url} />
             </div>
           </div>
-          <h3 style={{ paddingLeft: "610px", fontSize: "25px" }}>
-            Preparation
-          </h3>
 
-          <div style={{ border: "1px solid black", display: "flex" }}>
+          <div
+            style={{
+              marginRight: "auto",
+              border: "5px solid black",
+              display: "flex",
+              flexDirection: "row",
+              overflow: "auto",
+              height: "auto",
+            }}
+            >
+              <div style={{
+                display: "flex",
+                flexDirection: "column",
+                verticalAlign: "center",
+                border: "5px solid yellow",
+                textAlign:'center',
+                width:"46%"
+               
+                  }}>
+                <div style={{marginTop:'90px'}}> Time : {singleRecipe.cook_time}</div>
+                <div>Ratings</div>
+            </div>
+
+            <div style={{ border: "5px solid green", inlineSize:590, marginLeft: "auto", float: "right", height: "auto" }}>
+              <h3>{singleRecipe.description}</h3>
+            </div>
+          </div>
+
+          <div style={{border:'5px solid black', marginTop:'50px'}}></div>
+
+          <div style={{display:'flex', justifyContent:'space-around'}}>
+            <h3>Ingredients</h3>
+
+            <h3>Preparation</h3>
+
+          </div>
+
+
+          <div>
             <div
               style={{ border: "1px solid black", inlineSize: 500 }}
               className="instructions"
@@ -159,7 +209,7 @@ const SingleRecipeDetails = () => {
           )}
         </>
       )}
-    </>
+    </div>
   );
 };
 
