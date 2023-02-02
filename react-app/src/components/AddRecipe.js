@@ -83,6 +83,22 @@ const AddRecipe = () => {
     history.push(`/`)
   }
 
+  const updateServings = (e) =>{
+    const positiveNumberPattern = /^[1-9][0-9]*$/;
+    const inputValue = e.target.value;
+    if (positiveNumberPattern.test(inputValue))
+    setServings(inputValue);
+  }
+
+  const updateCookTime = (e) =>{
+    const positiveNumberPattern = /^[1-9][0-9]*$/;
+    const inputValue = e.target.value;
+    if (positiveNumberPattern.test(inputValue))
+    setCookTime(inputValue);
+  }
+
+ 
+
   return (
     <div className="bg-img-edit-recipe-form">
       <form onSubmit={handelSubmit}  className="container-update-ingredients-form">
@@ -135,7 +151,7 @@ const AddRecipe = () => {
          className="input-update-form"
           type="number"
           value={servings}
-          onChange={(e) => setServings(e.target.value)}
+          onChange={updateServings}
           placeholder="Servings"
           required
         />
@@ -148,7 +164,7 @@ const AddRecipe = () => {
           className="input-update-form"
           type="number"
           value={cook_time}
-          onChange={(e) => setCookTime(e.target.value)}
+          onChange={updateCookTime}
           placeholder="Time"
           required
         />

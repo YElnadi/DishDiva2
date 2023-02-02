@@ -29,9 +29,12 @@ function AddPreparationsForm({singleRecipe,onModalClose}) {
     }
   };
 
-  const updateStep = (e) => {
-    setStep(e.target.value);
-  };
+  const updateStep = (e) =>{
+    const positiveNumberPattern = /^[1-9][0-9]*$/;
+    const inputValue = e.target.value;
+    if (positiveNumberPattern.test(inputValue))
+    setStep(inputValue);
+  }
 
   const updateInstruction = (e) => {
     setInstruction(e.target.value);

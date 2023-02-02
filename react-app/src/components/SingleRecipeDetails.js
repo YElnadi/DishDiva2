@@ -113,9 +113,8 @@ const SingleRecipeDetails = () => {
               }}
             >
               <div style={{ marginTop: "90px" }}>
-                Time : {singleRecipe.cook_time}
+                Time : {singleRecipe.cook_time} minutes
               </div>
-              <div>Ratings</div>
             </div>
 
             <div
@@ -142,7 +141,13 @@ const SingleRecipeDetails = () => {
           >
             <div style={{ flex: 0.7 }}>
               <h3>Ingredients</h3>
-              <h4>Yield: {singleRecipe.servings} servings</h4>
+              {singleRecipe.servings > 1 && (
+                <h4>Yield: {singleRecipe.servings} servings</h4>
+              )}
+              {singleRecipe.servings === 1 && (
+                <h4>Yield: {singleRecipe.servings} serving</h4>
+              )}
+
               <div style={{ inlineSize: 500 }}>
                 {getIngredients(singleRecipe).map((ingredient) => (
                   <h4>
@@ -189,7 +194,7 @@ const SingleRecipeDetails = () => {
                 )}
 
                 {sessionUser && sessionUser.id === singleRecipe.user_id && (
-                  <EditRecipeModal singleRecipe={singleRecipe} />
+                  <EditRecipeModal singleRecipe={singleRecipe}  />
                 )}
 
                 {sessionUser && sessionUser.id === singleRecipe.user_id && (
@@ -198,38 +203,37 @@ const SingleRecipeDetails = () => {
               </div>
             </div>
             <div style={{ flex: 1 }}>
-              <h3>Preparation</h3>
+              <h3>Preparations</h3>
               <div>
                 <div style={{ inlineSize: 500 }}>
                   {getPreparations(singleRecipe).map((preparation) => (
+                    
                     <>
                       <p
                         style={{
                           fontSize: "20px",
                           fontWeight: "bold",
                         }}
-                       >
+                      >
                         {" "}
-                        Step {preparation.step}</p>
-                        <p style={{ wordWrap: "break-word" }}>
-                          {preparation.instructions}
-                        </p>
-                        {sessionUser &&
-                          sessionUser.id === singleRecipe.user_id && (
-                            <>
-                              <div style={{ display: "flex", gap: 10 }}>
-                                <SinglePreparationCard
-                                  preparation={preparation}
-                                  singleRecipe={singleRecipe}
-                                  key={singleRecipe.id}
-                                />
-                                <DeletePreparationBtn
-                                  preparation={preparation}
-                                />
-                              </div>
-                            </>
-                          )}
-                      
+                        Step {preparation.step}
+                      </p>
+                      <p style={{ wordWrap: "break-word" }}>
+                        {preparation.instructions}
+                      </p>
+                      {sessionUser &&
+                        sessionUser.id === singleRecipe.user_id && (
+                          <>
+                            <div style={{ display: "flex", gap: 10 }}>
+                              <SinglePreparationCard
+                                preparation={preparation}
+                                singleRecipe={singleRecipe}
+                                key={singleRecipe.id}
+                              />
+                              <DeletePreparationBtn preparation={preparation} />
+                            </div>
+                          </>
+                        )}
                     </>
                   ))}
                 </div>

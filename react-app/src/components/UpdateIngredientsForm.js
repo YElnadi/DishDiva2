@@ -34,15 +34,31 @@ const UpdateIngredientsForm = ({ ingredient, singleRecipe, onModalClose }) => {
       updateIngredientThunk(updatedIngredient)
     ).then(
       dispatch(loadSingleRecipeThunk(singleRecipe.id)).then(onModalClose())
-    );
+    )
+    if(response){
+      console.log('response', response)
+      setErrors(response)
+    }
   };
 
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const updateQuantity = (e) => {
-    setQuantity(e.target.value);
-  };
+  // const updateQuantity = (e) => {
+  //   const inputValue = e.target.value;
+  //   const isPositiveNumber = /^\d*.?\d*$/.test(inputValue);
+  //   //const isPositiveNumber = /^\d+$/.test(inputValue)
+  //   if (isPositiveNumber && inputValue >= 0) {
+  //     setQuantity(inputValue);
+  //   }
+  // };
+
+  const updateQuantity = (e) =>{
+    const positiveNumberPattern = /^[0-9]+(\.[0-9]+)?$/;
+    const inputValue = e.target.value;
+    if (inputValue === '' || positiveNumberPattern.test(inputValue))
+    setQuantity(inputValue);
+  }
 
   const updateUnit = (e) => {
     setUnit(e.target.value);
@@ -64,6 +80,11 @@ const UpdateIngredientsForm = ({ ingredient, singleRecipe, onModalClose }) => {
         className="container-update2-ingredients-form"
       >
         <h1>Update Ingredients</h1>
+        <div>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
         <label>Qunatity</label>
         <input
           className="input-update-form"

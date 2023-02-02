@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextField, SubmitField, IntegerField
+from wtforms import StringField, TextField, SubmitField, IntegerField, FloatField
 from wtforms.validators import DataRequired, ValidationError
 
 def check_image_type(form, field):
@@ -32,9 +32,21 @@ class RecipeForm(FlaskForm):
 #   if len(item_name)>10:
 #     raise ValidationError("ingredient name must be less than 10 characters")
 
+def check_quantity(form, field):
+  quantity = field.data
+  try:
+    float_value = float(quantity)
+    if float_value == 0:
+      return "Error: the value entered is not a positive number"
+    else:
+      return float_value
+  except ValueError:
+    return "Error: the entered value is not correct"
+
+
 class IngredientForm(FlaskForm):
   recipe_id = IntegerField("Recipe Id")
-  quantity = IntegerField("Quantity", validators=[DataRequired()])
+  quantity = FloatField("Quantity", validators=[DataRequired(), check_quantity])
   item_name = StringField("Item Name", validators=[DataRequired()])
   unit = StringField("Unit")
   submit = SubmitField("save")

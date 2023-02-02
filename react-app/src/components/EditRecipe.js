@@ -33,6 +33,20 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
     e.preventDefault();
     onModalClose();
   };
+
+  const updateServings = (e) =>{
+    const positiveNumberPattern = /^[1-9][0-9]*$/;
+    const inputValue = e.target.value;
+    if (positiveNumberPattern.test(inputValue))
+    setServings(inputValue);
+  }
+
+  const updateCookTime = (e) =>{
+    const positiveNumberPattern = /^[1-9][0-9]*$/;
+    const inputValue = e.target.value;
+    if (positiveNumberPattern.test(inputValue))
+    setCookTime(inputValue);
+  }
   return (
     <div className="bg-img-edit-recipe-form">
     <form onSubmit={handleSubmit}
@@ -70,7 +84,7 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
           className="input-update-form"
           type="number"
           value={servings}
-          onChange={(e) => setServings(e.target.value)}
+          onChange={updateServings}
           placeholder="Servings"
           required
         />
@@ -81,7 +95,7 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
           className="input-update-form"
           type="number"
           value={cook_time}
-          onChange={(e) => setCookTime(e.target.value)}
+          onChange={updateCookTime}
           placeholder="Time"
           required
         />
