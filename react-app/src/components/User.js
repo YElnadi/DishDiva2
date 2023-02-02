@@ -15,8 +15,8 @@ function User() {
   const dispatch = useDispatch();
   const myRecipes = useSelector((state) => state.recipes.myRecipes);
   console.log("myRecipesssss", Object.values(myRecipes).length);
-  const lenght = Object.values(myRecipes).length;
-  console.log("length#####", lenght);
+  const length = Object.values(myRecipes).length;
+  console.log("length#####", length);
 
   useEffect(() => {
     if (!userId) {
@@ -41,10 +41,9 @@ function User() {
     <>
       <div className="main">
         <h1>Good Morning, {user.username}</h1>
-        {lenght && lenght > 1 && <h2>{lenght} recipes</h2>}
-
-        {lenght && lenght === 1 && <h2>{lenght} recipe</h2>}
-
+        {length > 1 && <h2>{length} recipes</h2>}
+        {length === 1 && <h2>{length} recipe</h2>}
+        {length === 0 && <h2>You currntly don't have any recipes</h2>}
 
         <div className="sideNav">
           <div
