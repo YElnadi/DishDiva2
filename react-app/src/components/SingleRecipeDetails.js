@@ -139,7 +139,7 @@ const SingleRecipeDetails = () => {
               justifyContent: "space-around",
             }}
           >
-            <div style={{ flex: 0.7 }}>
+            <div style={{ flex: 1 }}>
               <h3>Ingredients</h3>
               {singleRecipe.servings > 1 && (
                 <h4>Yield: {singleRecipe.servings} servings</h4>
@@ -151,13 +151,21 @@ const SingleRecipeDetails = () => {
               <div>
                 {getIngredients(singleRecipe).map((ingredient) => (
                   <div key={ingredient.id}>
-                    <h4>{ingredient.quantity}</h4>
-                    <h4>{ingredient.unit}</h4>
-                    <h4 style={{
-                      fontWeight: "normal",
-                      fontSize: "20px",
-                      wordWrap: "break-word",
-                    }}>{ingredient.item_name}</h4>
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <div>
+                        <h4>{ingredient.quantity}</h4>
+                        <h4>{ingredient.unit}</h4>
+                        <h4
+                          style={{
+                            fontWeight: "normal",
+                            fontSize: "20px",
+                            wordWrap: "break-word",
+                          }}
+                        >
+                          {ingredient.item_name}
+                        </h4>
+                      </div>
+                    </div>
                     {sessionUser && sessionUser.id === singleRecipe.user_id && (
                       <div style={{ display: "flex", gap: 10 }}>
                         <SingleIngredientCard
