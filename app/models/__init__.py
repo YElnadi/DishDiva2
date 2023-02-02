@@ -5,3 +5,4 @@ from .image import Image
 from .recipe import Recipe
 from .ingredients import Ingredient
 from .preparations import Preparation
+from .notes import CookingNotes

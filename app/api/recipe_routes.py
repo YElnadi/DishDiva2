@@ -1,9 +1,10 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Recipe, Ingredient,Preparation
+from app.models import db, Recipe, Ingredient,Preparation,CookingNotes
 from ..forms.create_recipe_form import RecipeForm, IngredientForm
 from ..forms.edit_recipe_form import EditRecipeForm
 from ..forms.preparation_form import PreparationForm
+from ..forms.notes_form import NoteForm
 from .auth_routes import validation_errors_to_error_messages
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -179,3 +180,21 @@ def add_preparations_to_recipe(id):
         return updated_recipe.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+
+
+## Add notes to recipe 
+@recipe_routes.route("/<int:id>/add-note", methods=["POST"])
+def add_note_to_recipe(id):
+    form = NoteForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_note = CookingNotes(
+            note = form.data["note"],
+            recipe_id = form.data["recipe_id"],
+            user_id = form.data['user_id']
+        )
+        db.session.add(new_note)
+        db.session.commit()
+        updated_recipe=Recipe.query.get(form.data['recipe_id'])
+        return updated_recipe.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

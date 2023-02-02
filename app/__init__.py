@@ -11,6 +11,7 @@ from .api.image_routes import image_routes
 from .api.recipe_routes import recipe_routes
 from .api.ingredient_routes import ingredient_routes
 from .api.preparation_routes import preparation_routes
+from .api.note_routes import note_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -36,6 +37,7 @@ app.register_blueprint(image_routes, url_prefix='/api/images')
 app.register_blueprint(recipe_routes, url_prefix='/api/recipes')
 app.register_blueprint(ingredient_routes, url_prefix='/api/ingredients')
 app.register_blueprint(preparation_routes, url_prefix='/api/preparations')
+app.register_blueprint(note_routes, url_prefix='/api/notes' )
 
 
 db.init_app(app)

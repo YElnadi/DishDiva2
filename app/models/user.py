@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     ##relationships
     recipes = db.relationship("Recipe", back_populates = "user", cascade="all, delete" )
 
-    # notes = db.relationship("Note", back_populates= "user", cascade="all, delete")
+    notes = db.relationship("CookingNotes", back_populates= "user", cascade="all, delete")
 
     # ratings = db.relationship("Rating",back_populates= "user",cascade="all, delete" )
 
