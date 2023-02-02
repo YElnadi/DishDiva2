@@ -43,6 +43,7 @@ const UpdatePreparationsForm = ({preparation,singleRecipe, onModalClose}) => {
     e.preventDefault();
     onModalClose();
   };
+ 
 
 
   return (
@@ -65,6 +66,7 @@ const UpdatePreparationsForm = ({preparation,singleRecipe, onModalClose}) => {
             value={step}
             required
           ></input>
+          
         </div>
 
         <div>

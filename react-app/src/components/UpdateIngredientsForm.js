@@ -54,7 +54,7 @@ const UpdateIngredientsForm = ({ ingredient, singleRecipe, onModalClose }) => {
   // };
 
   const updateQuantity = (e) =>{
-    const positiveNumberPattern = /^[0-9]+(\.[0-9]+)?$/;
+    const positiveNumberPattern = /^[1-9][0-9]*$/;
     const inputValue = e.target.value;
     if (inputValue === '' || positiveNumberPattern.test(inputValue))
     setQuantity(inputValue);
@@ -88,7 +88,7 @@ const UpdateIngredientsForm = ({ ingredient, singleRecipe, onModalClose }) => {
         <label>Qunatity</label>
         <input
           className="input-update-form"
-          type="text"
+          type="number"
           value={quantity}
           onChange={updateQuantity}
           placeholder="Quantity"

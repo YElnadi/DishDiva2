@@ -150,7 +150,7 @@ const SingleRecipeDetails = () => {
 
               <div style={{ inlineSize: 500 }}>
                 {getIngredients(singleRecipe).map((ingredient) => (
-                  <h4>
+                  <h4 key={singleRecipe.id}>
                     <span style={{ fontWeight: "normal", fontSize: "20px" }}>
                       {ingredient.quantity}
                     </span>{" "}
