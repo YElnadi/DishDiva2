@@ -194,7 +194,7 @@ const SingleRecipeDetails = () => {
                 )}
 
                 {sessionUser && sessionUser.id === singleRecipe.user_id && (
-                  <EditRecipeModal singleRecipe={singleRecipe}  />
+                  <EditRecipeModal singleRecipe={singleRecipe} />
                 )}
 
                 {sessionUser && sessionUser.id === singleRecipe.user_id && (
@@ -203,48 +203,40 @@ const SingleRecipeDetails = () => {
               </div>
             </div>
             <div style={{ flex: 1 }}>
-              <h3>Preparations</h3>
-              <div>
-                <div style={{ inlineSize: 500 }}>
-                  {getPreparations(singleRecipe).map((preparation) => (
-                    
-                    <>
-                      <p
-                        style={{
-                          fontSize: "20px",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        {" "}
-                        Step {preparation.step}
-                      </p>
-                      <p style={{ wordWrap: "break-word" }}>
-                        {preparation.instructions}
-                      </p>
-                      {sessionUser &&
-                        sessionUser.id === singleRecipe.user_id && (
-                          <>
-                            <div style={{ display: "flex", gap: 10 }}>
-                              <SinglePreparationCard
-                                preparation={preparation}
-                                singleRecipe={singleRecipe}
-                                key={singleRecipe.id}
-                              />
-                              <DeletePreparationBtn preparation={preparation} />
-                            </div>
-                          </>
-                        )}
-                    </>
-                  ))}
-                </div>
+              {/* <h3 >Preparations</h3> */}
 
-                {sessionUser && sessionUser.id === singleRecipe.user_id && (
-                  <AddPreparationsModal
-                    key={singleRecipe.id}
-                    singleRecipe={singleRecipe}
-                  />
-                )}
-              </div>
+              
+                {getPreparations(singleRecipe).map((preparation) => (
+                  <div key={preparation.id}>
+                  <h4> step:{preparation.step}</h4>
+                  <h4 style={{ wordWrap: "break-word", fontWeight: "normal" }}>{preparation.instructions}</h4>
+
+                  {sessionUser && sessionUser.id === singleRecipe.user_id &&(
+                    <>
+                    <SinglePreparationCard 
+                    preparation={preparation}
+                    singleRecipe={singleRecipe}/>
+
+                    <DeletePreparationBtn preparation={preparation} />
+                    </>
+                  )}
+
+                  
+                  </div>
+
+                  
+                  
+                    
+                  
+                ))}
+              
+
+              {sessionUser && sessionUser.id === singleRecipe.user_id && (
+                <AddPreparationsModal
+                  key={singleRecipe.id}
+                  singleRecipe={singleRecipe}
+                />
+              )}
             </div>
           </div>
           <div style={{ marginTop: "90px" }}></div>
