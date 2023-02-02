@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField
-from wtforms.validators import DataRequired, Email, ValidationError,EqualTo
+from wtforms.validators import DataRequired,Email, ValidationError,EqualTo
 from app.models import User
 
 
@@ -24,10 +24,10 @@ def password_length(form, field):
     if len(password)<8:
         raise ValidationError('Password should not be less than 8')
 
-def check_email(form,field):
-    email = field.data
-    if email is not Email:
-        raise ValidationError('Please enter a valid email.')
+# def check_email(form,field):
+#     email = field.data
+#     if email is not Email:
+#         raise ValidationError('Please enter a valid email.')
 
 def check_username_length(form, field):
     username = field.data

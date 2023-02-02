@@ -10,6 +10,9 @@ const UPDATE_PREPARATION = "preparation/UPDATE_PREPARATION";
 const DELETE_INGREDIENT = "ingredient/DELETE_INGREDIENT";
 const DELETE_PREPARATION = "preparaion/DELETE_PREPARATION";
 const ADD_PREPARATION_TO_RECIPE = "recipe/ADD_PREPARATION";
+const ADD_NOTES_TO_RECIPE = "recipe/ADD_NOTES";
+const UPDATE_NOTE = "note/UPDATE_NOTE";
+const DELETE_NOTE = "note/DELETE_NOTE";
 
 //////////ACTIONS CREATORS /////////////
 const loadRecipes = (recipes) => ({
@@ -47,6 +50,11 @@ const addIngredientToRecipe = (recipe) => ({
   recipe,
 });
 
+const addNotesToRecipe = (recipe) => ({
+  type: ADD_NOTES_TO_RECIPE,
+  recipe,
+});
+
 const addPreparationToRecipe = (recipe) => ({
   type: ADD_PREPARATION_TO_RECIPE,
   recipe,
@@ -57,6 +65,11 @@ const updateIngredient = (recipe) => ({
   recipe,
 });
 
+const updateNote = (recipe) => ({
+  type: UPDATE_NOTE,
+  recipe,
+});
+
 const updatePreparaion = (recipe) => ({
   type: UPDATE_PREPARATION,
   recipe,
@@ -64,6 +77,11 @@ const updatePreparaion = (recipe) => ({
 
 const deleteIngredient = (recipe) => ({
   type: DELETE_INGREDIENT,
+  recipe,
+});
+
+const deleteNote = (recipe) => ({
+  type: DELETE_NOTE,
   recipe,
 });
 
@@ -166,6 +184,29 @@ export const addIngredientToRecipeThunk =
     }
   };
 
+export const addNotesToRecipeThunk =
+  (newNote, recipeId) => async (dispatch) => {
+    const response = await fetch(`/api/recipes/${recipeId}/add-note`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newNote),
+    });
+    if (response.ok) {
+      const recipe = await response.json();
+      dispatch(addNotesToRecipe(recipe));
+      return null;
+    } else if (response.status < 500) {
+      const data = await response.json();
+      if (data.errors) {
+        return data.errors;
+      } else {
+        return ["An error occurred. Please try again."];
+      }
+    }
+  };
+
 export const addPreparationToRecipeThunk =
   (newPreparation, recipeId) => async (dispatch) => {
     const response = await fetch(`/api/recipes/${recipeId}/add-preparations`, {
@@ -218,6 +259,27 @@ export const updateIngredientThunk = (ingredient) => async (dispatch) => {
     }
   }
 };
+export const updateNoteThunk = (note) => async (dispatch) => {
+  const response = await fetch(`/api/notes/update/${note.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(note),
+  });
+  if (response.ok) {
+    const data = await response.json();
+    await dispatch(updateNote(data));
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    } else {
+      return ["An error occurred. Please try again."];
+    }
+  }
+};
 
 export const updatePreparaionThunk = (preparation) => async (dispatch) => {
   const response = await fetch(`/api/preparations/update/${preparation.id}`, {
@@ -248,6 +310,24 @@ export const deleteIngredientThunk = (ingredient) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     await dispatch(deleteIngredient(data));
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    } else {
+      return ["An error occurred. Please try again."];
+    }
+  }
+};
+
+export const deleteNoteThunk = (note) => async (dispatch) => {
+  const response = await fetch(`/api/notes/delete/${note.id}`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    const data = await response.json();
+    await dispatch(deleteNote(data));
     return null;
   } else if (response.status < 500) {
     const data = await response.json();
@@ -348,6 +428,22 @@ export default function reducer(state = initialState, action) {
       }
       return newState;
     }
+    case ADD_NOTES_TO_RECIPE: {
+      const newState = {
+        allRecipes: { ...state.allRecipes },
+        singleRecipe: action.recipe,
+        myRecipes: { ...state.myRecipes },
+      };
+      newState.allRecipes[action.recipe.id] = action.recipe;
+      newState.myRecipes[action.recipe.id] = action.recipe;
+      if (Object.values(newState.singleRecipe).length) {
+        if (newState.singleRecipe.id === action.recipe.id) {
+          newState.singleRecipe = action.recipe;
+        }
+      }
+      return newState;
+    }
+
     case ADD_PREPARATION_TO_RECIPE: {
       const newState = {
         allRecipes: { ...state.allRecipes },
@@ -386,6 +482,15 @@ export default function reducer(state = initialState, action) {
       return newState;
     }
 
+    case UPDATE_NOTE:{
+      const newState={
+        allRecipes:{...state.allRecipes},
+        singleRecipe:action.recipe,
+        myRecipes:{...state.myRecipes}
+      };
+      return newState
+    }
+
     case UPDATE_PREPARATION: {
       const newState = {
         allRecipes: { ...state.allRecipes },
@@ -395,6 +500,14 @@ export default function reducer(state = initialState, action) {
       return newState;
     }
     case DELETE_INGREDIENT: {
+      const newState = {
+        allRecipes: { ...state.allRecipes },
+        singleRecipe: action.recipe,
+        myRecipes: { ...state.myRecipes },
+      };
+      return newState;
+    }
+    case DELETE_NOTE:{
       const newState = {
         allRecipes: { ...state.allRecipes },
         singleRecipe: action.recipe,

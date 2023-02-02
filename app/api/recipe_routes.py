@@ -86,12 +86,10 @@ def upload_image():
     # if len(description)<100:
     #     return {"errors":"Description must be greater than 100 characters"}
     
-
     if not allowed_file(image.filename):
         return {"errors": "image of type pdf, png, jpg, jpeg, gif are the only allowed"}, 400
     
     
-
     image.filename = get_unique_filename(image.filename)
 
     upload = upload_file_to_s3(image)
@@ -209,3 +207,22 @@ def add_note_to_recipe(id):
         updated_recipe=Recipe.query.get(form.data['recipe_id'])
         return updated_recipe.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+
+# ##create notes to recipe by Id
+# @recipe_routes.route("/<int:id/add-note", methods=["POST"])
+# def add_notes_to_recipe(id):
+#     form = NoteForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     if form.validate_on_submit():
+#         new_note = CookingNotes(
+#             note = form.data["note"],
+#             recipe_id = form.data["recipe_id"],
+#             user_id = form.data["user_id"]
+#         )
+#         db.session.add(new_note)
+#         db.session.commit()
+#         updated_recipe = Recipe.query.get(form.data['recipe_id'])
+#         return updated_recipe.to_dict()
+#     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

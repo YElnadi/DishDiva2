@@ -30,7 +30,7 @@ const SingleRecipeDetails = () => {
   const getIngredients = (singleRecipe) => {
     const ingredients =
       singleRecipe.ingredients !== undefined ? singleRecipe.ingredients : [];
-    return ingredients;
+    return Object.values(ingredients);
   };
 
   const getPreparations = (singleRecipe) => {
