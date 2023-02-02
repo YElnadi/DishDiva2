@@ -25,5 +25,6 @@ class CookingNotes(db.Model):
             "id":self.id,
             "recipe_id":self.recipe_id,
             "user_id":self.user_id,
+            "user":self.user.username,
             "note":self.note
         }

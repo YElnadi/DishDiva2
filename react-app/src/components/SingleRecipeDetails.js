@@ -39,6 +39,11 @@ const SingleRecipeDetails = () => {
     return Object.values(preparations);
   };
 
+  const getNotes = (singleRecipe) => {
+    const notes = singleRecipe.notes !== undefined ? singleRecipe.notes : [];
+    return Object.values(notes);
+  };
+
   useEffect(async () => {
     const data = await dispatch(loadSingleRecipeThunk(recipeId));
     console.log("#####data", data);
@@ -232,6 +237,18 @@ const SingleRecipeDetails = () => {
               )}
             </div>
           </div>
+
+          <div>
+            {getNotes(singleRecipe).map((note) => (
+              <div key={note.id}>
+                <div>
+                  <h4>{note.user}</h4>
+                  <h4>{note.note}</h4>
+                </div>
+              </div>
+            ))}
+          </div>
+
           <div style={{ marginTop: "90px" }}></div>
         </>
       )}

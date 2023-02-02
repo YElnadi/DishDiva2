@@ -6,7 +6,8 @@ import recipes from './recipes'
 
 const rootReducer = combineReducers({
   session,
-  recipes
+  recipes,
+
 });
 
 

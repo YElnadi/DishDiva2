@@ -37,6 +37,17 @@ def get_my_recipes(id):
     else:
         return {'recipe': {}}
 
+#get all notes by recipe Id
+@recipe_routes.route('/<int:id>/notes')
+def get_all_notes(id):
+    notes = CookingNotes.query.filter_by(recipe_id = id).all()
+    if len(notes):
+        return{
+            'notes':[note.to_dict() for note in notes]
+        }
+    else:
+        return {'note':{}}
+
 
 # Create a Recipe
 # @recipe_routes.route('/new-recipe', methods=["POST"])
