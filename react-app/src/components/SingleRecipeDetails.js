@@ -148,39 +148,29 @@ const SingleRecipeDetails = () => {
                 <h4>Yield: {singleRecipe.servings} serving</h4>
               )}
 
-              <div style={{ inlineSize: 500 }}>
+              <div>
                 {getIngredients(singleRecipe).map((ingredient) => (
-                  <h4 key={singleRecipe.id}>
-                    <span style={{ fontWeight: "normal", fontSize: "20px" }}>
-                      {ingredient.quantity}
-                    </span>{" "}
-                    <span style={{ fontWeight: "normal", fontSize: "20px" }}>
-                      {ingredient.unit}
-                    </span>{" "}
-                    <span
-                      style={{
-                        fontWeight: "normal",
-                        fontSize: "20px",
-                        wordWrap: "break-word",
-                      }}
-                    >
-                      {ingredient.item_name}
-                    </span>
+                  <div key={ingredient.id}>
+                    <h4>{ingredient.quantity}</h4>
+                    <h4>{ingredient.unit}</h4>
+                    <h4 style={{
+                      fontWeight: "normal",
+                      fontSize: "20px",
+                      wordWrap: "break-word",
+                    }}>{ingredient.item_name}</h4>
                     {sessionUser && sessionUser.id === singleRecipe.user_id && (
-                      <>
-                        <div style={{ display: "flex", gap: 10 }}>
-                          <SingleIngredientCard
-                            ingredient={ingredient}
-                            singleRecipe={singleRecipe}
-                            key={singleRecipe.id}
-                          />
-                          <DeleteIngredientBtn ingredient={ingredient} />
-                        </div>
-                      </>
+                      <div style={{ display: "flex", gap: 10 }}>
+                        <SingleIngredientCard
+                          ingredient={ingredient}
+                          singleRecipe={singleRecipe}
+                        />
+                        <DeleteIngredientBtn ingredient={ingredient} />
+                      </div>
                     )}
-                  </h4>
+                  </div>
                 ))}
               </div>
+
               <div style={{ marginTop: "90px" }}></div>
               <div
                 style={{
@@ -202,34 +192,29 @@ const SingleRecipeDetails = () => {
                 )}
               </div>
             </div>
+
             <div style={{ flex: 1 }}>
-              {/* <h3 >Preparations</h3> */}
+              <h3>Preparations</h3>
 
-              
-                {getPreparations(singleRecipe).map((preparation) => (
-                  <div key={preparation.id}>
+              {getPreparations(singleRecipe).map((preparation) => (
+                <div key={preparation.id}>
                   <h4> step:{preparation.step}</h4>
-                  <h4 style={{ wordWrap: "break-word", fontWeight: "normal" }}>{preparation.instructions}</h4>
+                  <h4 style={{ wordWrap: "break-word", fontWeight: "normal" }}>
+                    {preparation.instructions}
+                  </h4>
 
-                  {sessionUser && sessionUser.id === singleRecipe.user_id &&(
-                    <>
-                    <SinglePreparationCard 
-                    preparation={preparation}
-                    singleRecipe={singleRecipe}/>
+                  {sessionUser && sessionUser.id === singleRecipe.user_id && (
+                    <div style={{ display: "flex", gap: 10 }}>
+                      <SinglePreparationCard
+                        preparation={preparation}
+                        singleRecipe={singleRecipe}
+                      />
 
-                    <DeletePreparationBtn preparation={preparation} />
-                    </>
+                      <DeletePreparationBtn preparation={preparation} />
+                    </div>
                   )}
-
-                  
-                  </div>
-
-                  
-                  
-                    
-                  
-                ))}
-              
+                </div>
+              ))}
 
               {sessionUser && sessionUser.id === singleRecipe.user_id && (
                 <AddPreparationsModal
