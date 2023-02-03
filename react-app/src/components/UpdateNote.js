@@ -52,10 +52,10 @@ const UpdateNote = ({ note, singleRecipe, onModalClose }) => {
         />
 
         <div style={{display:'flex', justifyContent:'space-evenly'}}>
-          <button  type="submit">
+          <button  type="submit" className='action-btn'>
             Save
           </button>
-          <button onClick={cancel}>
+          <button onClick={cancel} className='action-btn'>
             Cancel
           </button>
         </div>
