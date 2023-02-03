@@ -43,10 +43,14 @@ const AddNote = ({singleRecipe}) => {
           ))}
         </div>
         <div>
+          <h2>Cooking Notes</h2>
           <label>
             Add Note
             <textarea
               //   className="input-update-form"
+              className='fixed-input'
+              rows={8}
+              cols={64}
               type="text"
               value={note}
               onChange={updateNote}
@@ -55,8 +59,10 @@ const AddNote = ({singleRecipe}) => {
             />
           </label>
         </div>
+        <div style={{display:'flex', justifyContent:'space-evenly'}}>
         <button type="submit">Save</button>
         <button onClick={cancel}>Cancel</button>
+        </div>
       </form>
     </div>
   );

@@ -19,15 +19,16 @@ const Dropdown = ({sessionUser}) => {
   return (
     <div style={{zIndex:1000, position:'absolute'}}>
       <ul onClick={() => setDropdown(!dropdown)} className="menu">
+      <div >
+          <button style={{marginRight:'28px', border:'none', backgroundColor:'transparent'}}><NavLink to = {`/users/${sessionUser.id}`} style={{paddingRight:'5px', textDecoration:'none', color:'black', cursor:'pointer', marginLeft:'-2px'}}>Profile</NavLink> </button>
+          
+        </div>
         <div style={{display:'flex', flexDirection:'column', justifyContent:'space-between'}}>
         <div className="logout-btn">
           <LogoutButton />
         </div>
         
-        <div >
-          <button style={{marginRight:'28px', border:'none', backgroundColor:'transparent'}}><NavLink to = {`/users/${sessionUser.id}`} style={{paddingRight:'5px', textDecoration:'none', color:'black', cursor:'pointer', marginLeft:'-2px'}}>Profile</NavLink> </button>
-          
-        </div>
+       
         </div>
       </ul>
     </div>

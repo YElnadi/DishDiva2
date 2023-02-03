@@ -48,7 +48,7 @@ const UpdateNote = ({ note, singleRecipe, onModalClose }) => {
           required
         />
 
-        <div>
+        <div style={{display:'flex', justifyContent:'space-evenly'}}>
           <button  type="submit">
             Save
           </button>

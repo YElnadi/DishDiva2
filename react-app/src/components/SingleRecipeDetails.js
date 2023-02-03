@@ -60,15 +60,11 @@ const SingleRecipeDetails = () => {
           <main className="page">
             <div className="recipe-page">
               <section className="recipe-hero">
-                <img
-                  src={singleRecipe.image_url}
-                  className="img recipe-hero-img"
-                  alt="recipe-image"
-                />
-                <article>
+                
+                <article style={{marginLeft:'20px'}}>
                   <h2>{singleRecipe.title}</h2>
                   <p>By {singleRecipe.user}</p>
-                  <p>{singleRecipe.description}</p>
+                  <p style={{wordBreak:'break-all'}}>{singleRecipe.description}</p>
                   {/* <!-- recipe icons --> */}
                   <div className="recipe-icons">
                     {/* single recipe icon */}
@@ -88,128 +84,163 @@ const SingleRecipeDetails = () => {
                         <p>{singleRecipe.servings} Serving</p>
                       )}
                     </article>
+                    <article>
+                      {sessionUser &&
+                        sessionUser.id === singleRecipe.user_id && (
+                          <div>
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                            <EditRecipeModal singleRecipe={singleRecipe} />
+                          </div>
+                        )}
+                    </article>
+                    <article>
+                      {sessionUser &&
+                        sessionUser.id === singleRecipe.user_id && (
+                          <>
+                            <i class="fa-solid fa-trash"></i>
+                            <DeleteRecipe recipeId={recipeId} />
+                          </>
+                        )}
+                    </article>
+                  </div>
+                </article>
+                <img
+                  src={singleRecipe.image_url}
+                  className="img recipe-hero-img"
+                  alt="recipe-image"
+                />
+              </section>
+              <div
+                style={{ border: "5px solid black",  margin:'20px'}}
+              ></div>
+              <section className="recipe-content">
+                <article>
+                  <div>
+                    <h2>Ingredients</h2>
+                    {/* single instruction */}
+                    <p>
+                      {getIngredients(singleRecipe).map((ingredient) => (
+                        <div key={ingredient.id} className="single-ingredient">
+                          <div>
+                            <div className="single-ingredient ingredients-items">
+                              <span style={{ fontWeight: "bold" }}>
+                                {ingredient.quantity}{" "}
+                              </span>
+                              <span style={{ wordBreak:'break-all' }}>
+                                {ingredient.unit} {ingredient.item_name}
+                              </span>
+                            </div>
+                          </div>
+                          {sessionUser &&
+                            sessionUser.id === singleRecipe.user_id && (
+                              <div style={{ display: "flex", gap: 10 }}>
+                                <SingleIngredientCard
+                                  ingredient={ingredient}
+                                  singleRecipe={singleRecipe}
+                                />
+                                <DeleteIngredientBtn ingredient={ingredient} />
+                              </div>
+                            )}
+                        </div>
+                      ))}
+                    </p>
+                  </div>
+                </article>
+                <article className="second-column">
+                  <h2>Preparations</h2>
+                  {/* single instruction */}
+                  <div>
+                    <div>
+                      {getPreparations(singleRecipe).map((preparation) => (
+                        <div
+                          key={preparation.id}
+                          className="single-instruction"
+                        >
+                          <header>
+                            <p>step:{preparation.step}</p>
+                          </header>
+                          <p style={{ wordBreak:'break-all'}}>
+                            {preparation.instructions}
+                          </p>
+
+                          {sessionUser &&
+                            sessionUser.id === singleRecipe.user_id && (
+                              <div style={{ display: "flex", gap: 10 }}>
+                                <SinglePreparationCard
+                                  preparation={preparation}
+                                  singleRecipe={singleRecipe}
+                                />
+                                <DeletePreparationBtn
+                                  preparation={preparation}
+                                />
+                              </div>
+                            )}
+                        </div>
+                      ))}
+                      <div>
+                        <p>
+                          {sessionUser &&
+                            sessionUser.id === singleRecipe.user_id && (
+                              <>
+                                <h4>Action Buttons</h4>
+                                <AddIngredientsModal
+                                  singleRecipe={singleRecipe}
+                                />
+                              </>
+                            )}
+                        </p>
+                        <p>
+                          {sessionUser &&
+                            sessionUser.id === singleRecipe.user_id && (
+                              <AddPreparationsModal
+                                key={singleRecipe.id}
+                                singleRecipe={singleRecipe}
+                              />
+                            )}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </article>
               </section>
-              <section className="recipe-content"></section>
             </div>
+            <div style={{ border: "5px solid black", margin:'20px'}}></div>
+            {/* <span style={{float:'right'}}>Cooking Notes</span> */}
           </main>
 
-          <div>
-            <div>
-              <div>Time : {singleRecipe.cook_time} minutes</div>
-            </div>
+          <div style={{width:'50%', float:'right', margin:'20px'}}>
+            {sessionUser && sessionUser.id !== singleRecipe.user_id && (
+              <>
+                <AddNote singleRecipe={singleRecipe} />
+              </>
+            )}
+
+            <div style={{marginBottom:'30px'}}></div>
 
             <div>
-              <h3>{singleRecipe.description}</h3>
-            </div>
-          </div>
-          <div>
-            <div>
-              <h3>Ingredients</h3>
-              {singleRecipe.servings > 1 && (
-                <h4>Yield: {singleRecipe.servings} servings</h4>
-              )}
-              {singleRecipe.servings === 1 && (
-                <h4>Yield: {singleRecipe.servings} serving</h4>
-              )}
-
-              <div>
-                {getIngredients(singleRecipe).map((ingredient) => (
-                  <div key={ingredient.id}>
-                    <div>
-                      <div>
-                        <h4>{ingredient.quantity}</h4>
-                        <h4>{ingredient.unit}</h4>
-                        <h4>{ingredient.item_name}</h4>
-                      </div>
+              {getNotes(singleRecipe).map((note) => (
+                <div key={note.id}>
+                  <div>
+                    <div style={{display:'flex', gap:15}}>
+                    <h4>{note.user}</h4>
+                    <h4 style={{fontWeight:'normal', wordBreak:'break-all'}}>{note.note}</h4>
                     </div>
-                    {sessionUser && sessionUser.id === singleRecipe.user_id && (
-                      <div>
-                        <SingleIngredientCard
-                          ingredient={ingredient}
-                          singleRecipe={singleRecipe}
-                        />
-                        <DeleteIngredientBtn ingredient={ingredient} />
-                      </div>
-                    )}
+                    <h4>
+                      {sessionUser && sessionUser.id === note.user_id && (
+                        <div style={{display:'flex', gap:'10px'}}>
+                          <DeleteNote note={note} /> 
+                          <UpdateNoteFormModal
+                            note={note}
+                            singleRecipe={singleRecipe}
+                          />
+                        </div>
+                      )}
+                    </h4>
                   </div>
-                ))}
-              </div>
-
-              <div></div>
-              <div>
-                {sessionUser && sessionUser.id === singleRecipe.user_id && (
-                  <AddIngredientsModal singleRecipe={singleRecipe} />
-                )}
-
-                {sessionUser && sessionUser.id === singleRecipe.user_id && (
-                  <EditRecipeModal singleRecipe={singleRecipe} />
-                )}
-
-                {sessionUser && sessionUser.id === singleRecipe.user_id && (
-                  <DeleteRecipe recipeId={recipeId} />
-                )}
-              </div>
-            </div>
-
-            <div>
-              <h3>Preparations</h3>
-
-              {getPreparations(singleRecipe).map((preparation) => (
-                <div key={preparation.id}>
-                  <h4> step:{preparation.step}</h4>
-                  <h4>{preparation.instructions}</h4>
-
-                  {sessionUser && sessionUser.id === singleRecipe.user_id && (
-                    <div>
-                      <SinglePreparationCard
-                        preparation={preparation}
-                        singleRecipe={singleRecipe}
-                      />
-                      <DeletePreparationBtn preparation={preparation} />
-                    </div>
-                  )}
                 </div>
               ))}
-
-              {sessionUser && sessionUser.id === singleRecipe.user_id && (
-                <AddPreparationsModal
-                  key={singleRecipe.id}
-                  singleRecipe={singleRecipe}
-                />
-              )}
             </div>
           </div>
-
-          <div>
-            {getNotes(singleRecipe).map((note) => (
-              <div key={note.id}>
-                <div>
-                  <h4>{note.user}</h4>
-                  <h4>
-                    {note.note}
-                    {sessionUser && sessionUser.id === note.user_id && (
-                      <>
-                        <DeleteNote note={note} />
-                        <UpdateNoteFormModal
-                          note={note}
-                          singleRecipe={singleRecipe}
-                        />
-                      </>
-                    )}
-                  </h4>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div></div>
-          {sessionUser && sessionUser.id !== singleRecipe.user_id && (
-            <>
-              <AddNote singleRecipe={singleRecipe} />
-            </>
-          )}
         </>
       )}
     </div>

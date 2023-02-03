@@ -7,7 +7,7 @@ function AddPreparationsModal({singleRecipe}) {
 
   return (
     <>
-      <button className='login-btn'onClick={() => setShowModal(true)}>Add Preparations</button>
+      <button onClick={() => setShowModal(true)}>Add Preparations</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <AddPreparationsForm singleRecipe={singleRecipe} onModalClose={() => setShowModal(false)}/>

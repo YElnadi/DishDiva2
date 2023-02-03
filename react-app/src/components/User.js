@@ -40,7 +40,7 @@ function User() {
   return (
     <>
       <div className="main">
-        <h1>Good Morning, {user.username}</h1>
+        <h2>Good Morning, {user.username}</h2>
         {length > 1 && <h2>{length} recipes</h2>}
         {length === 1 && <h2>{length} recipe</h2>}
         {length === 0 && <h2>You currntly don't have any recipes</h2>}
@@ -87,11 +87,8 @@ function User() {
             </>
           )}
         </div>
-        <div style={{marginBottom:'1000px'}}></div>
         
-        <div style={{backgroundColor:'black', margin:0}}>
-        <div><Footer/></div>
-        </div>
+        
        
       </div>
       

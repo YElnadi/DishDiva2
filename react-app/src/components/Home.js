@@ -95,8 +95,7 @@ const Home = () => {
           )}
         </div>
       </div>
-      <div style={{ paddingBottom: "200px" }}></div>
-     <div style={{backgroundColor:'black'}}><Footer/></div> 
+      
     </>
   );
 };

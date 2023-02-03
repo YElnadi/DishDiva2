@@ -10,7 +10,7 @@ const DeletePreparationBtn = ({preparation}) => {
   }
   return (
     <div>
-    <button className='login-btn'style={{fontSize:'10px', padding:'10px'}}onClick={deletePreparation}>Remove</button>
+    <button onClick={deletePreparation}>Remove</button>
   </div>
   );
 }

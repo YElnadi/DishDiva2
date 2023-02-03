@@ -2,8 +2,11 @@
 body{
     font-family: nyt-franklin,Arial,Helvetica,sans-serif;
     background-color: rgb(242, 243, 239);
+    margin:0
+
     
 }
+
 
 
 *,
@@ -52,4 +55,52 @@ body{
         grid-template-columns: 4fr 5fr;
         align-items: center;
     }
+}
+
+.recipe-content{
+    padding:3rem 0;
+    display:grid;
+    gap:2rem 5rem;
+    margin:30px
+}
+
+@media screen and (min-width:992px){
+    .recipe-content{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+.single-instruction header{
+    display:grid;
+    grid-template-columns: auto 1fr;
+    gap:1.5rem;
+    align-items:center;
+}
+
+/* .single-instruction header div{
+    height:2px;
+    background: var(--gray-300);
+} */
+
+.single-instruction header p{
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.single-instruction > p{
+    color:var(--gray-300)
+}
+
+/* .second-column{
+    display:grid;
+} */
+
+.single-ingredient{
+    border-bottom: 2px solid var(--gray-300);
+    padding-bottom: 0.75rem;
+    color:var(--gray-700)
+}
+
+.fixed-input{
+    resize:none;
 }
