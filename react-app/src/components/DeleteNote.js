@@ -9,7 +9,7 @@ function DeleteNote({note}) {
     }
   return (
     <div>
-      <button onClick={deleteNote}>Remove</button>
+      <button className='action-btn' onClick={deleteNote}>Remove</button>
     </div>
   );
 }

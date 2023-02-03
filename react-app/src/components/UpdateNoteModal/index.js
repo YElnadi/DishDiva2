@@ -7,7 +7,7 @@ function UpdateNoteFormModal({note, singleRecipe}) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Update Note</button>
+      <button className='action-btn' onClick={() => setShowModal(true)}>Update Note</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <UpdateNote note={note} singleRecipe={singleRecipe} onModalClose={() => setShowModal(false)}/>

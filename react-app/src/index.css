@@ -104,3 +104,16 @@ body{
 .fixed-input{
     resize:none;
 }
+
+.action-btn{
+    background-color: black;
+  color: white;
+  font-size: 15px;
+  padding: 5px 5px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  cursor: pointer; 
+}
+.action-btn:hover{
+padding: 10px 10px;
+}

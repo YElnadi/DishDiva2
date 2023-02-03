@@ -43,6 +43,9 @@ const UpdateNote = ({ note, singleRecipe, onModalClose }) => {
         <label>Note</label>
         <textarea
           type="text"
+          rows={8}
+          cols={64}
+          className="fixed-input"
           value={note1}
           onChange={updateNote}
           required

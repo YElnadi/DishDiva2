@@ -60,8 +60,8 @@ const AddNote = ({singleRecipe}) => {
           </label>
         </div>
         <div style={{display:'flex', justifyContent:'space-evenly'}}>
-        <button type="submit">Save</button>
-        <button onClick={cancel}>Cancel</button>
+        <button className='action-btn' type="submit">Save</button>
+        <button className='action-btn' onClick={cancel}>Cancel</button>
         </div>
       </form>
     </div>

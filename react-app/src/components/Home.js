@@ -57,7 +57,7 @@ const Home = () => {
         }}
       ></div>
 
-      <div
+      {/* <div
         style={{
           marginLeft: "100px",
           marginBottom: "20px",
@@ -66,7 +66,7 @@ const Home = () => {
         }}
       >
         The Cooking Newsletter
-      </div>
+      </div> */}
 
       <h2
         style={{

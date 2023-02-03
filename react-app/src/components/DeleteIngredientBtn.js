@@ -9,7 +9,7 @@ const DeleteIngredientBtn = ({ingredient}) => {
     }
   return (
     <div>
-      <button onClick={deleteIngredeint}>Remove</button>
+      <button className='action-btn'onClick={deleteIngredeint}>Remove</button>
     </div>
   );
 }

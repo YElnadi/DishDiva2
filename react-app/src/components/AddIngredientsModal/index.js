@@ -7,7 +7,7 @@ function AddIngredientsModal({singleRecipe}) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Add Ingredients</button>
+      <button className='action-btn' onClick={() => setShowModal(true)}>Add Ingredients</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <Addingredients singleRecipe={singleRecipe} onModalClose={() => setShowModal(false)}/>

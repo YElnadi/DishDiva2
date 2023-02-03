@@ -10,7 +10,7 @@ const DeletePreparationBtn = ({preparation}) => {
   }
   return (
     <div>
-    <button onClick={deletePreparation}>Remove</button>
+    <button className='action-btn' onClick={deletePreparation}>Remove</button>
   </div>
   );
 }

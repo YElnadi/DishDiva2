@@ -14,7 +14,7 @@ const DeleteRecipe = ({recipeId}) => {
 
   return (
     <div >
-      <button type='button' onClick={deleteRecipe}>Delete your recipe</button>
+      <button type='button' className='action-btn' onClick={deleteRecipe}>Delete your recipe</button>
     </div>
   );
 }

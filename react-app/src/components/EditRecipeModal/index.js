@@ -7,7 +7,7 @@ function EditRecipeModal({singleRecipe}) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Edit your recipe</button>
+      <button className='action-btn' onClick={() => setShowModal(true)}>Edit your recipe</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditRecipe singleRecipe={singleRecipe} onModalClose={() => setShowModal(false)}/>
