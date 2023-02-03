@@ -22,6 +22,7 @@ def seed_notes():
     db.session.add(note_2)
     db.session.add(note_3)
 
+    db.session.commit()
 
     notes =[note_3, note_1, note_2]
     return notes
