@@ -16,6 +16,7 @@ import AddPreparationsModal from "./AddPreparationsModal";
 import SinglePreparationCard from "./SinglePreparationCard";
 import "./Home.css";
 import DeletePreparationBtn from "./DeletePreparationBtn";
+import AddNote from "./AddNote";
 
 const SingleRecipeDetails = () => {
   const { recipeId } = useParams();
@@ -250,6 +251,9 @@ const SingleRecipeDetails = () => {
           </div>
 
           <div style={{ marginTop: "90px" }}></div>
+          {sessionUser && sessionUser.id !== singleRecipe.user_id &&(
+            <AddNote singleRecipe={singleRecipe}/>
+          )}
         </>
       )}
     </div>
