@@ -18,6 +18,8 @@ import "./Home.css";
 import DeletePreparationBtn from "./DeletePreparationBtn";
 import AddNote from "./AddNote";
 import DeleteNote from "./DeleteNote";
+import UpdateNote from "./UpdateNote";
+import UpdateNoteFormModal from "./UpdateNoteModal";
 
 const SingleRecipeDetails = () => {
   const { recipeId } = useParams();
@@ -247,7 +249,10 @@ const SingleRecipeDetails = () => {
                   <h4>{note.user}</h4>
                   <h4>{note.note} 
                   {sessionUser && sessionUser.id === note.user_id && (
+                    <>
                     <DeleteNote note={note}/>
+                    <UpdateNoteFormModal note={note} singleRecipe={singleRecipe}/>
+                    </>
                   )}
                   </h4>
                 </div>
