@@ -51,20 +51,22 @@ const AddRecipe = () => {
     });
     if (res.ok) {
       const newRecipe = await res.json();
-      console.log('new recipe', newRecipe)
-      // if(data){
-      //   setErrors(data)
-      // }
+      //console.log('new recipe', newRecipe)
+      if(res){
+        setErrors(res)
+      }
+      console.log("res@@@", res)
 
       setImageLoading(false);
       await dispatch(loadSingleRecipeThunk(newRecipe.id))
       history.push(`/recipes/${newRecipe.id}`);
     } else {
       const data = await res.json();
-      //console.log("#####x", data)
+      console.log("#####x", data)
       if(data){
            setErrors(data)
          }
+         console.log("@@@@data", data)
 
       setImageLoading(false);
       // a real app would probably use more advanced
@@ -97,6 +99,10 @@ const AddRecipe = () => {
     setCookTime(inputValue);
   }
 
+  const updateDesceiption = (e) =>{
+    setDescription(e.target.value)
+  }
+
  
 
   return (
@@ -104,10 +110,10 @@ const AddRecipe = () => {
       <form onSubmit={handelSubmit}  className="container-update-ingredients-form">
       <h1>Add Recipe</h1>
       <div>
-        {Object.values(errors).map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
+            {Object.values(errors).map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
       <div>
         <label> 
           Title
@@ -136,7 +142,7 @@ const AddRecipe = () => {
           cols={64}
           type="text"
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={updateDesceiption}
           placeholder="Description"
           required
         />

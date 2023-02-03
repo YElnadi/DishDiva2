@@ -132,8 +132,15 @@ export const createNewRecipeThunk = (formData) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json();
     await dispatch(createRecipe(data));
+  }else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    } else {
+      return ["An error occurred. Please try again."];
+    }
   }
-  return res;
+  
 };
 
 export const deleteRecipeThunk = (recipeId) => async (dispatch) => {
@@ -158,6 +165,13 @@ export const EditRecipeThunk = (recipe) => async (dispatch) => {
     const updatedRecipe = await response.json();
     dispatch(EditRecipe(updatedRecipe));
     return updatedRecipe;
+  }else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    } else {
+      return ["An error occurred. Please try again."];
+    }
   }
 };
 

@@ -89,7 +89,7 @@ const SingleRecipeDetails = () => {
                       {sessionUser &&
                         sessionUser.id === singleRecipe.user_id && (
                           <div>
-                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                            <i className="fa-solid fa-screwdriver-wrench"></i>
                             {"   "}
                             <EditRecipeModal singleRecipe={singleRecipe} />
                           </div>
@@ -99,7 +99,7 @@ const SingleRecipeDetails = () => {
                       {sessionUser &&
                         sessionUser.id === singleRecipe.user_id && (
                           <>
-                            <i class="fa-solid fa-trash"></i>
+                            <i className="fa-solid fa-trash"></i>
                             <DeleteRecipe recipeId={recipeId} />
                           </>
                         )}
@@ -118,7 +118,7 @@ const SingleRecipeDetails = () => {
                   <div>
                     <h2>Ingredients</h2>
                     {/* single instruction */}
-                    <p>
+                    <div>
                       {getIngredients(singleRecipe).map((ingredient) => (
                         <div key={ingredient.id} className="single-ingredient">
                           <div>
@@ -139,15 +139,14 @@ const SingleRecipeDetails = () => {
                                   singleRecipe={singleRecipe}
                                 />
                                 <DeleteIngredientBtn ingredient={ingredient} />
-
-                                <AddIngredientsModal
-                                  singleRecipe={singleRecipe}
-                                />
                               </div>
                             )}
                         </div>
                       ))}
-                    </p>
+                    </div>
+                    {sessionUser && sessionUser.id === singleRecipe.user_id && (
+                      <AddIngredientsModal singleRecipe={singleRecipe} />
+                    )}
                   </div>
                 </article>
                 <article className="second-column">
@@ -177,17 +176,18 @@ const SingleRecipeDetails = () => {
                                 <DeletePreparationBtn
                                   preparation={preparation}
                                 />
-                                <AddPreparationsModal
-                                key={singleRecipe.id}
-                                singleRecipe={singleRecipe}
-                              />
                               </div>
                             )}
                         </div>
                       ))}
-                      
                     </div>
                   </div>
+                  {sessionUser && sessionUser.id === singleRecipe.user_id && (
+                    <AddPreparationsModal
+                      key={singleRecipe.id}
+                      singleRecipe={singleRecipe}
+                    />
+                  )}
                 </article>
               </section>
             </div>

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Recipe, Ingredient,Preparation,CookingNotes
+from app.models import db, Recipe, Ingredient, Preparation, CookingNotes
 from ..forms.create_recipe_form import RecipeForm, IngredientForm
 from ..forms.edit_recipe_form import EditRecipeForm
 from ..forms.preparation_form import PreparationForm
@@ -12,6 +12,8 @@ from app.s3_helpers import (
 recipe_routes = Blueprint('recipes', __name__)
 
 # get all recipes
+
+
 @recipe_routes.route('/')
 def recipes():
     recipes = Recipe.query.all()
@@ -27,6 +29,8 @@ def get_single_recipe(recipe_id):
     return recipe.to_dict()
 
 # get All recipes by user id
+
+
 @recipe_routes.route('/users/<int:id>')
 def get_my_recipes(id):
     recipes = Recipe.query.filter_by(user_id=id).all()
@@ -37,16 +41,18 @@ def get_my_recipes(id):
     else:
         return {'recipe': {}}
 
-#get all notes by recipe Id
+# get all notes by recipe Id
+
+
 @recipe_routes.route('/<int:id>/notes')
 def get_all_notes(id):
-    notes = CookingNotes.query.filter_by(recipe_id = id).all()
+    notes = CookingNotes.query.filter_by(recipe_id=id).all()
     if len(notes):
-        return{
-            'notes':[note.to_dict() for note in notes]
+        return {
+            'notes': [note.to_dict() for note in notes]
         }
     else:
-        return {'note':{}}
+        return {'note': {}}
 
 
 # Create a Recipe
@@ -80,16 +86,20 @@ def upload_image():
 
     image = request.files["image"]
     data = request.form.to_dict()
-    # print("data from recipe route", data)
-    # description = data['description']
+    print("data from recipe route", data)
+    description = data['description']
 
     # if len(description)<100:
     #     return {"errors":"Description must be greater than 100 characters"}
-    
+
     if not allowed_file(image.filename):
         return {"errors": "image of type pdf, png, jpg, jpeg, gif are the only allowed"}, 400
+
+    if (request.form):
+       return {"errors": "Description should be greater than 500 characters"}, 400
+
     
-    
+
     image.filename = get_unique_filename(image.filename)
 
     upload = upload_file_to_s3(image)
@@ -151,6 +161,8 @@ def edit_recipe(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # add ingredients to recipe
+
+
 @recipe_routes.route("/<int:id>/add-ingredients", methods=["POST"])
 # @login_required
 def add_ingredients_to_recipe(id):
@@ -172,7 +184,7 @@ def add_ingredients_to_recipe(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-##Add preparations to recipe
+# Add preparations to recipe
 @recipe_routes.route("/<int:id>/add-preparations", methods=['POST'])
 def add_preparations_to_recipe(id):
     form = PreparationForm()
@@ -180,7 +192,7 @@ def add_preparations_to_recipe(id):
     if form.validate_on_submit():
         new_preparation = Preparation(
             step=form.data["step"],
-            instruction = form.data["instruction"],
+            instruction=form.data["instruction"],
             recipe_id=form.data["recipe_id"],
         )
         db.session.add(new_preparation)
@@ -190,24 +202,22 @@ def add_preparations_to_recipe(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-
-## Add notes to recipe 
+# Add notes to recipe
 @recipe_routes.route("/<int:id>/add-note", methods=["POST"])
 def add_note_to_recipe(id):
     form = NoteForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_note = CookingNotes(
-            note = form.data["note"],
-            recipe_id = form.data["recipe_id"],
-            user_id = form.data['user_id']
+            note=form.data["note"],
+            recipe_id=form.data["recipe_id"],
+            user_id=form.data['user_id']
         )
         db.session.add(new_note)
         db.session.commit()
-        updated_recipe=Recipe.query.get(form.data['recipe_id'])
+        updated_recipe = Recipe.query.get(form.data['recipe_id'])
         return updated_recipe.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
 
 
 # ##create notes to recipe by Id

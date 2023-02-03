@@ -22,10 +22,15 @@ body{
     gap:3rem;
 
 }
-.recipe-herom-img{
-    height:300px;
+.recipe-hero-img  {
+    height:500px;
+    width:700px;
     border-radius: var(--borderRadius);
 }
+.recipe-hero-img img{
+    width: 100%;
+    height: auto; 
+  }
 
 .recipe-hero p{
     color:var(--gray-600)

@@ -26,8 +26,11 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
     editedRecipe.cook_time = cook_time;
     // editedRecipe.image_url = image_url;
     const response = await dispatch(EditRecipeThunk(editedRecipe))
-    .then(dispatch(loadSingleRecipeThunk(singleRecipe.id))
-    ).then(onModalClose());
+    // .then(dispatch(loadSingleRecipeThunk(singleRecipe.id))
+    // ).then(onModalClose());
+    if(response){
+      setErrors(response)
+    }
   };
   const cancel = async (e) => {
     e.preventDefault();
@@ -47,11 +50,20 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
     if (positiveNumberPattern.test(inputValue))
     setCookTime(inputValue);
   }
+
+  const updateDesceiption = (e) =>{
+    setDescription(e.target.value)
+  }
   return (
     <div className="bg-img-edit-recipe-form">
     <form onSubmit={handleSubmit}
     className="container-update-ingredients-form">
       <h1>Edit Recipe</h1>
+      <div>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
       <label>
         Title
         <input
@@ -72,7 +84,7 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
           rows={8}
           cols={64}
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={updateDesceiption}
           placeholder="Description"
           required
         />
