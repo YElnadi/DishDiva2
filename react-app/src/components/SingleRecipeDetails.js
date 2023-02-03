@@ -17,6 +17,7 @@ import SinglePreparationCard from "./SinglePreparationCard";
 import "./Home.css";
 import DeletePreparationBtn from "./DeletePreparationBtn";
 import AddNote from "./AddNote";
+import DeleteNote from "./DeleteNote";
 
 const SingleRecipeDetails = () => {
   const { recipeId } = useParams();
@@ -244,7 +245,11 @@ const SingleRecipeDetails = () => {
               <div key={note.id}>
                 <div>
                   <h4>{note.user}</h4>
-                  <h4>{note.note}</h4>
+                  <h4>{note.note} 
+                  {sessionUser && sessionUser.id === note.user_id && (
+                    <DeleteNote note={note}/>
+                  )}
+                  </h4>
                 </div>
               </div>
             ))}
@@ -252,7 +257,10 @@ const SingleRecipeDetails = () => {
 
           <div style={{ marginTop: "90px" }}></div>
           {sessionUser && sessionUser.id !== singleRecipe.user_id &&(
+            <>
             <AddNote singleRecipe={singleRecipe}/>
+            </>
+            
           )}
         </>
       )}

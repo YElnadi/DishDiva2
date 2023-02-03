@@ -17,7 +17,7 @@ const AddNote = ({singleRecipe}) => {
           recipe_id:singleRecipe.id,
           user_id:currentUser.id
       };
-      const response = await dispatch(addNotesToRecipeThunk(newNote,singleRecipe.id))
+      const response = await dispatch(addNotesToRecipeThunk(newNote,singleRecipe.id)).then(setNote(""))
       if(response){
           setErrors(response)
       }
