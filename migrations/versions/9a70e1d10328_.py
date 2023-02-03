@@ -8,6 +8,10 @@ Create Date: 2023-02-02 10:38:01.485839
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
+
 
 # revision identifiers, used by Alembic.
 revision = '9a70e1d10328'
@@ -75,6 +79,15 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
+    if environment == "production":
+        op.execute(f"ALTER TABLE images SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE recipes SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE ingredients SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE preparations SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE notes SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
+
 
 
 def downgrade():
