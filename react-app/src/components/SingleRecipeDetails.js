@@ -54,101 +54,58 @@ const SingleRecipeDetails = () => {
   }, [dispatch, recipeId]);
 
   return (
-    <div style={{ marginLeft: "50px", marginRight: "50px" }}>
+    <div>
       {Object.values(singleRecipe).length > 0 && (
         <>
-          <div
-            style={{
-              marginRight: "auto",
-
-              display: "flex",
-              flexDirection: "row",
-              overflow: "auto",
-              height: "auto",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                verticalAlign: "center",
-              }}
-            >
-              <div style={{ marginTop: "150px" }}>
-                <h1
-                  style={{
-                    fontWeight: 180,
-                    inlineSize: 500,
-                    overflowWrap: "break-word",
-                    textAlign: "center",
-                    wordWrap: "break-word",
-                  }}
-                >
-                  {singleRecipe.title}
-                </h1>
-                <h2
-                  style={{
-                    overflowWrap: "break-word",
-                    textAlign: "center",
-                  }}
-                >
-                  By {singleRecipe.user}
-                </h2>
-              </div>
+          <main className="page">
+            <div className="recipe-page">
+              <section className="recipe-hero">
+                <img
+                  src={singleRecipe.image_url}
+                  className="img recipe-hero-img"
+                  alt="recipe-image"
+                />
+                <article>
+                  <h2>{singleRecipe.title}</h2>
+                  <p>By {singleRecipe.user}</p>
+                  <p>{singleRecipe.description}</p>
+                  {/* <!-- recipe icons --> */}
+                  <div className="recipe-icons">
+                    {/* single recipe icon */}
+                    <article>
+                      <i className="fas fa-clock"></i>
+                      <h5>Cook-time</h5>
+                      <p>{singleRecipe.cook_time} minutes</p>
+                    </article>
+                    {/* single recipe icon */}
+                    <article>
+                      <i className="fas fa-user-friends"></i>
+                      <h5>Servings</h5>
+                      {singleRecipe.servings > 1 && (
+                        <p>{singleRecipe.servings} Servings</p>
+                      )}
+                      {singleRecipe.servings === 1 && (
+                        <p>{singleRecipe.servings} Serving</p>
+                      )}
+                    </article>
+                  </div>
+                </article>
+              </section>
+              <section className="recipe-content"></section>
             </div>
-            <div style={{ marginLeft: "auto", float: "right", height: "auto" }}>
-              <img style={{ width: "780px" }} src={singleRecipe.image_url} />
-            </div>
-          </div>
+          </main>
 
-          <div
-            style={{
-              marginRight: "auto",
-
-              display: "flex",
-              flexDirection: "row",
-              overflow: "auto",
-              height: "auto",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                verticalAlign: "center",
-
-                textAlign: "center",
-                flex: 0.7,
-              }}
-            >
-              <div style={{ marginTop: "90px" }}>
-                Time : {singleRecipe.cook_time} minutes
-              </div>
+          <div>
+            <div>
+              <div>Time : {singleRecipe.cook_time} minutes</div>
             </div>
 
-            <div
-              style={{
-                inlineSize: 400,
-                marginLeft: "auto",
-                float: "right",
-                height: "auto",
-                flex: 1,
-                wordWrap: "break-word",
-              }}
-            >
+            <div>
               <h3>{singleRecipe.description}</h3>
             </div>
           </div>
-
-          <div style={{ border: "5px solid black", marginTop: "50px" }}></div>
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-around",
-            }}
-          >
-            <div style={{ flex: 1 }}>
+          <div>
+            <div>
               <h3>Ingredients</h3>
               {singleRecipe.servings > 1 && (
                 <h4>Yield: {singleRecipe.servings} servings</h4>
@@ -160,23 +117,15 @@ const SingleRecipeDetails = () => {
               <div>
                 {getIngredients(singleRecipe).map((ingredient) => (
                   <div key={ingredient.id}>
-                    <div style={{ display: "flex", flexDirection: "row" }}>
+                    <div>
                       <div>
                         <h4>{ingredient.quantity}</h4>
                         <h4>{ingredient.unit}</h4>
-                        <h4
-                          style={{
-                            fontWeight: "normal",
-                            fontSize: "20px",
-                            wordWrap: "break-word",
-                          }}
-                        >
-                          {ingredient.item_name}
-                        </h4>
+                        <h4>{ingredient.item_name}</h4>
                       </div>
                     </div>
                     {sessionUser && sessionUser.id === singleRecipe.user_id && (
-                      <div style={{ display: "flex", gap: 10 }}>
+                      <div>
                         <SingleIngredientCard
                           ingredient={ingredient}
                           singleRecipe={singleRecipe}
@@ -188,14 +137,8 @@ const SingleRecipeDetails = () => {
                 ))}
               </div>
 
-              <div style={{ marginTop: "90px" }}></div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                }}
-              >
+              <div></div>
+              <div>
                 {sessionUser && sessionUser.id === singleRecipe.user_id && (
                   <AddIngredientsModal singleRecipe={singleRecipe} />
                 )}
@@ -210,23 +153,20 @@ const SingleRecipeDetails = () => {
               </div>
             </div>
 
-            <div style={{ flex: 1 }}>
+            <div>
               <h3>Preparations</h3>
 
               {getPreparations(singleRecipe).map((preparation) => (
                 <div key={preparation.id}>
                   <h4> step:{preparation.step}</h4>
-                  <h4 style={{ wordWrap: "break-word", fontWeight: "normal" }}>
-                    {preparation.instructions}
-                  </h4>
+                  <h4>{preparation.instructions}</h4>
 
                   {sessionUser && sessionUser.id === singleRecipe.user_id && (
-                    <div style={{ display: "flex", gap: 10 }}>
+                    <div>
                       <SinglePreparationCard
                         preparation={preparation}
                         singleRecipe={singleRecipe}
                       />
-
                       <DeletePreparationBtn preparation={preparation} />
                     </div>
                   )}
@@ -247,25 +187,28 @@ const SingleRecipeDetails = () => {
               <div key={note.id}>
                 <div>
                   <h4>{note.user}</h4>
-                  <h4>{note.note} 
-                  {sessionUser && sessionUser.id === note.user_id && (
-                    <>
-                    <DeleteNote note={note}/>
-                    <UpdateNoteFormModal note={note} singleRecipe={singleRecipe}/>
-                    </>
-                  )}
+                  <h4>
+                    {note.note}
+                    {sessionUser && sessionUser.id === note.user_id && (
+                      <>
+                        <DeleteNote note={note} />
+                        <UpdateNoteFormModal
+                          note={note}
+                          singleRecipe={singleRecipe}
+                        />
+                      </>
+                    )}
                   </h4>
                 </div>
               </div>
             ))}
           </div>
 
-          <div style={{ marginTop: "90px" }}></div>
-          {sessionUser && sessionUser.id !== singleRecipe.user_id &&(
+          <div></div>
+          {sessionUser && sessionUser.id !== singleRecipe.user_id && (
             <>
-            <AddNote singleRecipe={singleRecipe}/>
+              <AddNote singleRecipe={singleRecipe} />
             </>
-            
           )}
         </>
       )}
