@@ -25,12 +25,17 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
     editedRecipe.servings = servings;
     editedRecipe.cook_time = cook_time;
     // editedRecipe.image_url = image_url;
+    // const response = await dispatch(EditRecipeThunk(editedRecipe))
+    // .then(dispatch(loadSingleRecipeThunk(singleRecipe.id)).then(onModalClose())
+    // )
     const response = await dispatch(EditRecipeThunk(editedRecipe))
-    // .then(dispatch(loadSingleRecipeThunk(singleRecipe.id))
-    // ).then(onModalClose());
-    if(response){
+    if(typeof(response) !== 'number'){
       setErrors(response)
+    }else {
+      await dispatch(loadSingleRecipeThunk(response))
+      onModalClose()
     }
+    
   };
   const cancel = async (e) => {
     e.preventDefault();
@@ -40,14 +45,14 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
   const updateServings = (e) =>{
     const positiveNumberPattern = /^[1-9][0-9]*$/;
     const inputValue = e.target.value;
-    if (positiveNumberPattern.test(inputValue))
+    if (inputValue === ""||positiveNumberPattern.test(inputValue))
     setServings(inputValue);
   }
 
   const updateCookTime = (e) =>{
     const positiveNumberPattern = /^[1-9][0-9]*$/;
     const inputValue = e.target.value;
-    if (positiveNumberPattern.test(inputValue))
+    if (inputValue === "" || positiveNumberPattern.test(inputValue))
     setCookTime(inputValue);
   }
 

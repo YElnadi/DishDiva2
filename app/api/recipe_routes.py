@@ -95,7 +95,8 @@ def upload_image():
     if not allowed_file(image.filename):
         return {"errors": "image of type pdf, png, jpg, jpeg, gif are the only allowed"}, 400
 
-    if (request.form):
+    print("description", description)
+    if len(description) <= 500:
        return {"errors": "Description should be greater than 500 characters"}, 400
 
     

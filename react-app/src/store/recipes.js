@@ -127,7 +127,10 @@ export const createRecipeThunk = (newRecipe) => async (dispatch) => {
 export const createNewRecipeThunk = (formData) => async (dispatch) => {
   const res = await fetch(`/api/recipes`, {
     method: "POST",
-    body: formData,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData)
   });
   if (res.ok) {
     const data = await res.json();
@@ -164,7 +167,7 @@ export const EditRecipeThunk = (recipe) => async (dispatch) => {
   if (response.ok) {
     const updatedRecipe = await response.json();
     dispatch(EditRecipe(updatedRecipe));
-    return updatedRecipe;
+    return updatedRecipe.id;
   }else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {

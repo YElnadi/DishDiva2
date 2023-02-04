@@ -47,26 +47,20 @@ const AddRecipe = () => {
     //console.log('******res', res.body)
     const res = await fetch("/api/recipes/new", {
       method: "POST",
-      body: formData,
+      body: formData
     });
     if (res.ok) {
       const newRecipe = await res.json();
-      //console.log('new recipe', newRecipe)
-      if(res){
-        setErrors(res)
-      }
-      console.log("res@@@", res)
 
       setImageLoading(false);
       await dispatch(loadSingleRecipeThunk(newRecipe.id))
       history.push(`/recipes/${newRecipe.id}`);
     } else {
-      const data = await res.json();
-      console.log("#####x", data)
-      if(data){
-           setErrors(data)
+      const resObj = await res.json();
+      if(resObj.errors){
+        //console.log('resObj3333', resObj.errors)
+           setErrors([resObj.errors])
          }
-         console.log("@@@@data", data)
 
       setImageLoading(false);
       // a real app would probably use more advanced
@@ -88,14 +82,14 @@ const AddRecipe = () => {
   const updateServings = (e) =>{
     const positiveNumberPattern = /^[1-9][0-9]*$/;
     const inputValue = e.target.value;
-    if (positiveNumberPattern.test(inputValue))
+    if (inputValue==='' || positiveNumberPattern.test(inputValue))
     setServings(inputValue);
   }
 
   const updateCookTime = (e) =>{
     const positiveNumberPattern = /^[1-9][0-9]*$/;
     const inputValue = e.target.value;
-    if (positiveNumberPattern.test(inputValue))
+    if (inputValue==='' || positiveNumberPattern.test(inputValue))
     setCookTime(inputValue);
   }
 
@@ -110,7 +104,7 @@ const AddRecipe = () => {
       <form onSubmit={handelSubmit}  className="container-update-ingredients-form">
       <h1>Add Recipe</h1>
       <div>
-            {Object.values(errors).map((error, ind) => (
+            {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
           </div>
@@ -165,7 +159,7 @@ const AddRecipe = () => {
         </div>
         <div>
         <label>
-          Time
+          Time(minutes)
         <input
           className="input-update-form"
           type="number"
