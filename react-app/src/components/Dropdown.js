@@ -11,26 +11,23 @@ import { useParams } from "react-router-dom";
 import UsersList from "./UsersList";
 import { Redirect } from "react-router-dom";
 
-const Dropdown = ({sessionUser}) => {
+const Dropdown = ({ sessionUser }) => {
   const [dropdown, setDropdown] = useState(false);
 
- 
-  
   return (
-    <div className="drop-down" style={{zIndex:1000, position:'absolute'}}>
-      <ul onClick={() => setDropdown(!dropdown)} className="menu">
-      <div >
-          <button style={{marginRight:'28px', border:'none', backgroundColor:'transparent'}}><NavLink to = {`/users/${sessionUser.id}`} style={{paddingRight:'5px', textDecoration:'none', color:'black', cursor:'pointer', marginLeft:'-2px'}}>Profile</NavLink> </button>
-          
+    <div style={{ zIndex: 1000, position: "absolute", float: "right" }}>
+      <div onClick={() => setDropdown(!dropdown)} className="menu">
+        <div className='menu-item'>
+          <button style={{marginLeft:'50px', marginBottom:'10px', background:'transparent', border:'none'}}><NavLink to={`/users/${sessionUser.id}`} style={{textDecoration:'none', color:'black'}} >Profile</NavLink>{" "}
+          </button>
         </div>
-        <div style={{display:'flex', flexDirection:'column', justifyContent:'space-between'}}>
-        <div className="logout-btn">
-          <LogoutButton />
-        </div>
+        <div style={{border:'1px solid gray'}}></div>
         
-       
-        </div>
-      </ul>
+          <div className="menu-item">
+            <LogoutButton />
+          </div>
+      
+      </div>
     </div>
   );
 };

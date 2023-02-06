@@ -140,5 +140,27 @@ padding: 10px 10px;
 }
 
 .drop-down{
-    
+    position: relative;
+    display: inline-block; 
+}
+
+.drop-down-btn{
+    color: black;
+    padding: 16px;
+    font-size: 26px;
+    border: none;
+    cursor: pointer;
+}
+
+.drop-down-content{
+    position: absolute;
+    left:-10;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.drop-down-btn:hover{
+padding:20px;
 }

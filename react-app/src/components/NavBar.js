@@ -26,11 +26,11 @@ const NavBar = ({}) => {
   };
 
   return (
-    <nav style={{display:'inline'}} className='nav-bar-styles'>
+    <nav style={{display:'inline'}} className='nav-bar-styles drop-down'>
       {sessionUser ?( 
-      <i className="fa-solid fa-gear login-signup-btn"  
+      <i className="fa-solid fa-gear  drop-down-btn"  
       onMouseEnter={()=>setDropdown(true)} 
-      onClick={()=>setDropdown(false)} style={{marginRight:'10px', marginTop:'10px', fontSize:'20px'}}> 
+      onClick={()=>setDropdown(false)} style={{float:'right'}}> 
       {dropdown && <Dropdown sessionUser={sessionUser}/>}</i> )
       :(
       <div className="login-signup-btn" style={{marginRight:'10px', marginTop:'0px'}}>
