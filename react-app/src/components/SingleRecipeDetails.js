@@ -28,7 +28,7 @@ const SingleRecipeDetails = () => {
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const singleRecipe = useSelector((state) => state.recipes.singleRecipe);
-  console.log("single recipe", singleRecipe);
+  //console.log("single recipe", singleRecipe);
   //console.log("session user", sessionUser);
 
   const getIngredients = (singleRecipe) => {
@@ -50,7 +50,7 @@ const SingleRecipeDetails = () => {
 
   useEffect(async () => {
     const data = await dispatch(loadSingleRecipeThunk(recipeId));
-    console.log("#####data", data);
+    //console.log("#####data", data);
   }, [dispatch, recipeId]);
 
   return (
@@ -63,7 +63,7 @@ const SingleRecipeDetails = () => {
                 <article style={{ marginLeft: "20px" }}>
                   <h2>{singleRecipe.title}</h2>
                   <p>By {singleRecipe.user}</p>
-                  <p style={{ wordBreak: "break-all" }}>
+                  <p style={{ wordBreak: "break-word" }}>
                     {singleRecipe.description}
                   </p>
                   {/* <!-- recipe icons --> */}

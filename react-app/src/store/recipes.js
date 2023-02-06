@@ -100,7 +100,7 @@ export const loadRecipesThunk = () => async (dispatch) => {
 };
 
 export const loadSingleRecipeThunk = (recipeId) => async (dispatch) => {
-  console.log("recipeId", recipeId);
+  //console.log("recipeId", recipeId);
   const response = await fetch(`/api/recipes/${recipeId}`);
   if (response.ok) {
     const data = await response.json();

@@ -11,7 +11,7 @@ const UpdateIngredientsForm = ({ ingredient, singleRecipe, onModalClose }) => {
   const [unit, setUnit] = useState(ingredient.unit);
   const [item_name, setItemName] = useState(ingredient.item_name);
   const recipe = useSelector((state) => state.recipes.singleRecipe);
-  console.log("#####Reciope", recipe);
+  //console.log("#####Reciope", recipe);
 
   const options = [
     { value: "none", label: "" },

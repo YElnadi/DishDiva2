@@ -8,13 +8,13 @@ import LoginForm from "./auth/LoginForm";
 import PleaseLoginModal from "./PleaseLoginModal";
 
 const HomeRecipeCards = ({ recipe }) => {
-  console.log("recipe", recipe);
+  //console.log("recipe", recipe);
   //console.log('recipe id',recipe.id )
   //const user = useSelector(state=>state.session.user)
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
-  console.log("sessionUser", sessionUser);
+  //console.log("sessionUser", sessionUser);
 
  
 

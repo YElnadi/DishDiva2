@@ -19,6 +19,7 @@ import EditRecipe from './components/EditRecipe';
 import Addingredients from './components/Addingredients';
 import SignupFormModal from './components/SignupFormModal';
 import CreateRecipeModal from './components/CreateRecipeModal';
+import About from './components/About';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -66,6 +67,9 @@ function App() {
         </Route>
         <Route path="/recipes" exact={true}>
           <CreateRecipeModal />
+        </Route>
+        <Route path="/about" exact={true}>
+          <About />
         </Route>
       </Switch>
       

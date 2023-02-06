@@ -33,7 +33,7 @@ const UploadPicture = () => {
             // a real app would probably use more advanced
             // error handling
             // console.log("error");
-            console.log('********res', res)
+           // console.log('********res', res)
         }
     }
     

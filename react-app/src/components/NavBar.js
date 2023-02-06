@@ -11,14 +11,18 @@ import SignupFormModal from "./SignupFormModal";
 import { login } from "../store/session";
 import { useDispatch } from "react-redux";
 import logo from '../static/images/logoo.png'
+import About from "./About";
+import { useHistory } from "react-router-dom";
 
 const NavBar = ({}) => {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch()
+  const history = useHistory()
   const [dropdown, setDropdown]=useState(false)
   const demoLogin = async (e) => {
     e.preventDefault();
     await dispatch(login("demo@aa.io", "password"));
+    history.push('/')
   };
 
   return (
@@ -30,6 +34,9 @@ const NavBar = ({}) => {
       {dropdown && <Dropdown sessionUser={sessionUser}/>}</i> )
       :(
       <div className="login-signup-btn" style={{marginRight:'10px', marginTop:'0px'}}>
+        <NavLink to="/about" exact={true} activeClassName="active">
+          <button className="demo-btn">about us</button>
+        </NavLink>
         <button className="demo-btn" onClick={demoLogin}>Demo</button>
          <LoginFormModal />
          <SignupFormModal/>

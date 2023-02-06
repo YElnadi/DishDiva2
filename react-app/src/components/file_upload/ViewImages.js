@@ -9,7 +9,7 @@ const ViewImages = () => {
             
             if (res.ok) {
                 const data = await res.json();
-                console.log(data)
+                //  console.log(data)
                 setImages(data.images)
             } else {
                 console.log("error")

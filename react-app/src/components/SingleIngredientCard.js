@@ -1,6 +1,6 @@
 import UpdateIngredientsFormModal from "./UpdateIngredientsFormModal";
 const SingleIngredientCard = ({ingredient, singleRecipe}) => {
-    console.log("single ingredeint in ingredeint card",ingredient)
+    //console.log("single ingredeint in ingredeint card",ingredient)
     
   return (
     <>

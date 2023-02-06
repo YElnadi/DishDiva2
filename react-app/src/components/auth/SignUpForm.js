@@ -83,6 +83,7 @@ const SignUpForm = () => {
           className='login-form-input'
           type='password'
           name='password'
+          autoComplete="on"
           onChange={updatePassword}
           value={password}
           required
@@ -94,6 +95,7 @@ const SignUpForm = () => {
           className='login-form-input'
           type='password'
           name='repeat_password'
+          autoComplete="on"
           onChange={updateRepeatPassword}
           value={repeat_password}
           required={true}
