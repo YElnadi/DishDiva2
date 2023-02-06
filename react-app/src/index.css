@@ -122,3 +122,23 @@ body{
 .action-btn:hover{
 padding: 10px 10px;
 }
+
+.update-note-input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.update-note-main{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px; 
+}
+
+.drop-down{
+    
+}

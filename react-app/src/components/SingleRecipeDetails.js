@@ -204,14 +204,14 @@ const SingleRecipeDetails = () => {
 
             <div style={{ marginBottom: "30px" }}></div>
 
-            <div>
+            <div style={{marginLeft:'65px'}}>
               {getNotes(singleRecipe).map((note) => (
                 <div key={note.id}>
                   <div>
                     <div style={{ display: "flex", gap: 15 }}>
                       <h4>{note.user}</h4>
                       <h4
-                        style={{ fontWeight: "normal", wordBreak: "break-all" }}
+                        style={{ fontWeight: "normal", wordBreak: "break-word", width:'80%' }}
                       >
                         {note.note}
                       </h4>

@@ -57,17 +57,6 @@ const Home = () => {
         }}
       ></div>
 
-      {/* <div
-        style={{
-          marginLeft: "100px",
-          marginBottom: "20px",
-          textDecoration: "underline",
-          fontWeight: "bold",
-        }}
-      >
-        The Cooking Newsletter
-      </div> */}
-
       <h2
         style={{
           marginLeft: "100px",
@@ -75,15 +64,27 @@ const Home = () => {
           fontSize: "40px",
         }}
       >
-        What to Cook this Weekend
+        Developer Favorite Recipes
       </h2>
 
-      <div style={{display:'flex', flexDirection:'column'}}>
-        <h2 style={{ inlineSize: 700, textAlign:'left', margin:'0 auto', width:'50%', marginBottom:'20px'}}>
-          Good morning. This week, Eric Kim brought us a recipe for sautéed
-          chicken breasts with a gin and sage pan sauce (above), adapted from
-          the one he found in Amy Thielen’s forthcoming cookbook, “Company.”
-        </h2>
+      <div style={{display:'flex', flexDirection:'column' }}>
+        <div>
+        <p
+          style={{
+            inlineSize: 800,
+            marginBottom: "20px",
+            wordBreak:'break-word',
+            fontWeight:'bold',
+            fontSize:'20px',
+            float:'right',
+            width:'70%',
+            marginRight:'100px'
+            
+          }}
+        >
+          DishDiva is a recipe web app created by Yasmine, a developer and food lover. In this app, Yasmine showcases her favorite recipes and invites other tech enthusiasts to share their culinary creations. DishDiva is more than just a recipe database - it's a platform for the tech community to come together and share their love for food and code. With a user-friendly interface, full CRUD functionality, and a wide variety of recipes to choose from, DishDiva is the ultimate resource for developers who love to cook. So join Yasmine on this delicious journey and discover new recipes, cooking tips, and techniques that will take your love for technology and taste to the next level.
+        </p>
+        </div>
 
         <div className="cards-container">
           {Object.values(allRecipes).length > 0 && (
@@ -95,7 +96,6 @@ const Home = () => {
           )}
         </div>
       </div>
-      
     </>
   );
 };

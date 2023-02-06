@@ -38,14 +38,14 @@ const UpdateNote = ({ note, singleRecipe, onModalClose }) => {
   };
 
   return (
-    <div>
+    <div className="update-note-main">
       <form onSubmit={handleSubmit}>
         <label>Note</label>
         <textarea
           type="text"
           rows={8}
           cols={64}
-          className="fixed-input"
+          className="fixed-input update-note-input"
           value={note1}
           onChange={updateNote}
           required

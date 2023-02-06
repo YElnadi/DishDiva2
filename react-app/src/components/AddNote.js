@@ -43,10 +43,10 @@ const AddNote = ({singleRecipe}) => {
           ))}
         </div>
         <div>
-          <h2>Cooking Notes</h2>
-          <label>
-            Add Note
-            <textarea
+          <h2 style={{marginLeft:'65px'}}>Cooking Notes</h2>
+          <label style={{marginLeft:'65px'}}>
+            Add Note 
+            <textarea style={{width:'80%'}}
               //   className="input-update-form"
               className='fixed-input'
               rows={8}
