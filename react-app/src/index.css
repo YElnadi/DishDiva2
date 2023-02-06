@@ -19,17 +19,19 @@ body{
 /* Single Recipe Page */
 .recipe-hero{
     display:grid;
-    gap:3rem;
+    gap:1rem;
 
 }
 .recipe-hero-img  {
-    height:500px;
-    width:700px;
+    height:394px;
+    width:592px;
     border-radius: var(--borderRadius);
+
 }
 .recipe-hero-img img{
     width: 100%;
     height: auto; 
+
   }
 
 .recipe-hero p{
@@ -150,6 +152,7 @@ padding: 10px 10px;
     font-size: 26px;
     border: none;
     cursor: pointer;
+    margin-left:30px
 }
 
 .drop-down-content{
@@ -162,5 +165,5 @@ padding: 10px 10px;
 }
 
 .drop-down-btn:hover{
-padding:20px;
+padding:19px;
 }

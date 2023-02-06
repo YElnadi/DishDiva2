@@ -28,15 +28,15 @@ const NavBar = ({}) => {
   return (
     <nav style={{display:'inline'}} className='nav-bar-styles drop-down'>
       {sessionUser ?( 
+        <>
       <i className="fa-solid fa-gear  drop-down-btn"  
       onMouseEnter={()=>setDropdown(true)} 
       onClick={()=>setDropdown(false)} style={{float:'right'}}> 
-      {dropdown && <Dropdown sessionUser={sessionUser}/>}</i> )
+      {dropdown && <Dropdown sessionUser={sessionUser}/>}</i> 
+
+     </>)
       :(
       <div className="login-signup-btn" style={{marginRight:'10px', marginTop:'0px'}}>
-        <NavLink to="/about" exact={true} activeClassName="active">
-          <button className="demo-btn">about us</button>
-        </NavLink>
         <button className="demo-btn" onClick={demoLogin}>Demo</button>
          <LoginFormModal />
          <SignupFormModal/>
@@ -45,10 +45,13 @@ const NavBar = ({}) => {
       </div>
       )}
 
-      <div style={{marginLeft:'10px', marginTop:'0px'}}>
+      <div style={{marginLeft:'10px', marginTop:'0px', display:'flex'}}>
         <NavLink to="/" exact={true} activeClassName="active">
           <img src={logo} style={{width:'200px'}}/>
         </NavLink>
+        <NavLink to="/about" exact={true} activeClassName="active">
+       <button className="demo-btn" >about us</button>
+     </NavLink>
       </div>
 
       {/* <div>

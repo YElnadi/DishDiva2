@@ -107,7 +107,7 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
         />
       </label>
       <label>
-        Time
+        Time (minutes)
         <input
           className="input-update-form"
           type="number"
