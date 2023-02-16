@@ -50,7 +50,7 @@ const NavBar = ({}) => {
           <img src={logo} style={{width:'200px'}}/>
         </NavLink>
         <NavLink to="/about" exact={true} activeClassName="active">
-       <button className="demo-btn" >about us</button>
+       <button className="demo-btn" >about me</button>
      </NavLink>
       </div>
 

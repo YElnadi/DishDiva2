@@ -196,6 +196,7 @@ const SingleRecipeDetails = () => {
           </main>
 
           <div style={{ width: "50%", float: "right", margin: "20px" }}>
+          <h2 style={{marginLeft:'65px'}}>Cooking Notes</h2>
             {sessionUser && sessionUser.id !== singleRecipe.user_id && (
               <>
                 <AddNote singleRecipe={singleRecipe} />
