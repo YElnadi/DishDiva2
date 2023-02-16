@@ -17,10 +17,25 @@ const Dropdown = ({ sessionUser }) => {
   return (
     <div style={{ zIndex: 1000, position: "absolute", float: "right" }}>
       <div onClick={() => setDropdown(!dropdown)} className="menu">
-        <div className='menu-item'>
-          <button style={{marginLeft:'50px', marginBottom:'10px', background:'transparent', border:'none'}}><NavLink to={`/users/${sessionUser.id}`} style={{textDecoration:'none', color:'black'}} >Profile</NavLink>{" "}
+      <div className="menu-item">
+          <button
+            style={{
+              marginLeft: "25px",
+              marginBottom: "10px",
+              background: "transparent",
+              border: "none",
+            }}
+          >
+            <NavLink
+              to={`/users/${sessionUser.id}`}
+              style={{ textDecoration: "none", color: "black"}}
+            >
+              Your Recipe Box
+            </NavLink>{" "}
           </button>
         </div>
+
+
         <div style={{border:'1px solid gray'}}></div>
         
           <div className="menu-item">
