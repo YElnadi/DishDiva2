@@ -129,7 +129,7 @@ const SingleRecipeDetails = () => {
                               <span style={{ fontWeight: "bold" }}>
                                 {ingredient.quantity}{" "}
                               </span>
-                              <span style={{ wordBreak: "break-all" }}>
+                              <span style={{ wordBreak: "break-word" }}>
                                 {ingredient.unit} {ingredient.item_name}
                               </span>
                             </div>
@@ -165,7 +165,7 @@ const SingleRecipeDetails = () => {
                           <header>
                             <p>step:{preparation.step}</p>
                           </header>
-                          <p style={{ wordBreak: "break-all" }}>
+                          <p style={{ wordBreak: "break-word" }}>
                             {preparation.instructions}
                           </p>
 
