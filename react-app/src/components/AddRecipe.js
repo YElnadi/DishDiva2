@@ -6,7 +6,7 @@ import Addingredients from "./Addingredients";
 import "./UpdateIngredients.css";
 
 
-const AddRecipe = () => {
+const AddRecipe = ({onModalClose}) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
@@ -75,8 +75,7 @@ const AddRecipe = () => {
   };
 
   const cancel = (e) =>{
-    e.preventDefault()
-    history.push(`/`)
+    onModalClose()
   }
 
   const updateServings = (e) =>{

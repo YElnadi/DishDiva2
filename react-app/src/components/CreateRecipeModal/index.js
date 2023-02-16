@@ -11,7 +11,7 @@ function CreateRecipeModal() {
     <i className="fa-solid fa-bowl-food"></i><button style={{padding:'10px', fontSize:'23px', backgroundColor:'transparent', border:'none'}}onClick={() => setShowModal(true)}> Share A Recipe</button></div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <AddRecipe />
+          <AddRecipe onModalClose={() => setShowModal(false)}/>
         </Modal>
       )}
     </>
