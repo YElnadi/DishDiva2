@@ -196,3 +196,35 @@ padding:19px;
     width:90vw;
     max-width: var(--max-width)
 }
+
+.page-not-found{
+   display: flex; 
+   flex-direction: column;
+   text-align: center;
+   background: rebeccapurple;
+   
+  
+}
+.page-not-found img{
+    width:500px;
+    height:500px; 
+}
+.page-not-found-btn{
+   
+     display:flex;
+    justify-content: center;
+    margin-top:20px;
+    /* background-color: rebeccapurple; */
+}
+
+.page-not-found-btn-style{
+    background:rebeccapurple;
+    padding:10px;
+    border:none;
+    color:white;
+    cursor: pointer; 
+  
+}
+.page-not-found-btn-style:hover{
+    background-color: red;
+}

@@ -20,6 +20,7 @@ import Addingredients from "./components/Addingredients";
 import SignupFormModal from "./components/SignupFormModal";
 import CreateRecipeModal from "./components/CreateRecipeModal";
 import About from "./components/About";
+import NotFoundPage from "./components/NotFoundPage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -70,6 +71,9 @@ function App() {
         </Route>
         <Route path="/about" exact={true}>
           <About />
+        </Route>
+        <Route>
+         <NotFoundPage/>
         </Route>
       </Switch>
     </BrowserRouter>

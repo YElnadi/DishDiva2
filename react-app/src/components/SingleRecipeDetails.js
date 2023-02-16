@@ -114,7 +114,7 @@ const SingleRecipeDetails = () => {
                   alt="recipe-image"
                 />
               </section>
-              <div style={{ border: "5px solid black", margin: "20px" }}></div>
+              <div style={{ border: "5px solid black", margin: "20px", width:'107%' }}></div>
               <section className="recipe-content">
                 <article>
                   <div>
@@ -193,7 +193,7 @@ const SingleRecipeDetails = () => {
                 </article>
               </section>
             </div>
-            <div style={{ border: "5px solid black", margin: "20px" }}></div>
+            <div style={{ border: "5px solid black", margin: "20px", width:'107%' }}></div>
             {/* <span style={{float:'right'}}>Cooking Notes</span> */}
           </main>
 
