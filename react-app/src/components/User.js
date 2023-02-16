@@ -8,11 +8,15 @@ import MyRecipeCards from "./MyRecipeCards";
 import "./Home.css";
 import logo from "../static/images/logoo.png";
 import Footer from "./Footer";
+import Dropdown from "./Dropdown";
 
 function User() {
   const [user, setUser] = useState({});
   const { userId } = useParams();
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
+  const [dropdown, setDropdown] = useState(false);
+
   const myRecipes = useSelector((state) => state.recipes.myRecipes);
   console.log("myRecipesssss", Object.values(myRecipes).length);
   const length = Object.values(myRecipes).length;
@@ -39,6 +43,20 @@ function User() {
 
   return (
     <>
+    <div className="main" style={{ display: "inline" }}>
+       {sessionUser ? (
+        <>
+          <i
+            className="fa-solid fa-gear  drop-down-btn"
+            onMouseEnter={() => setDropdown(true)}
+            onClick={() => setDropdown(false)}
+            style={{ float: "right" }}
+          >
+            {dropdown && <Dropdown sessionUser={sessionUser} />}
+          </i>
+        </>
+      ) : null}
+      </div>
       <div className="main">
         <h2>Good Morning, {user.username}</h2>
         {length > 1 && <h2>{length} recipes</h2>}

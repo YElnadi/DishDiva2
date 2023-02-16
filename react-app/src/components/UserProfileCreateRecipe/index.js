@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import AddRecipe from '../AddRecipe';
 
-function CreateRecipeModal() {
+function UserProfileCreateRecipeModal() {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-    <div style={{textAlign:'center', marginTop:'50px', marginLeft:'40px'}}>
-    <i className="fa-solid fa-bowl-food"></i>
-    <button style={{padding:'10px', fontSize:'23px', backgroundColor:'transparent', border:'none'}}onClick={() => setShowModal(true)}> Share A Recipe</button></div>
+    
+    <button  className='demo-btn'
+    onClick={() => {setShowModal(true) ; console.log('click')}}> 
+            Create Recipe
+            </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <AddRecipe onModalClose={() => setShowModal(false)} />
@@ -19,4 +21,4 @@ function CreateRecipeModal() {
   );
 }
 
-export default CreateRecipeModal;
+export default UserProfileCreateRecipeModal;

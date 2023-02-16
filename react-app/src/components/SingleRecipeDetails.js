@@ -20,6 +20,7 @@ import AddNote from "./AddNote";
 import DeleteNote from "./DeleteNote";
 import UpdateNote from "./UpdateNote";
 import UpdateNoteFormModal from "./UpdateNoteModal";
+import NavBar from "./NavBar";
 
 const SingleRecipeDetails = () => {
   const { recipeId } = useParams();
@@ -55,6 +56,7 @@ const SingleRecipeDetails = () => {
 
   return (
     <div>
+      <NavBar/>
       {Object.values(singleRecipe).length > 0 && (
         <>
           <main className="page">
