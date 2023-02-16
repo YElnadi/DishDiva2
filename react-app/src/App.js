@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import LoginForm from "./components/auth/LoginForm";
 import LoginFormModal from "./components/LoginFormModal";
-import SignUpForm from "./components/auth/SignUpForm";
-import NavBar from "./components/NavBar";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
@@ -14,9 +10,6 @@ import ViewImages from "./components/file_upload/ViewImages";
 import Home from "./components/Home";
 import SingleRecipeDetails from "./components/SingleRecipeDetails";
 import "./index.css";
-import AddRecipe from "./components/AddRecipe";
-import EditRecipe from "./components/EditRecipe";
-import Addingredients from "./components/Addingredients";
 import SignupFormModal from "./components/SignupFormModal";
 import CreateRecipeModal from "./components/CreateRecipeModal";
 import About from "./components/About";
@@ -73,7 +66,7 @@ function App() {
           <About />
         </Route>
         <Route>
-         <NotFoundPage/>
+          <NotFoundPage />
         </Route>
       </Switch>
     </BrowserRouter>

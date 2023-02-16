@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
 import {
   addIngredientToRecipeThunk,
-  loadSingleRecipeThunk,
 } from "../store/recipes";
 import "./UpdateIngredients.css";
 
@@ -13,7 +11,6 @@ const Addingredients = ({ singleRecipe, onModalClose }) => {
   const [quantity, setQuantity] = useState("");
   const [item_name, setItemName] = useState("");
   const [unit, setUnit] = useState("");
-  const [selectedOpetion, setSelectedOption] = useState("");
   // const [buttonOn, setButtonOn] = useState(buttonClicked);
   const dispatch = useDispatch();
   const history = useHistory();

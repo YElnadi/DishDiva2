@@ -1,5 +1,5 @@
 import logo from "../static/images/logoo.png";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 const About = () => {
   return (

@@ -1,15 +1,12 @@
-import { useParams, useHistory, NavLink } from "react-router-dom";
+import { useParams, useHistory} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { loadSingleRecipeThunk } from "../store/recipes";
-import { useEffect, useState, useRef } from "react";
+import { useEffect} from "react";
 import DeleteRecipe from "./DeleteRecipe";
-import EditRecipe from "./EditRecipe";
-import Addingredients from "./Addingredients";
 import "./SingleRecipeDetails.css";
 import AddIngredientsModal from "./AddIngredientsModal";
 import EditRecipeModal from "./EditRecipeModal";
-import UpdateIngredientsFormModal from "./UpdateIngredientsFormModal";
 import SingleIngredientCard from "./SingleIngredientCard";
 import DeleteIngredientBtn from "./DeleteIngredientBtn";
 import AddPreparationsModal from "./AddPreparationsModal";
@@ -18,7 +15,6 @@ import "./Home.css";
 import DeletePreparationBtn from "./DeletePreparationBtn";
 import AddNote from "./AddNote";
 import DeleteNote from "./DeleteNote";
-import UpdateNote from "./UpdateNote";
 import UpdateNoteFormModal from "./UpdateNoteModal";
 import NavBar from "./NavBar";
 

@@ -2,10 +2,9 @@ import { Redirect, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import "./HomeRecipeCards.css";
-import LoginFormModal from "./LoginFormModal";
 import { Modal } from '../context/Modal';
 import LoginForm from "./auth/LoginForm";
-import PleaseLoginModal from "./PleaseLoginModal";
+
 
 const HomeRecipeCards = ({ recipe }) => {
   //console.log("recipe", recipe);

@@ -7,7 +7,6 @@ import "./User.css";
 import MyRecipeCards from "./MyRecipeCards";
 import "./Home.css";
 import logo from "../static/images/logoo.png";
-import Footer from "./Footer";
 import Dropdown from "./Dropdown";
 
 function User() {

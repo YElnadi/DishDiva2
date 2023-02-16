@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createNewRecipeThunk, loadSingleRecipeThunk } from "../store/recipes";
-import Addingredients from "./Addingredients";
+import {  loadSingleRecipeThunk } from "../store/recipes";
 import "./UpdateIngredients.css";
 
 

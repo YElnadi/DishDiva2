@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { loadRecipesThunk } from "../store/recipes";
 import HomeRecipeCards from "./HomeRecipeCards";
-import CoverPhoto from "./CoverPhoto";
 import "./Home.css";
 import "./SingleRecipeDetails.css";
 import image from "../static/images/background.jpeg";

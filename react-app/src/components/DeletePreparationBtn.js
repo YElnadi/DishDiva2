@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-import { deleteIngredientThunk, deletePreparationThunk } from "../store/recipes";
+import { useDispatch} from "react-redux";
+import {deletePreparationThunk } from "../store/recipes";
 
 const DeletePreparationBtn = ({preparation}) => {
 
