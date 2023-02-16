@@ -167,3 +167,15 @@ padding: 10px 10px;
 .drop-down-btn:hover{
 padding:19px;
 }
+
+.page-footer{
+    height: 4rem;
+    background: black;
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.page-footer p{
+    margin-bottom: 0;
+}
