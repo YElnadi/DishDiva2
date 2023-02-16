@@ -14,7 +14,7 @@ const Dropdown = ({ sessionUser }) => {
         <div className="menu-item">
           <button
             style={{
-              marginLeft: "50px",
+              marginLeft: "25px",
               marginBottom: "10px",
               background: "transparent",
               border: "none",
@@ -22,9 +22,9 @@ const Dropdown = ({ sessionUser }) => {
           >
             <NavLink
               to={`/users/${sessionUser.id}`}
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none", color: "black"}}
             >
-              Profile
+              Your Recipe Box
             </NavLink>{" "}
           </button>
         </div>
