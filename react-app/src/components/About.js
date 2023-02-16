@@ -4,7 +4,7 @@ import { NavLink, Redirect } from "react-router-dom";
 const About = () => {
   return (
     <div className="main">
-        <h2>About us</h2>
+        <h2>About me</h2>
       <p style={{wordBreak: "break-word", width:'80%'}}>Dish Diva is a cutting-edge recipe web app that combines the power of Flask in the backend with the versatility of React-Redux in the frontend. This innovative platform offers a wealth of features that are designed to help you find, create, and manage recipes with ease. With four key functions - recipe, ingredients, preparations, and cooking notes - Dish Diva gives you full CRUD functionality and the ability to organize and keep track of your recipes in a comprehensive and user-friendly manner. Whether you're a professional chef or simply looking to experiment in the kitchen, Dish Diva is the perfect tool for all your culinary needs.</p>
       <div className="sideNav">
           <div

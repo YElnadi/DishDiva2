@@ -7,6 +7,7 @@ import "./Home.css";
 import "./SingleRecipeDetails.css";
 import image from "../static/images/background.jpeg";
 import Footer from "./Footer";
+import NavBar from "./NavBar";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const Home = () => {
 
   return (
     <>
+     <NavBar/>
       {/* <CoverPhoto/> */}
       <img src={image} className="banner-image" />
       <div style={{ marginTop: "100px" }}></div>
