@@ -56,7 +56,7 @@ const SingleRecipeDetails = () => {
 
   return (
     <div>
-      <NavBar/>
+      <NavBar />
       {Object.values(singleRecipe).length > 0 && (
         <>
           <main className="page">
@@ -108,7 +108,7 @@ const SingleRecipeDetails = () => {
                     </article>
                   </div>
                 </article>
-                <img 
+                <img
                   src={singleRecipe.image_url}
                   className="img recipe-hero-img"
                   alt="recipe-image"
@@ -198,7 +198,15 @@ const SingleRecipeDetails = () => {
           </main>
 
           <div style={{ width: "50%", float: "right", margin: "20px" }}>
-          <h2 style={{marginLeft:'65px'}}>Cooking Notes</h2>
+            <h2 style={{ marginLeft: "65px" }}>Cooking Notes</h2>
+            {sessionUser &&
+              sessionUser.id == singleRecipe.user_id &&
+              getNotes(singleRecipe).length === 0 && (
+                <h3 style={{ marginLeft: "65px" }}>
+                  You currently don't have any cooking notes.
+                </h3>
+              )}
+
             {sessionUser && sessionUser.id !== singleRecipe.user_id && (
               <>
                 <AddNote singleRecipe={singleRecipe} />
@@ -207,14 +215,18 @@ const SingleRecipeDetails = () => {
 
             <div style={{ marginBottom: "30px" }}></div>
 
-            <div style={{marginLeft:'65px'}}>
+            <div style={{ marginLeft: "65px" }}>
               {getNotes(singleRecipe).map((note) => (
                 <div key={note.id}>
                   <div>
                     <div style={{ display: "flex", gap: 15 }}>
                       <h4>{note.user}</h4>
                       <h4
-                        style={{ fontWeight: "normal", wordBreak: "break-word", width:'80%' }}
+                        style={{
+                          fontWeight: "normal",
+                          wordBreak: "break-word",
+                          width: "80%",
+                        }}
                       >
                         {note.note}
                       </h4>
