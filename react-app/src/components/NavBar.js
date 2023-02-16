@@ -13,6 +13,8 @@ import { useDispatch } from "react-redux";
 import logo from '../static/images/logoo.png'
 import About from "./About";
 import { useHistory } from "react-router-dom";
+import UserProfileCreateRecipeModal from "./UserProfileCreateRecipe";
+
 
 const NavBar = ({}) => {
   const sessionUser = useSelector(state => state.session.user);
@@ -29,12 +31,16 @@ const NavBar = ({}) => {
     <nav style={{display:'inline'}} className='nav-bar-styles drop-down'>
       {sessionUser ?( 
         <>
+        <div style={{display:'flex', flexDirection:'row', float:'right'}}>
+        <UserProfileCreateRecipeModal/>
       <i className="fa-solid fa-gear  drop-down-btn"  
       onMouseEnter={()=>setDropdown(true)} 
       onClick={()=>setDropdown(false)} style={{float:'right'}}> 
       {dropdown && <Dropdown sessionUser={sessionUser}/>}</i> 
+      </div>
 
-     </>)
+     </>
+     )
       :(
       <div className="login-signup-btn" style={{marginRight:'10px', marginTop:'0px'}}>
         <button className="demo-btn" onClick={demoLogin}>Demo</button>
