@@ -108,7 +108,7 @@ const SingleRecipeDetails = () => {
                     </article>
                   </div>
                 </article>
-                <img
+                <img 
                   src={singleRecipe.image_url}
                   className="img recipe-hero-img"
                   alt="recipe-image"
