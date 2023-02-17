@@ -88,6 +88,7 @@ def upload_image():
     data = request.form.to_dict()
     print("data from recipe route", data)
     description = data['description']
+    title = data['title']
 
     # if len(description)<100:
     #     return {"errors":"Description must be greater than 100 characters"}
@@ -98,6 +99,10 @@ def upload_image():
     print("description", description)
     if len(description) <= 100:
        return {"errors": "Description should be greater than 100 characters"}, 400
+
+    if len(title) >= 50:
+       return {"errors": "Description should be less than 50 characters"}, 400
+
 
     
 

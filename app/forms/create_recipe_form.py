@@ -12,9 +12,14 @@ def check_description_length(form,field):
   if len(description) <100:
     raise ValidationError("Description must be greated that 100 characters")
 
+def check_title_length(form,field):
+  title = field.data
+  if len(title) >50:
+    raise ValidationError("Description must be less than 50 characters")
+
 
 class RecipeForm(FlaskForm):
-  title = StringField('Title', validators=[DataRequired()])
+  title = StringField('Title', validators=[DataRequired(), check_title_length])
   image_url = TextField('Recipe Image URL', validators=[DataRequired(), check_image_type])
   description = TextField('Description', validators=[DataRequired(),  check_description_length] )
   servings = IntegerField('Servings',  validators=[DataRequired()])
