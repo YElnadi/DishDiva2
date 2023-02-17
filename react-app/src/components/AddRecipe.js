@@ -53,7 +53,7 @@ const AddRecipe = ({onModalClose}) => {
       const newRecipe = await res.json();
 
       setImageLoading(false);
-      await dispatch(loadSingleRecipeThunk(newRecipe.id))
+      await dispatch(loadSingleRecipeThunk(newRecipe.id)).then(onModalClose())
       history.push(`/recipes/${newRecipe.id}`);
     } else {
       const resObj = await res.json();
@@ -96,6 +96,13 @@ const AddRecipe = ({onModalClose}) => {
     setDescription(e.target.value)
   }
 
+  const updateTitle = (e) =>{
+    const pattern = /^[a-zA-Z ]*$/
+    const inputValue = e.target.value 
+    if (inputValue==='' || pattern.test(inputValue))
+    setTitle(inputValue)
+  }
+
  
 
   return (
@@ -114,7 +121,7 @@ const AddRecipe = ({onModalClose}) => {
           className="input-update-form"
           type="Text"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={updateTitle}
           placeholder="Title"
           required
 

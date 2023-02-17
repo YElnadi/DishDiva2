@@ -59,6 +59,13 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
   const updateDesceiption = (e) =>{
     setDescription(e.target.value)
   }
+
+  const updateTitle = (e) =>{
+    const pattern = /^[a-zA-Z ]*$/
+    const inputValue = e.target.value 
+    if (inputValue==='' || pattern.test(inputValue))
+    setTitle(inputValue)
+  }
   return (
     <div className="bg-img-edit-recipe-form">
     <form onSubmit={handleSubmit}
@@ -75,7 +82,7 @@ const EditRecipe = ({ singleRecipe, onModalClose }) => {
            className="input-update-form"
           type="Text"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={updateTitle}
           placeholder="Title"
           required
         />
