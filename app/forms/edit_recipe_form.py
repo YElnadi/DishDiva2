@@ -4,8 +4,8 @@ from wtforms.validators import DataRequired, ValidationError
 
 def check_description_length(form, field):
   description = field.data
-  if len(description)<500:
-    raise ValidationError("Description must be greater than 500 characters")
+  if len(description)<100:
+    raise ValidationError("Description must be greater than 100 characters")
 
 class EditRecipeForm(FlaskForm):
   title = StringField('Title', validators=[DataRequired()])
