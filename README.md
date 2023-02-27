@@ -1,6 +1,6 @@
 DishDiva is a NYT cooking website clone, where you can browse its recipes and made up your mind about what are you going eat today. this website allows users to create free accounts, share their favorite recipes, and perform full CRUD functionallity on recipes and ingredients. <p>
 
-Live site: [DishDiva](https://dishdiva.onrender.com/)<p>
+Live site: [DishDiva](https://dishdiva-t3d2.onrender.com/)<p>
 
 in the live site you can start exploring the website through demo user login button.<p>
 
