@@ -30,7 +30,7 @@ in the home page, when a user not logged in, there are some recipes shared from 
 
 ![landing page](pics/landing_page1.png)
 
-![landing page](pics/landing_page2.png)
+![landing page](pics/Landing_page2.png)
 
 Login Page
 
@@ -89,9 +89,9 @@ In the recipe page, the owner of the recipe can create and update preparations i
 
 In any recipe, a user can leave a cooking note and update it if needed. 
 
-![addCookingNotes](pics/Cookingnotes1.png)
+![addCookingNotes](pics/cookingnotes1.png)
 
-![updateCookingNotes](pics/Cookingnotes2.png)
+![updateCookingNotes](pics/cookingnotes2.png)
 
 ## Instructions on how to build/run the project
 
