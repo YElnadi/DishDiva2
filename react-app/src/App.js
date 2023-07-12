@@ -21,6 +21,7 @@ import SignupFormModal from "./components/SignupFormModal";
 import CreateRecipeModal from "./components/CreateRecipeModal";
 import About from "./components/About";
 import NotFoundPage from "./components/NotFoundPage";
+import Search from "./components/Search/search";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -71,6 +72,9 @@ function App() {
         </Route>
         <Route path="/about" exact={true}>
           <About />
+        </Route>
+        <Route path="/search" exact={true}>
+          <Search />
         </Route>
         <Route>
           <NotFoundPage />

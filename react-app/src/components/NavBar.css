@@ -15,7 +15,7 @@ height: 100%;
 }
 
 .demo-btn{
-    /* background-color: #4CAF50; /* Green */
+    background-color: white; /* Green
     /* border: none; */
     /* color: white;
     padding: 15px 32px; */
@@ -37,7 +37,7 @@ white-space: nowrap;
 border:none
 }
 
-.demo-btn:hover{
+/* .demo-btn:hover{
     background-color: #b2b4b2;
-}
+} */
 
