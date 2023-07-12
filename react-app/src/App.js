@@ -22,6 +22,7 @@ import CreateRecipeModal from "./components/CreateRecipeModal";
 import About from "./components/About";
 import NotFoundPage from "./components/NotFoundPage";
 import Search from "./components/Search/search";
+import SearchResultPage from "./components/SearchResultList/SearchResultPage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -75,6 +76,9 @@ function App() {
         </Route>
         <Route path="/search" exact={true}>
           <Search />
+        </Route>
+        <Route path="/search-results" exact={true}>
+          <SearchResultPage />
         </Route>
         <Route>
           <NotFoundPage />

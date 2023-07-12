@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import "./search.css";
@@ -9,22 +9,35 @@ const Search = () => {
   const [searchInput, setSearchInput] = useState(" ");
   const [results, setResults] = useState([]);
   const [recipes, setRecipes] = useState([]);
+  const [searchShow, setSearchShow] = useState(false);
+  const searchRef = useRef(null);
+
+
 
   const fetchData = (value) => {
-    fetch("https://jsonplaceholder.typicode.com/users")
+    fetch("/api/recipes")
       .then((response) => response.json())
-      .then((json) => {
-        const results = json.filter((user) => {
-          return (
-            value &&
-            user &&
-            user.name &&
-            user.name.toLowerCase().includes(value)
-          );
-        });
-        setResults(results);
+      .then((data) => {
+        console.log("API response:", data);
+        if (Array.isArray(data.recipes)) {
+          const results = data.recipes.filter((recipe) => {
+            return (
+              value &&
+              recipe &&
+              recipe.title &&
+              recipe.title.toLowerCase().includes(value)
+            );
+          });
+          setResults(results);
+        } else {
+          console.error("API response does not contain an array of recipes:", data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
       });
   };
+ 
 
   //   useEffect(() => {
   //     (async () => {
@@ -42,6 +55,11 @@ const Search = () => {
     fetchData(value);
   };
 
+  const handleInputBlur = () => {
+    // Close the list when the search input loses focus
+    setResults([]);
+  };
+
   return (
     <div className="search">
       <div className="search-bar-container">
@@ -52,13 +70,18 @@ const Search = () => {
             placeholder="What would you like to cook?"
             value={searchInput}
             onChange={(e) => handleChange(e.target.value)}
+            onBlur={handleInputBlur}
+
           />
         </div>
       
       </div>
-      <div className="search-results">
+      {results.length>0 &&(
+         <div className="search-results-list-container">
           <SearchResultList results={results} />
         </div>
+      )}
+     
     </div>
   );
 };
