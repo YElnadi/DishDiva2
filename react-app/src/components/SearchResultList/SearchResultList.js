@@ -1,10 +1,12 @@
 import React from 'react';
 import './SearchResultList.css'
 
-const SearchResultList = () => {
+const SearchResultList = ({results}) => {
   return (
     <div >
-      
+     { results.map((result, id)=>{
+        return <div key={id}>{result.name}</div>
+     })}
 
     </div>
   );
