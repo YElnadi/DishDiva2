@@ -1,0 +1,15 @@
+.search-results {
+  width: 100%;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 8px #ddd;
+  border-radius: 10px;
+  margin-top: 1rem;
+  margin-left: 15px;
+  max-height: 300px;
+  overflow-y: scroll;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
