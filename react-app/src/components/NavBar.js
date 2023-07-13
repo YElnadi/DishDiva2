@@ -10,7 +10,7 @@ import LoginFormModal from "./LoginFormModal/index.js";
 import SignupFormModal from "./SignupFormModal";
 import { login } from "../store/session";
 import { useDispatch } from "react-redux";
-import logo from "../static/images/logoo.png";
+import logo from "../static/images/DishDiva.png";
 import About from "./About";
 import { useHistory } from "react-router-dom";
 import UserProfileCreateRecipeModal from "./UserProfileCreateRecipe";
@@ -63,7 +63,7 @@ const NavBar = ({}) => {
 
       <div style={{ marginLeft: "10px", marginTop: "0px", display: "flex" }}>
         <NavLink to="/" exact={true} activeClassName="active">
-          <img src={logo} style={{ width: "200px" }} />
+          <img src={logo} style={{ width: "200px"}} />
         </NavLink>
         
         <div>
