@@ -1,3 +1,5 @@
+/* search.css */
+
 .search {
   background-color: white;
   position: relative;
@@ -5,13 +7,14 @@
 
 .search-bar-container {
   padding-top: 2.5vh;
-  width: 330%;
+  width: 200%; /* Set the fixed width to 200px */
   margin-left: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 100px;
 }
+
 .input-wrapper {
   background-color: white;
   width: 100%;
@@ -19,25 +22,25 @@
   height: 2rem;
   padding: 0 15px;
   box-shadow: 0px 0px 8px #ddd;
-  display:flex;
+  display: flex;
   align-items: center;
 }
 
-input{
-    background-color: transparent;
-    border: none;
-    width: 100%;
-    height: 100%;
-    font-size: 1.25rem;
-    margin-left: 7px;
-
+input {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  height: 100%;
+  font-size: 1.25rem;
+  margin-left: 7px;
 }
-input:focus{
-    outline:none
+
+input:focus {
+  outline: none;
 }
 
 @media (max-width: 768px) {
-    .search-bar-container {
-      width: 80%;
-    }
+  .search-bar-container {
+    width: 80%;
   }
+}

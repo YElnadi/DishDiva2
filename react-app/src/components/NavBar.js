@@ -1,17 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import LogoutButton from "./auth/LogoutButton";
 import { useSelector } from "react-redux";
 import "./NavBar.css";
 import Dropdown from "./Dropdown";
 import { useState } from "react";
-import AddRecipe from "./AddRecipe";
 import LoginFormModal from "./LoginFormModal/index.js";
 import SignupFormModal from "./SignupFormModal";
 import { login } from "../store/session";
 import { useDispatch } from "react-redux";
 import logo from "../static/images/DishDiva.png";
-import About from "./About";
 import { useHistory } from "react-router-dom";
 import UserProfileCreateRecipeModal from "./UserProfileCreateRecipe";
 import Search from "./Search/search";
@@ -66,8 +63,9 @@ const NavBar = ({}) => {
           <img src={logo} style={{ width: "200px"}} />
         </NavLink>
         
+        
         <div>
-          <Search />
+          <Search sessionUser = {sessionUser} />
         </div>
       </div>
 

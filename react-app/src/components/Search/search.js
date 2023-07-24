@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./search.css";
 import SearchResultList from "../SearchResultList/SearchResultList";
 
-const Search = () => {
+const Search = ({sessionUser}) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState([]);
 
@@ -50,26 +50,25 @@ const Search = () => {
     <div className="search">
       <div className="search-bar-container">
         <div className="input-wrapper">
-          <i className="fa-solid fa-magnifying-glass"></i>
-          <input
-            type="search"
-            placeholder="What would you like to cook?"
-            value={searchInput}
-            onChange={(e) => handleChange(e.target.value)}
-            // onBlur={handleInputBlur}
-          />
+          <i className="fa-solid fa-magnifying-glass"></i> 
+          {sessionUser ? (
+            <input
+              type="search"
+              placeholder="What would you like to cook?"
+              value={searchInput}
+              onChange={(e) => handleChange(e.target.value)}
+            />
+          ) : (
+            <div> Please log in to use the search feature.</div>
+          )}
         </div>
       </div>
 
-        {
-          results.length > 0 && (
-             <div className="search-results-list-container">
+      {sessionUser && results.length > 0 && (
+        <div className="search-results-list-container">
           <SearchResultList results={results} />
         </div>
-          )
-        }
-       
-      
+      )}
     </div>
   );
 };

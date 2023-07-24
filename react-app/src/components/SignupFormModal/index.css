@@ -22,7 +22,9 @@ outline:0;
 border:none
 }
 
-.signup-btn:hover{
+/* .signup-btn:hover{
     background-color: #b2b4b2;
+} */
+.signup-btn:hover{
+    font-size:16px
 }
-
