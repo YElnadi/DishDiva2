@@ -41,7 +41,6 @@ function App() {
 
   return (
     <BrowserRouter>
-     
       <Switch>
         <Route path="/" exact={true}>
           <Home />
@@ -76,10 +75,6 @@ function App() {
         <Route path="/search" exact={true}>
           <Search />
         </Route>
-        
-        
-        
-        
         <Route>
           <NotFoundPage />
         </Route>
