@@ -109,11 +109,14 @@ const SingleRecipeDetails = () => {
                     </article>
                   </div>
                 </article>
-                <img 
+                <div >
+                  <img 
                   src={singleRecipe.image_url}
-                  className="img recipe-hero-img"
+                  className="recipe-hero-img"
                   alt="recipe-image"
                 />
+                </div>
+                
               </section>
               <div style={{ border: "5px solid black", margin: "20px" }}></div>
               <section className="recipe-content">

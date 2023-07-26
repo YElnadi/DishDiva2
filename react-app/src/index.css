@@ -20,18 +20,18 @@ body{
 /* Single Recipe Page */
 .recipe-hero{
     display:grid;
-    gap:1rem;
+    gap:1rem 11rem ; 
+   
 
 }
 .recipe-hero-img  {
-    height:394px;
-    width:592px;
+    max-width: 95%;
     border-radius: var(--borderRadius);
 
 }
 .recipe-hero-img img{
     width: 100%;
-    height: auto; 
+    height: auto;
 
   }
 
