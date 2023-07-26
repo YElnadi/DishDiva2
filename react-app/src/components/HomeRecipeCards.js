@@ -8,37 +8,38 @@ import LoginForm from "./auth/LoginForm";
 import PleaseLoginModal from "./PleaseLoginModal";
 
 const HomeRecipeCards = ({ recipe }) => {
-  //console.log("recipe", recipe);
-  //console.log('recipe id',recipe.id )
-  //const user = useSelector(state=>state.session.user)
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
-  //console.log("sessionUser", sessionUser);
 
- 
+  // Function to truncate the title if it's longer than maxLength characters
+  const truncateTitle = (title, maxLength) => {
+    if (title.length > maxLength) {
+      return title.slice(0, maxLength) + '..';
+    }
+    return title;
+  };
 
   const openRecipe = (e) => {
-    if(!sessionUser) {
-      setShowModal(true)
-    }else{
+    if (!sessionUser) {
+      setShowModal(true);
+    } else {
       history.push(`/recipes/${recipe.id}`);
     }
-    
-  }
-    
+  };
 
   return (
     <>
       <div>
-        <div className="spot-card ">
+        <div className="spot-card">
           <img
             src={recipe.image_url}
             onClick={openRecipe}
             className="spot-card-image"
           />
           <div className="container">
-            <h4>{recipe.title}</h4>
+            {/* Use the truncateTitle function to truncate the title */}
+            <h4>{truncateTitle(recipe.title, 50)}</h4>
             <p>{recipe.user}</p>
           </div>
         </div>
@@ -51,6 +52,5 @@ const HomeRecipeCards = ({ recipe }) => {
     </>
   );
 };
-
 
 export default HomeRecipeCards;
