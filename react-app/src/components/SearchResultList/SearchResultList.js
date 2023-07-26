@@ -8,8 +8,8 @@ const SearchResultList = ({ results }) => {
   const history = useHistory();
 
   const handleClick = (recipeId) => {
-    console.log("helloooo from handle click");
-    console.log("recipeId", recipeId);
+    // console.log("helloooo from handle click");
+    // console.log("recipeId", recipeId);
     history.push(`/recipes/${recipeId}`);
     setShowDropdown(false); // Hide the dropdown when an item is clicked
   };

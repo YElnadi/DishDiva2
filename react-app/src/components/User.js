@@ -16,9 +16,9 @@ function User() {
   const sessionUser = useSelector((state) => state.session.user);
   const [dropdown, setDropdown] = useState(false);
   const myRecipes = useSelector((state) => state.recipes.myRecipes);
-  console.log("myRecipesssss", Object.values(myRecipes).length);
+  // console.log("myRecipesssss", Object.values(myRecipes).length);
   const length = Object.values(myRecipes).length;
-  console.log("length#####", length);
+  // console.log("length#####", length);
 
   useEffect(() => {
     if (!userId) {

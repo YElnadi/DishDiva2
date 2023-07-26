@@ -11,7 +11,7 @@ const Search = ({sessionUser}) => {
     fetch("/api/recipes")
       .then((response) => response.json())
       .then((data) => {
-        console.log("API response:", data);
+        // console.log("API response:", data);
         if (Array.isArray(data.recipes)) {
           const filteredResults = data.recipes.filter((recipe) => {
             return (
