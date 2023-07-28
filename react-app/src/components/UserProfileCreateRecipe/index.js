@@ -9,7 +9,7 @@ function UserProfileCreateRecipeModal() {
     <>
     
     <button  className='demo-btn'
-    onClick={() => {setShowModal(true) ; console.log('click')}}> 
+    onClick={() => {setShowModal(true) }}> 
             Create Recipe
             </button>
       {showModal && (

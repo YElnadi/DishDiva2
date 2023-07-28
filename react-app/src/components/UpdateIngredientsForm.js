@@ -36,7 +36,7 @@ const UpdateIngredientsForm = ({ ingredient, singleRecipe, onModalClose }) => {
       dispatch(loadSingleRecipeThunk(singleRecipe.id)).then(onModalClose())
     )
     if(response){
-      console.log('response', response)
+      // console.log('response', response)
       setErrors(response)
     }
   };

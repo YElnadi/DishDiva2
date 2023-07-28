@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 const SearchResultList = ({ results }) => {
   const [showDropdown, setShowDropdown] = useState(true); // State to track dropdown visibility
-  console.log("SearchResultList Component - Results:", results);
+  // console.log("SearchResultList Component - Results:", results);
   const history = useHistory();
 
   const handleClick = (recipeId) => {
