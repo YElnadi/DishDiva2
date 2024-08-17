@@ -36,7 +36,21 @@ def update_ingredient(id):
           return updated_recipe.to_dict()
      return {'errors': validation_errors_to_error_messages(form.errors)}, 401
           
-
+# ##update ingredient
+# @ingredient_routes.route('/update/<int:id>', methods=["PUT"])
+# #@login_required
+# def update_ingredient(id):
+#      form = IngredientForm()
+#      form['csrf_token'].data = request.cookies['csrf_token']
+#      if form.validate_on_submit():
+#           ingredient = Ingredient.query.get(id)
+#           ingredient.quantity = form.data['quantity']
+#           ingredient.unit = form.data['unit']
+#           ingredient.item_name = form.data['item_name']
+#           db.session.commit()
+#           updated_recipe = Recipe.query.get(ingredient.recipe_id)
+#           return updated_recipe.to_dict()
+#      return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 ##delete ingredient
 @ingredient_routes.route('/delete/<int:id>', methods=["DELETE"])
