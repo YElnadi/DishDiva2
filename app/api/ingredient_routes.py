@@ -17,6 +17,18 @@ def ingredients():
 # def ingredients(recipeId):
 #      recipe_ingredients = [ingredient for ingredient in ingredients if ingredient['recipeId']==recipeId]
 #      return recipe_ingredients.to_dict()
+
+# ##get all Ingredients
+# @ingredient_routes.route('')
+# def ingredients():
+#      ingredients = Ingredient.query.order_by(Ingredient.id.desc()).all()
+#      return {"Ingredients": [ingredient.to_dict() for ingredient in ingredients]}
+
+# ##get all Ingredeints by recipe id
+# # @ingredient_routes.route('/<int:recipeId>')
+# # def ingredients(recipeId):
+# #      recipe_ingredients = [ingredient for ingredient in ingredients if ingredient['recipeId']==recipeId]
+# #      return recipe_ingredients.to_dict()
      
 
 
