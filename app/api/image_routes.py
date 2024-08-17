@@ -39,3 +39,8 @@ image_routes = Blueprint("images", __name__)
 def get_all_images():
     images = Image.query.order_by(Image.id.desc()).all()
     return {"images": [image.to_dict() for image in images]}
+
+# @image_routes.route("")
+# def get_all_images():
+#     images = Image.query.order_by(Image.id.desc()).all()
+#     return {"images": [image.to_dict() for image in images]}
