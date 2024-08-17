@@ -51,3 +51,18 @@ def delete_ingredient(id):
           return updated_recipe.to_dict()
      else:
           return{"message":f"No ingredient found with this id ${id}"}
+     
+
+# ##delete ingredient
+# @ingredient_routes.route('/delete/<int:id>', methods=["DELETE"])
+# #@login_required
+# def delete_ingredient(id):
+#      ingredient = Ingredient.query.get(id)
+#      recipe_id = ingredient.recipe_id
+#      if ingredient:
+#           db.session.delete(ingredient)
+#           db.session.commit()
+#           updated_recipe = Recipe.query.get(recipe_id)
+#           return updated_recipe.to_dict()
+#      else:
+#           return{"message":f"No ingredient found with this id ${id}"}
