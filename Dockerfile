@@ -1,7 +1,7 @@
 FROM node:16-bullseye AS frontend
 
 WORKDIR /app/react-app
-COPY react-app/package.json react-app/package-lock.json ./
+COPY react-app/package.json ./
 RUN npm install --legacy-peer-deps
 COPY react-app/ ./
 RUN npm run build
