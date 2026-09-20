@@ -42,7 +42,26 @@ This is the starter for the Flask React project.
 7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
 
-## Deployment through Render.com
+## Deployment through Railway
+
+This repository includes a `Dockerfile` and `railway.json` for Railway.
+
+1. Create a Railway project from this GitHub repository.
+2. Add a PostgreSQL service to the same Railway project.
+3. In the web service, add these variables:
+   - `DATABASE_URL=${{Postgres.DATABASE_URL}}`
+   - `SECRET_KEY` with a long random value
+   - `FLASK_ENV=production`
+   - `SCHEMA=flask_schema`
+   - `S3_BUCKET`, `S3_KEY`, and `S3_SECRET` for image uploads
+4. Deploy the service. The container applies database migrations before
+   starting Gunicorn.
+5. Run `flask seed all` once from a Railway shell if you want the sample data.
+
+Do not run the seed command on every deployment because it may duplicate or
+overwrite application data.
+
+## Previous Render.com instructions
 
 First, refer to your Render.com deployment articles for more detailed
 instructions about getting started with [Render.com], creating a production
@@ -145,4 +164,4 @@ successfully deployed your Flask application to Render! You can find the URL for
 your site just below the name of the Web Service at the top of the page.
 
 [Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/ 
+[Dashboard]: https://dashboard.render.com/
