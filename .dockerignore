@@ -1,0 +1,9 @@
+.git
+.env
+.venv
+__pycache__
+*.pyc
+app/dev.db
+react-app/node_modules
+react-app/build
+pics
